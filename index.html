@@ -1,75 +1,146 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0a7cff"><title>Attendance Hub</title><link rel="icon" href="data:image/jpeg;base64,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"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.json">
 <style>
-:root{--b:#0a7cff;--bd:#0059c9;--bg:#f1f3f7;--cd:#fff;--tx:#1b2430;--mu:#7a8594;--in:#e9ecf1;--er:#d93025;--ok:#18a058}
+:root{--b:#0a7cff;--b2:#6f42e8;--bg:#f2f4f9;--cd:#fff;--tx:#1b2430;--mu:#7a8594;--in:#eceff4;--er:#d93025;--ok:#18a058;--gr:linear-gradient(120deg,#0a7cff 0%,#6f42e8 60%,#c2399b 100%)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%}
-body{background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,"Segoe UI",Roboto,"Noto Nastaliq Urdu",sans-serif;overscroll-behavior-y:contain;user-select:none;-webkit-user-select:none;padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,"Segoe UI",Roboto,"Noto Nastaliq Urdu",sans-serif;overscroll-behavior-y:contain;user-select:none;-webkit-user-select:none}
 input,select{user-select:text;-webkit-user-select:text}
-svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pg{max-width:520px;margin:0 auto;padding:16px 16px 100px;animation:f .25s ease both}@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.sp{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:10px;background:linear-gradient(#0a84f5,#0059c9);color:#fff}.lg{border-radius:18px}
-.hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.hd h2,.hd h3{margin:0}.mu{color:var(--mu);font-size:13px;margin:0}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>.btn{flex:1}
+svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.pg{max-width:560px;margin:0 auto;padding:14px 16px 100px;animation:f .25s ease both}@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sp{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:10px;background:var(--gr);color:#fff}.lg{border-radius:18px}
+.bar{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 12px;background:var(--gr);color:#fff;box-shadow:0 4px 16px #3a2fb033}
+.bar .bt{flex:1;min-width:0}.bar h1{font-size:18px;margin:0;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar small{display:block;opacity:.85;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bi{border:0;background:#ffffff2b;color:#fff;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;cursor:pointer;flex:none}
+.oc{font-size:11px;padding:3px 10px;border-radius:99px;background:#ffffff2b;white-space:nowrap}.oc:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ffc65d;margin-inline-end:5px;vertical-align:1px}.oc.on:before{background:#5dff9b}
+.mu{color:var(--mu);font-size:13px;margin:0}.ct{margin:0 0 6px;font-size:15px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>.btn{flex:1}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .card{background:var(--cd);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 1px 3px #1b24300d}
-button.big{display:block;width:100%;text-align:start;border:0;font:inherit;color:var(--tx);cursor:pointer}button.big:active{transform:scale(.98)}
-.big h3{margin:0;color:var(--b)}.big p{margin:2px 0 0;color:var(--mu);font-size:13px}
-.chip{font-size:12px;padding:2px 10px;border-radius:99px;background:#fff}.chip.on{color:var(--ok)}.chip.off{color:#d98324}
-.ib{border:0;background:#fff;border-radius:12px;width:40px;height:40px;display:grid;place-items:center;color:var(--tx);cursor:pointer;font-size:18px}
-.bn{background:#fff3d6;color:#7a5500;border-radius:12px;padding:8px 12px;font-size:13px}
+button.big{display:flex;gap:14px;align-items:center;width:100%;text-align:start;border:0;font:inherit;color:var(--tx);cursor:pointer}button.big:active{transform:scale(.98)}
+.big .tx{flex:1;min-width:0}.big h3{margin:0;font-size:16px}.big p{margin:2px 0 0;color:var(--mu);font-size:13px}
+.ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#0a7cff,#6f42e8);flex:none}.ic.g2{background:linear-gradient(135deg,#ff7a59,#c2399b)}.ic.g3{background:linear-gradient(135deg,#18a058,#0aa5a5)}.ic.g4{background:linear-gradient(135deg,#f5a524,#e5484d)}
+.dr{font-size:11px;background:#fff3d6;color:#7a5500;border-radius:99px;padding:1px 8px;margin-inline-start:6px;vertical-align:2px}
+.bn{background:#fff3d6;color:#7a5500;border-radius:12px;padding:10px 12px;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .f{margin-top:12px}.lb{display:block;font-size:13px;color:var(--mu);margin-bottom:4px}
 input,select{width:100%;font:inherit;padding:11px 14px;border-radius:12px;border:0;background:var(--in);color:var(--tx);outline-color:var(--b)}
+input.bad{outline:2px solid var(--er);background:#fdecea}.fe{color:var(--er);font-size:12.5px;margin:4px 2px 0}.fe:empty{display:none}
 .pw{position:relative}.pw input{padding-inline-end:46px}.eye{position:absolute;inset-inline-end:6px;top:4px;border:0;background:none;color:var(--mu);width:38px;height:38px;display:grid;place-items:center}
-.ckg{display:grid;gap:6px}.ck{display:flex;gap:10px;align-items:center;background:var(--in);border-radius:12px;padding:8px 12px}.ck input{width:auto}
+.ckg{display:grid;gap:6px}.ck{display:flex;gap:10px;align-items:center;background:var(--in);border-radius:12px;padding:8px 12px}.ck input{width:auto;accent-color:var(--b)}
 .sec{margin-top:14px;padding-top:6px;border-top:1px dashed #cfd5df}
-.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 18px;background:var(--b);color:#fff;cursor:pointer;margin-top:14px;width:100%}.btn:disabled{opacity:.7}
-.btn.o{background:transparent;color:var(--b);border:1.5px solid var(--b)}.btn.w{background:#fff;color:var(--b)}.ok .btn.o{color:#fff;border-color:#fff}
-.er{color:var(--er);font-size:13px;margin:8px 0 0}.spin{display:inline-block;width:14px;height:14px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite;vertical-align:-2px}@keyframes s{to{transform:rotate(360deg)}}
+.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 18px;background:var(--b);color:#fff;cursor:pointer;margin-top:14px;width:100%;display:flex;gap:8px;align-items:center;justify-content:center}.btn:disabled{opacity:.7}
+.btn.g{background:var(--gr)}.btn.o{background:transparent;color:var(--b);border:1.5px solid var(--b)}.btn.w{background:#fff;color:var(--b)}.btn.r{background:var(--er)}.ok .btn.o{color:#fff;border-color:#fff}
+.er{color:var(--er);font-size:13px;margin:8px 0 0}.er:empty{display:none}.spin{display:inline-block;width:14px;height:14px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
 .au{max-width:420px;margin:0 auto;padding:40px 24px}.au h1{font-weight:300;font-size:28px;line-height:1.2;margin:18px 0 4px}.au h1 b{display:block;font-weight:700}.bl{color:var(--b);font-size:13px;margin:0 0 6px}
-.au a{color:var(--b);cursor:pointer}.c{text-align:center;font-size:13px;color:var(--mu)}.bt{margin-top:40px}
+.au a{color:var(--b);cursor:pointer}.c{text-align:center;font-size:13px;color:var(--mu)}.btm{margin-top:40px}
 .rm{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px}.rm input{width:auto}
-.ok{position:fixed;inset:0;padding:70px 28px 100px;background:linear-gradient(#0a84f5,#0059c9);color:#fff}.ok h1{margin:12px 0 6px}.ok p{opacity:.9}.tick{width:64px;height:64px;border-radius:50%;background:#ffffff30;display:grid;place-items:center;font-size:30px}.ok .col{position:absolute;left:28px;right:28px;bottom:100px}
+.ok{position:fixed;inset:0;padding:70px 28px 100px;background:var(--gr);color:#fff}.ok h1{margin:12px 0 6px}.ok p{opacity:.9}.tick{width:64px;height:64px;border-radius:50%;background:#ffffff30;display:grid;place-items:center;font-size:30px}.ok .col{position:absolute;left:28px;right:28px;bottom:60px}
 nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#fff;border-top:1px solid #e3e7ee;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
 nav button{flex:1;border:0;background:none;color:var(--mu);font:inherit;font-size:11px;display:grid;justify-items:center;gap:2px;padding:6px 0;position:relative}
-nav button.on{color:var(--b)}nav button.on:before{content:"";position:absolute;top:-7px;width:28px;height:3px;border-radius:3px;background:var(--b)}
+nav button.on{color:var(--b)}nav button.on:before{content:"";position:absolute;top:-7px;width:28px;height:3px;border-radius:3px;background:var(--gr)}
 .li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #eef0f4}.li:last-child{border:0}
 .st{font-size:12px;border-radius:8px;padding:1px 9px;background:#ffe9bf;color:#7a5500}.st.s,.st.approved{background:#c9f0dc;color:#0b5a32}.st.blocked{background:#fbd4d0;color:#8a1c12}
-.sm{border:0;border-radius:9px;background:var(--b);color:#fff;padding:3px 12px;font:inherit;font-size:13px}.sm.r{background:var(--er)}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.chb{border:1.5px solid var(--in);background:var(--in);border-radius:99px;padding:6px 14px;font:inherit;font-size:13px;color:var(--tx)}.chb.on{background:var(--b);color:#fff;border-color:var(--b)}
-#qr{display:grid;place-items:center;padding:14px;background:#fff;border-radius:14px;margin-top:12px;min-height:60px}video{width:100%;border-radius:14px;background:#000}
-</style></head><body><div id="app"></div>
+.sm{border:0;border-radius:9px;background:var(--b);color:#fff;padding:4px 12px;font:inherit;font-size:13px}.sm.r{background:var(--er)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.chb{border:1.5px solid var(--in);background:var(--in);border-radius:99px;padding:6px 14px;font:inherit;font-size:13px;color:var(--tx);cursor:pointer}.chb.on{background:var(--b);color:#fff;border-color:var(--b)}
+#qr{display:grid;place-items:center;padding:14px;background:#fff;border-radius:14px;margin-top:12px;min-height:60px}video{width:100%;border-radius:14px;background:#000;max-height:60vh;object-fit:cover}
+.res{background:linear-gradient(135deg,#eaf3ff,#f3edff);border-radius:14px;padding:14px;margin-top:12px}.res b{display:block}
+/* drawer */
+#dw .sh{position:fixed;inset:0;background:#0b102066;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
+#dw .pn{position:fixed;top:0;bottom:0;left:0;width:min(82vw,320px);background:#fff;transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:21;display:flex;flex-direction:column;overflow:auto}
+#dw.open .sh{opacity:1;pointer-events:auto}#dw.open .pn{transform:none;box-shadow:8px 0 30px #0b102033}
+.dh{background:var(--gr);color:#fff;padding:calc(26px + env(safe-area-inset-top,0px)) 20px 20px}.dh img{border-radius:14px;display:block}.dh b{display:block;font-size:17px;margin-top:12px}.dh span{opacity:.88;font-size:13px;word-break:break-all;display:block}.dh i{font-style:normal;font-size:11px;background:#ffffff33;border-radius:99px;padding:1px 9px;display:inline-block;margin-top:6px}
+.dm{padding:8px}.dm button{display:flex;gap:14px;align-items:center;width:100%;border:0;background:none;padding:12px 14px;border-radius:12px;font:inherit;color:var(--tx);text-align:start;cursor:pointer}.dm button.on{background:#eef3ff;color:var(--b)}.dm hr{border:0;border-top:1px solid #eef0f4;margin:8px 6px}.dm .r{color:var(--er)}.dv{margin-top:auto;padding:14px 20px;color:var(--mu);font-size:12px}
+/* modal + toast */
+.ovb{position:fixed;inset:0;background:#0b102080;display:grid;place-items:end center;z-index:30;animation:fi .2s}@keyframes fi{from{opacity:0}}
+.mdl{background:#fff;width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:22px 20px calc(20px + env(safe-area-inset-bottom,0px));animation:su .25s ease}@keyframes su{from{transform:translateY(40px);opacity:.4}}
+@media(min-width:600px){.ovb{place-items:center}.mdl{border-radius:22px}}
+.mdl h3{margin:0 0 4px;font-size:18px}.mdl .row .btn{margin-top:16px}
+.full{position:fixed;inset:0;background:#fff;z-index:31;display:flex;flex-direction:column;animation:fi .2s}.full iframe{flex:1;border:0;width:100%}.full .bar{position:static}
+#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);background:#1b2430;color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;opacity:0;transition:.25s;z-index:40;pointer-events:none;max-width:90vw;text-align:center}#toast.on{opacity:1;transform:translate(-50%,0)}
+.bl2{position:relative}.bdg{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:#ff3b5c;color:#fff;font-size:11px;line-height:18px;text-align:center;padding:0 4px;border:2px solid #fff}
+.tg{font-size:11px;border-radius:8px;padding:2px 7px;white-space:nowrap}.tg.y{background:#c9f0dc;color:#0b5a32}.tg.n{background:#fde4e4;color:#8a1c12}
+.wk{margin:18px 4px 4px;font-size:12px;font-weight:700;color:var(--b2);text-transform:uppercase;letter-spacing:.3px}
+.se{display:flex;gap:12px;align-items:center;padding:12px;margin:8px 0}.sd{width:54px;flex:none;border-radius:14px;background:var(--gr);color:#fff;display:grid;justify-items:center;padding:6px 0;line-height:1.15}.sd b{font-size:20px}.sd small{font-size:11px;opacity:.9}
+.si{flex:1;min-width:0}.si p{margin:1px 0;font-size:14px}.sa{display:flex;flex-direction:column;gap:4px}.sa button{border:0;background:var(--in);color:var(--tx);width:34px;height:30px;border-radius:9px;display:grid;place-items:center}.sa button.r{color:var(--er)}.sa svg{width:17px;height:17px}
+</style></head><body><div id="app"></div><div id="dw"></div><div id="ov"></div><div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-const API="https://script.google.com/macros/s/AKfycbxrO0ergIm6gMFE1wF3z6ar8b-VSLBcvwXI0Rwa2BUx1HnlNhhdf08chEE-LH_JtdXaqg/exec",LOGO="data:image/jpeg;base64,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";
-const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const L=(k,d)=>{try{const v=localStorage.getItem("fh_"+k);return v?JSON.parse(v):d}catch(e){return d}},W=(k,v)=>{try{localStorage.setItem("fh_"+k,JSON.stringify(v))}catch(e){}};
+const API="https://script.google.com/macros/s/AKfycbxrO0ergIm6gMFE1wF3z6ar8b-VSLBcvwXI0Rwa2BUx1HnlNhhdf08chEE-LH_JtdXaqg/exec",LOGO="data:image/jpeg;base64,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",VER="3.0";
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const L=(k,d)=>{try{const v=localStorage.getItem("fh_"+k);return v?JSON.parse(v):d}catch(e){return d}},W=(k,v)=>{try{v==null?localStorage.removeItem("fh_"+k):localStorage.setItem("fh_"+k,JSON.stringify(v))}catch(e){}};
 const P=d=>`<svg viewBox="0 0 24 24">${d.split("|").map(x=>`<path d="${x}"/>`).join("")}</svg>`;
-const I={home:P("M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z|M9 22V12h6v10"),scan:P("M8 3H5a2 2 0 0 0-2 2v3|M21 8V5a2 2 0 0 0-2-2h-3|M3 16v3a2 2 0 0 0 2 2h3|M16 21h3a2 2 0 0 0 2-2v-3|M7 12h10"),clock:P("M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z|M12 6v6l4 2"),dl:P("M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4|M7 10l5 5 5-5|M12 15V3"),sh:P("M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"),eye:P("M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z|M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"),eo:P("M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94|M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19|M1 1l22 22"),back:P("M19 12H5|M12 19l-7-7 7-7"),out:P("M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4|M16 17l5-5-5-5|M21 12H9")};
-let CF=L("cfg",null),S={u:L("me",null),v:L("view","home"),f:null,pre:{},msg:"",splash:1,mode:"login",list:null},sy=0;
+const I={home:P("M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z|M9 22V12h6v10"),scan:P("M8 3H5a2 2 0 0 0-2 2v3|M21 8V5a2 2 0 0 0-2-2h-3|M3 16v3a2 2 0 0 0 2 2h3|M16 21h3a2 2 0 0 0 2-2v-3|M7 12h10"),clock:P("M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z|M12 6v6l4 2"),chart:P("M3 3v18h18|M8 16v-4|M13 16V8|M18 16v-7"),sh:P("M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"),eye:P("M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z|M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"),eo:P("M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94|M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19|M1 1l22 22"),back:P("M19 12H5|M12 19l-7-7 7-7"),out:P("M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4|M16 17l5-5-5-5|M21 12H9"),menu:P("M3 6h18|M3 12h18|M3 18h18"),key:P("M15.5 7.5a4.5 4.5 0 1 1-4.3 5.8L4 20.5H2v-2l1-1h2v-2h2l2.2-2.2A4.5 4.5 0 0 1 15.5 7.5z|M16.5 10.5h.01"),x:P("M18 6L6 18|M6 6l12 12"),form:P("M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z|M14 2v6h6|M8 13h8|M8 17h5"),qr:P("M3 3h7v7H3z|M14 3h7v7h-7z|M3 14h7v7H3z|M14 14h3v3h-3z|M20 14v7|M14 20h3"),dl:P("M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4|M7 10l5 5 5-5|M12 15V3"),share:P("M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z|M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z|M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6z|M8.6 13.5l6.8 4|M15.4 6.5l-6.8 4"),cal:P("M8 2v4|M16 2v4|M3 10h18|M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"),bell:P("M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9|M13.73 21a2 2 0 0 1-3.46 0"),edit:P("M12 20h9|M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"),copy:P("M20 9h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2z|M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"),trash:P("M3 6h18|M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6|M10 11v6|M14 11v6|M9 6V4h6v2"),plus:P("M12 5v14|M5 12h14"),sync:P("M23 4v6h-6|M1 20v-6h6|M3.51 9a9 9 0 0 1 14.85-3.36L23 10|M1 14l4.64 4.36A9 9 0 0 0 20.49 15")};
+let CF=L("cfg",null),S={u:L("me",null),v:L("view","home"),f:null,pre:{},msg:"",splash:1,mode:"login",list:null,md:null,dw:0,hi:0,exit:0,last:null,r:Object.assign({f:"cluster",all:1,sel:[],fmt:"tpl",from:"",to:""},L("rep",{}))},sy=0;
 try{if(L("rem",true)===false&&!sessionStorage.getItem("ses"))S.u=null}catch(e){}
 const api=async(a,d={})=>(await fetch(API,{method:"POST",body:JSON.stringify({a,tk:S.u?.tk,...d})})).json();
-const q=()=>L("q",[]),TABS=["home","scan","hist","exp","admin"];
-const go=(v,o={})=>{Object.assign(S,{v,msg:""},o);if(TABS.includes(v))W("view",v);draw();scrollTo(0,0)};
-const soft=()=>{if(S.u&&!S.splash&&["home","hist","exp","admin"].includes(S.v))draw()};
-const out=()=>{S.u=null;W("me",null);S.v="home";draw()};
+const q=()=>L("q",[]),TABS=["home","sch","scan","hist","exp","admin"];
+if(!TABS.includes(S.v))S.v="home";
+const go=(v,o={})=>{Object.assign(S,{v,msg:""},o);if(v==="sch")sSync();if(TABS.includes(v))W("view",v);if(S.dw)closeDw();draw();scrollTo(0,0)};
+const soft=()=>{upChip();if(S.u&&!S.splash&&!S.md&&["home","hist","admin"].includes(S.v))draw()};
+const upChip=()=>{const c=$("#oc");if(c){c.className="oc"+(navigator.onLine?" on":"");c.textContent=navigator.onLine?"Online":"Offline"}};
+function toast(m,t=2600){const e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),t)}
+const out=()=>{S.u=null;W("me",null);S.v="home";S.list=null;closeMd();if(S.dw)closeDw();draw()};
+
 /* ===== screens ===== */
-function draw(){const A=$("#app");
+const TT={home:"Attendance Hub",sch:"Schedule",scan:"Scan QR",hist:"History",exp:"Reports",admin:"Admin",qrc:"Create QR"};
+function draw(){const A=$("#app");if(S.v!=="scan")stopCam();
 if(S.splash){A.innerHTML=`<div class="sp"><img src="${LOGO}" width="96" height="96" class="lg" alt=""><h2>Attendance Hub</h2></div>`;return}
 if(!S.u){A.innerHTML=auth();return}
 if(S.u.status!=="approved"){A.innerHTML=`<div class="au"><img src="${LOGO}" width="64" height="64" class="lg" alt=""><h1>Waiting for <b>approval</b></h1><p class="bl">Your request has been sent to the admin. You can use the app once it is approved.</p><button class="btn" onclick="refresh()">Check again</button><button class="btn o" onclick="out()">Logout</button></div>`;return}
-if(S.v==="admin"&&S.u.role!=="admin")S.v="home";
-const V={home,form,done,hist,qrc,scan,exp,admin}[S.v]||home,t=TABS.filter(k=>k!=="admin"||S.u.role==="admin");
-A.innerHTML=(S.v==="done"?V():`<div class="pg">${V()}</div>`)+nav(t);
-if(S.v==="qrc")mk();if(S.v==="scan")cam()}
-const NV={home:["Home",I.home],scan:["Scan",I.scan],hist:["History",I.clock],exp:["Export",I.dl],admin:["Admin",I.sh]};
+if((S.v==="admin"&&S.u.role!=="admin")||(S.v==="sch"&&!canS()))S.v="home";
+if((S.v==="form"&&!CF?.[S.f])||(S.v==="qrc"&&!CF?.seminar))S.v="home";
+const V={home,form,done,hist,qrc,scan,exp:rep,admin,sch}[S.v]||home,t=TABS.filter(k=>(k!=="admin"||S.u.role==="admin")&&(k!=="sch"||canS()));
+A.innerHTML=S.v==="done"?V():bar()+`<div class="pg">${V()}</div>`+nav(t);
+if(S.v==="qrc")mk();if(S.v==="scan")cam();upBell()}
+function bar(){const sb=["form","qrc"].includes(S.v),t=S.v==="form"?CF[S.f].title:TT[S.v],s=S.v==="form"?CF[S.f].sub:"";
+return `<header class="bar"><button class="bi" onclick="${sb?"go('home')":"openDw()"}" aria-label="${sb?"Back":"Menu"}">${sb?I.back:I.menu}</button><div class="bt"><h1 dir="auto">${esc(t)}</h1>${s?`<small dir="auto">${esc(s)}</small>`:""}</div><span id="oc" class="oc${navigator.onLine?" on":""}">${navigator.onLine?"Online":"Offline"}</span>${canS()?`<button class="bi bl2" onclick="md({t:'notif'})" aria-label="Notifications">${I.bell}<b id="bdg" class="bdg" hidden>0</b></button>`:""}</header>`}
+const NV={home:["Home",I.home],sch:["Schedule",I.cal],scan:["Scan",I.scan],hist:["History",I.clock],exp:["Reports",I.chart],admin:["Admin",I.sh]};
 const nav=t=>`<nav>${t.map(k=>`<button class="${S.v===k||(k==="home"&&["form","done","qrc"].includes(S.v))?"on":""}" onclick="go('${k}')">${NV[k][1]}<span>${NV[k][0]}</span></button>`).join("")}</nav>`;
+
+/* ===== drawer (slide menu) ===== */
+function openDw(){const u=S.u,t=TABS.filter(k=>(k!=="admin"||u.role==="admin")&&(k!=="sch"||canS()));S.dw=1;
+$("#dw").innerHTML=`<div class="sh" onclick="closeDw()"></div><aside class="pn"><div class="dh"><img src="${LOGO}" width="56" height="56" alt=""><b dir="auto">${esc(u.name||"User")}</b><span>${esc(u.email)}</span><i>${u.role==="admin"?"Admin":"Member"}</i></div>
+<div class="dm">${t.map(k=>`<button class="${S.v===k?"on":""}" onclick="go('${k}')">${NV[k][1]}${NV[k][0]}</button>`).join("")}${canS()?`<button onclick="closeDw();md({t:'notif'})">${I.bell}Schedule status</button>`:""}<hr><button onclick="closeDw();md({t:'pw'})">${I.key}Change password</button><button class="r" onclick="closeDw();md({t:'logout'})">${I.out}Logout</button></div><div class="dv">Attendance Hub v${VER}</div></aside>`;
+requestAnimationFrame(()=>requestAnimationFrame(()=>$("#dw").classList.add("open")))}
+function closeDw(){S.dw=0;$("#dw").classList.remove("open")}
+
+/* ===== modals ===== */
+function md(o){S.md=o;const v=$("#ov");let h="";
+if(o.t==="exit")h=`<h3>Exit app?</h3><p class="mu">Do you want to close Attendance Hub?</p><div class="row"><button class="btn o" onclick="closeMd()">Stay</button><button class="btn r" onclick="doExit()">Exit</button></div>`;
+else if(o.t==="logout")h=`<h3>Logout?</h3><p class="mu">You will need your email and password to log in again. Unsynced entries stay saved on this phone.</p><div class="row"><button class="btn o" onclick="closeMd()">Cancel</button><button class="btn r" onclick="out()">Logout</button></div>`;
+else if(o.t==="pw")h=`<h3>Change password</h3><form onsubmit="return cpw(event)"><div class="f"><span class="lb">Current password</span><input name="op" type="password" required></div><div class="f"><span class="lb">New password (at least 6 characters)</span><input name="np" type="password" minlength="6" required></div><div class="f"><span class="lb">Confirm new password</span><input name="np2" type="password" minlength="6" required></div><p class="er" id="pe"></p><div class="row"><button type="button" class="btn o" onclick="closeMd()">Cancel</button><button class="btn" id="pb">Save</button></div></form>`;
+else if(o.t==="notif")h=notifHtml();
+else if(o.t==="sform")h=sForm();
+else if(o.t==="scopy")h=sCopy();
+else if(o.t==="sdel"){const e=LS.find(x=>x.id===o.id);h=`<h3>Delete schedule?</h3><p class="mu" dir="auto">${e?esc(e.leader)+" · "+dLab(e.date)+" · "+esc(e.topic):""}</p><div class="row"><button class="btn o" onclick="closeMd()">Cancel</button><button class="btn r" onclick="sOps([{op:'del',id:'${o.id}'}]);closeMd();toast('Deleted')">Delete</button></div>`}
+else if(o.t==="view"){v.innerHTML=`<div class="full"><header class="bar"><button class="bi" onclick="closeMd()" aria-label="Close">${I.x}</button><div class="bt"><h1>Dashboard</h1><small>${esc(S.last?.n||"")}</small></div><button class="bi" onclick="dlLast()" aria-label="Download">${I.dl}</button><button class="bi" onclick="shLast()" aria-label="Share">${I.share}</button></header><iframe id="dfr" title="Dashboard"></iframe></div>`;$("#dfr").srcdoc=S.last.h;return}
+v.innerHTML=`<div class="ovb" onclick="if(event.target===this)closeMd()"><div class="mdl">${h}</div></div>`}
+function closeMd(){S.md=null;$("#ov").innerHTML=""}
+async function cpw(ev){ev.preventDefault();const f=new FormData(ev.target),e=$("#pe"),b=$("#pb");e.textContent="";
+if(f.get("np")!==f.get("np2")){e.textContent="New passwords do not match";return false}
+if(!navigator.onLine){e.textContent="Internet is required to change the password";return false}
+b.disabled=true;b.innerHTML='<span class="spin"></span>';
+const r=await api("pw",{op:f.get("op"),np:f.get("np")}).catch(()=>({err:"Could not connect. Please check your internet."}));b.disabled=false;b.textContent="Save";
+if(r.ok){closeMd();toast("Password changed")}else{if(r.err==="auth")return out();e.textContent=r.err==="unknown"?"Please deploy the new Code.gs first":r.err||"Could not change password"}return false}
+
+/* ===== back button: kabhi achanak band nahi hoti ===== */
+function arm(){if(S.exit||S.hi>=5)return;try{for(let k=S.hi+1;k<=5;k++)history.pushState({i:k},"");S.hi=5}catch(e){}}
+addEventListener("click",arm,true);addEventListener("keydown",arm,true);
+addEventListener("popstate",e=>{S.hi=e.state?.i??0;if(S.exit)return;
+if(S.md){closeMd();return}if(S.dw){closeDw();return}
+if(S.u&&S.u.status==="approved"&&!S.splash&&S.v!=="home"){go("home");return}
+if(!S.u&&S.mode==="reg"){S.mode="login";S.msg="";draw();return}
+md({t:"exit"})});
+function doExit(){S.exit=1;closeMd();if(S.hi>0)history.go(-S.hi);
+setTimeout(()=>{try{window.close()}catch(e){}setTimeout(()=>{toast("Press back once more to close the app",3800);setTimeout(()=>{S.exit=0},4000)},300)},150)}
+
+/* ===== auth ===== */
 function auth(){const r=S.mode==="reg";return `<div class="au"><img src="${LOGO}" width="64" height="64" class="lg" alt=""><h1>${r?"Create <b>your account</b>":"Welcome to <b>Attendance Hub</b>"}</h1><p class="bl">Please enter your details</p>
 <form onsubmit="return au(event)">${r?`<div class="f"><span class="lb">Full name</span><input name="n" required value="${esc(S.nm)}"></div>`:""}
 <div class="f"><span class="lb">Email</span><input name="e" type="email" autocapitalize="off" required placeholder="Your email" value="${esc(S.em)}"></div>
 <div class="f"><span class="lb">Password</span><div class="pw"><input name="p" id="pw" type="password" required placeholder="Your password"><button type="button" class="eye" onclick="eye()">${I.eye}</button></div></div>
 ${r?"":`<label class="rm"><input type="checkbox" name="r" checked> Remember me</label>`}
 <button class="btn">${r?"Create account":"Login"}</button><p class="er">${esc(S.msg)}</p></form>
-${r?"":`<p class="c"><a onclick="alert('Please contact the admin to reset your password.')">Forgot your password?</a></p>`}
-<p class="c bt">${r?"Already have an account?":"Don't have an account yet?"} <a onclick="S.mode='${r?"login":"reg"}';S.msg='';draw()">${r?"Login":"Create one"}</a></p></div>`}
+${r?"":`<p class="c"><a onclick="toast('Please contact the admin to reset your password.')">Forgot your password?</a></p>`}
+<p class="c btm">${r?"Already have an account?":"Don't have an account yet?"} <a onclick="S.mode='${r?"login":"reg"}';S.msg='';draw()">${r?"Login":"Create one"}</a></p></div>`}
 function eye(){const p=$("#pw"),s=p.type==="password";p.type=s?"text":"password";$(".eye").innerHTML=s?I.eo:I.eye}
 async function au(ev){ev.preventDefault();if(S.busy)return;const f=new FormData(ev.target),r=S.mode==="reg",e=f.get("e").trim().toLowerCase();
 S.em=e;S.nm=f.get("n")||"";S.busy=1;const b=ev.target.querySelector(".btn");b.disabled=true;b.innerHTML='<span class="spin"></span> Please wait…';
@@ -77,29 +148,44 @@ const x=await api(r?"register":"login",{e,p:f.get("p"),n:f.get("n")}).catch(()=>
 if(!x.ok){S.msg=x.err;return draw()}
 if(r){S.mode="login";S.msg="Request sent. You can log in after the admin approves you.";return draw()}
 S.u={...x.u,tk:x.tk};W("me",S.u);W("rem",!!f.get("r"));try{sessionStorage.setItem("ses","1")}catch(z){}go("home");loadCfg()}
-function home(){const n=q().filter(x=>x.s==="p").length;
-return `<div class="hd"><div><p class="mu">Welcome back</p><h2>${esc(S.u.name)}</h2></div><div class="row"><span class="chip ${navigator.onLine?"on":"off"}">${navigator.onLine?"Online":"Offline"}</span><button class="ib" onclick="out()">${I.out}</button></div></div>
-${n?`<div class="bn">${n} ${n>1?"entries are":"entry is"} waiting to sync</div>`:""}
-${CF?Object.entries(CF).map(([k,f])=>`<button class="card big" onclick="go('form',{f:'${k}',pre:{}})"><h3 dir="auto">${esc(f.title)}</h3><p>Fill and submit</p></button>`).join(""):`<div class="card"><p class="mu">${navigator.onLine?"Loading forms…":"Connect to the internet once to load the forms."}</p></div>`}
-${CF?`<button class="card big" onclick="go('qrc')"><h3>Create QR</h3><p>Prefill the seminar registration</p></button>`:""}`}
-const cap=()=>{const f=$("form");if(!f)return;const d=new FormData(f);for(const k of new Set([...d.keys()])){const a=d.getAll(k);S.pre[k]=a.length>1?a:a[0]}};
+
+/* ===== home ===== */
+const hasDr=k=>{const d=L("dr_"+k,null);return d&&Object.values(d).some(v=>[].concat(v).some(x=>String(x).trim()))};
+function home(){const n=q().filter(x=>x.s==="p").length,G=["","g2","g3"];
+return `${n?`<div class="bn"><span>${n} ${n>1?"entries are":"entry is"} waiting to sync</span>${navigator.onLine?`<button class="sm" onclick="sync(1)">Sync now</button>`:""}</div>`:""}
+${CF?Object.entries(CF).map(([k,f],i)=>`<button class="card big" onclick="openF('${k}')"><span class="ic ${G[i%3]}">${I.form}</span><span class="tx"><h3 dir="auto">${esc(f.title)}${hasDr(k)?'<span class="dr">Draft</span>':""}</h3><p dir="auto">${esc(f.sub||"Fill and submit")}</p></span></button>`).join(""):`<div class="card"><p class="mu">${navigator.onLine?"Loading forms…":"Connect to the internet once to load the forms."}</p></div>`}
+${CF?.seminar?`<button class="card big" onclick="go('qrc')"><span class="ic g4">${I.qr}</span><span class="tx"><h3>Create QR</h3><p>Prefill the seminar registration</p></span></button>`:""}
+${CF&&canS()?`<button class="card big" onclick="go('sch')"><span class="ic">${I.cal}</span><span class="tx"><h3>Weekly schedule</h3><p>${sStat().pend.length?sStat().pend.length+' leader(s) pending this / next week':'All leaders scheduled'}</p></span></button>`:""}
+${CF?`<button class="card big" onclick="go('exp')"><span class="ic g3">${I.chart}</span><span class="tx"><h3>Reports</h3><p>Dashboard and Excel reports</p></span></button>`:""}`}
+const openF=k=>go("form",{f:k,pre:L("dr_"+k,null)||{}});
+
+/* ===== form (data kabhi mit'ta nahi: draft auto-save) ===== */
+const cap=()=>{const f=$("#fm");if(!f)return;const d=new FormData(f),o={};for(const k of new Set([...d.keys()])){const a=d.getAll(k);o[k]=a.length>1?a:a[0]}S.pre=o};
+const dsv=()=>{cap();W("dr_"+S.f,hasVal(S.pre)?S.pre:null)},hasVal=o=>Object.values(o).some(v=>[].concat(v).some(x=>String(x).trim()));
 function fh(d,Q){const v=Q[d.k]??"";let h=`<div class="f"><span class="lb" dir="auto">${esc(d.l)}${d.req?" *":""}</span>`;
 if(d.t==="multi")h+=`<div class="ckg">${d.o.map(o=>`<label class="ck"><input type="checkbox" name="${d.k}" value="${esc(o)}" ${[].concat(v).includes(o)?"checked":""}><span dir="auto">${esc(o)}</span></label>`).join("")}</div>`;
-else if(d.t==="choice")h+=`<select name="${d.k}" dir="auto" ${d.req?"required":""} ${d.br?'onchange="cap();draw()"':""}><option value="">Select…</option>${d.o.map(o=>`<option ${o===v?"selected":""}>${esc(o)}</option>`).join("")}</select>`;
-else h+=`<input name="${d.k}" dir="auto" type="${{dt:"datetime-local",date:"date",time:"time",tel:"tel"}[d.t]||"text"}" ${d.t==="tel"?'inputmode="numeric"':""} value="${esc(v)}" ${d.req?"required":""}>`;
+else if(d.t==="choice")h+=`<select name="${d.k}" dir="auto" ${d.req?"required":""} ${d.br?'onchange="brc()"':""}><option value="">Select…</option>${d.o.map(o=>`<option value="${esc(o)}" ${o===v?"selected":""}>${esc(o)}</option>`).join("")}</select>`;
+else if(d.t==="tel")h+=`<input name="${d.k}" id="t_${d.k}" type="tel" inputmode="numeric" maxlength="14" placeholder="03XXXXXXXXX" value="${esc(v)}" ${d.req?"required":""} oninput="this.classList.remove('bad');document.getElementById('e_${d.k}').textContent=''"><p class="fe" id="e_${d.k}"></p>`;
+else h+=`<input name="${d.k}" dir="auto" type="${{dt:"datetime-local",date:"date",time:"time"}[d.t]||"text"}" value="${esc(v)}" ${d.req?"required":""}>`;
 return h+"</div>"}
-function form(){const f=CF[S.f],Q=S.pre,bf=f.fields.find(x=>x.br),s=bf&&f.sections?.[Q[bf.k]];
-return `<div class="hd"><button class="ib" onclick="go('home')">${I.back}</button><h3 dir="auto">${esc(f.title)}</h3><span style="width:40px"></span></div>
-<form class="card" onsubmit="return sub(event)">${f.fields.map(d=>fh(d,Q)).join("")}${bf&&Q[bf.k]?`<div class="sec">${s&&s.length?s.map(d=>fh(d,Q)).join(""):'<p class="mu">No questions found for this section.</p>'}</div>`:""}<button class="btn">Submit</button><p class="er">${esc(S.msg)}</p></form>`}
-function sub(ev){ev.preventDefault();const f=new FormData(ev.target),d={},F=CF[S.f];for(const k of new Set([...f.keys()])){const a=f.getAll(k);d[k]=a.length>1?a:a[0]}
-const tel=F.fields.find(x=>x.t==="tel");if(tel&&!/^\d{11}$/.test(String(d[tel.k]||"").replace(/\D/g,""))){S.msg="Mobile number must be 11 digits";draw();return false}
-const bf=F.fields.find(x=>x.br),pg=bf&&F.pages?.[d[bf.k]],a=q();
-a.unshift({id:Date.now().toString(36),f:S.f,d,pg,s:"p",ts:new Date().toLocaleString("en-GB")});W("q",a);go("done");sync();return false}
-const done=()=>`<div class="ok"><div class="tick">✔</div><h1>Saved!</h1><p>${navigator.onLine?"Your entry is being sent.":"You are offline. It will sync automatically when you are online."}</p><div class="col"><button class="btn w" onclick="go('form',{f:'${S.f}',pre:{}})">Submit another</button><button class="btn o" onclick="go('home')">Back</button></div></div>`;
-function hist(){const a=q().slice(0,100);return `<div class="hd"><h2>History</h2></div><div class="card">${a.map(x=>`<div class="li"><div><b dir="auto">${esc(CF?.[x.f]?.title||x.f)}</b><br><span class="mu">${esc(x.ts)}</span></div><span class="st ${x.s}">${x.s==="s"?"Synced":"Pending"}</span></div>`).join("")||'<p class="mu">No entries yet</p>'}</div>`}
+const bfOf=F=>F.fields.find(x=>x.br),secOfF=(F,Q)=>{const bf=bfOf(F);return bf&&Q[bf.k]?F.sections?.[Q[bf.k]]||[]:[]};
+function secHtml(){const F=CF[S.f],Q=S.pre,bf=bfOf(F);if(!bf||!Q[bf.k])return "";const s=secOfF(F,Q);return `<div class="sec">${s.length?s.map(d=>fh(d,Q)).join(""):'<p class="mu">No questions found for this section.</p>'}</div>`}
+function brc(){cap();$("#sb").innerHTML=secHtml();dsv()}
+function form(){const F=CF[S.f],Q=S.pre||{};
+return `<form class="card" id="fm" oninput="dsv()" onchange="dsv()" onsubmit="return sub(event)">${hasVal(Q)?'<p class="mu">Your unsaved answers were restored.</p>':""}${F.fields.map(d=>fh(d,Q)).join("")}<div id="sb">${secHtml()}</div><button class="btn g">Submit</button><p class="er" id="fmsg"></p></form>
+${hasVal(Q)?`<button class="btn o" onclick="clrF()">Clear form</button>`:""}`}
+function clrF(){W("dr_"+S.f,null);S.pre={};draw();toast("Form cleared")}
+function sub(ev){ev.preventDefault();cap();const d={...S.pre},F=CF[S.f];
+for(const t of [...F.fields,...secOfF(F,d)].filter(x=>x.t==="tel")){const raw=String(d[t.k]||"").trim(),v=raw.replace(/\D/g,"");if(!raw&&!t.req)continue;
+if(!/^\d{11}$/.test(v)){const i=document.getElementById("t_"+t.k),e=document.getElementById("e_"+t.k);if(e)e.textContent="Number format is incorrect. Please enter 11 digits, e.g. 03001234567";if(i){i.classList.add("bad");i.focus();i.scrollIntoView({block:"center",behavior:"smooth"})}return false}d[t.k]=v}
+const bf=bfOf(F),pg=bf&&F.pages?.[d[bf.k]],a=q();
+a.unshift({id:Date.now().toString(36),f:S.f,d,pg,s:"p",ts:new Date().toLocaleString("en-GB")});W("q",a);W("dr_"+S.f,null);go("done",{pre:{}});sync();return false}
+const done=()=>`<div class="ok"><div class="tick">✔</div><h1>Saved!</h1><p>${navigator.onLine?"Your entry is being sent.":"You are offline. It will sync automatically when you are online."}</p><div class="col"><button class="btn w" onclick="go('form',{f:'${S.f}',pre:{}})">Submit another</button><button class="btn o" onclick="go('home')">Home</button></div></div>`;
+function hist(){const a=q().slice(0,100),n=a.filter(x=>x.s==="p").length;return `${n&&navigator.onLine?`<button class="btn" onclick="sync(1)">${I.sync} Sync ${n} pending</button>`:""}<div class="card">${a.map(x=>`<div class="li"><div><b dir="auto">${esc(CF?.[x.f]?.title||x.f)}</b><br><span class="mu">${esc(x.ts)}</span></div><span class="st ${x.s}">${x.s==="s"?"Synced":"Pending"}</span></div>`).join("")||'<p class="mu">No entries yet</p>'}</div>`}
+
 /* ===== sync (form ke submit link par) ===== */
 const mark=id=>{const a=q(),i=a.find(x=>x.id===id);if(i){i.s="s";W("q",a)}};
-async function sync(){if(!navigator.onLine||sy||!CF)return;sy=1;let ch=0;
+async function sync(manual){if(!navigator.onLine||sy||!CF)return;sy=1;let ch=0;
 try{for(const it of q().filter(x=>x.s==="p")){const f=CF[it.f];if(!f)continue;const b=new URLSearchParams(),Z=(fd,n)=>n.forEach(([k,x])=>b.append(fd.e+"_"+k,x));
 for(const fd of [...f.fields,...Object.values(f.sections||{}).flat()]){const v=it.d[fd.k];if(v==null||v==="")continue;
 if(fd.t==="dt"){const[d,t]=v.split("T"),[y,m,dd]=d.split("-"),[h,mi]=t.split(":");Z(fd,[["year",y],["month",m],["day",dd],["hour",h],["minute",mi]])}
@@ -108,44 +194,257 @@ else if(fd.t==="time"){const[h,mi]=v.split(":");Z(fd,[["hour",h],["minute",mi]])
 else[].concat(v).forEach(x=>b.append(fd.e,x))}
 if(it.pg)b.append("pageHistory","0,"+it.pg);
 await fetch(f.action,{method:"POST",mode:"no-cors",body:b});mark(it.id);ch=1}}catch(e){}
-sy=0;if(ch)soft()}
+sy=0;if(ch){soft();if(manual)toast("Synced")}}
+
 /* ===== QR ===== */
-function qrc(){const st=CF.seminar.fields[3]?.o||[];return `<div class="hd"><button class="ib" onclick="go('home')">${I.back}</button><h3>Create QR</h3><span style="width:40px"></span></div><div class="card"><p class="mu">Seminar registration prefill</p>
+const semF=()=>{const F=CF.seminar.fields,by=(re,i)=>F.find(x=>re.test(x.l))||F[i];return{n:by(/^نام|name/i,0),ref:by(/ریفرنس|reference/i,2),st:F.find(x=>x.o&&/تربیتی|حیثیت|status/i.test(x.l))||F[3],m:F.find(x=>x.t==="tel")}};
+function qrc(){const st=semF().st?.o||[];return `<div class="card"><p class="mu">Seminar registration prefill</p>
 <div class="f"><span class="lb">Name</span><input id="q1" oninput="mk()"></div><div class="f"><span class="lb">Mobile number</span><input id="q2" type="tel" inputmode="numeric" oninput="mk()"></div>
 <div class="f"><span class="lb">Reference</span><input id="q3" oninput="mk()"></div><div class="f"><span class="lb">Training status</span><select id="q4" dir="auto" onchange="mk()"><option value="">—</option>${st.map(o=>`<option>${esc(o)}</option>`).join("")}</select></div>
-<div id="qr"></div><div class="row"><button class="btn" onclick="qsave()">Save image</button><button class="btn o" onclick="qshare()">Share</button></div></div>`}
+<div id="qr"></div><div class="row"><button class="btn" onclick="qsave()">${I.dl} Save image</button><button class="btn o" onclick="qshare()">${I.share} Share</button></div></div>`}
 function mk(){const g=i=>$("#"+i)?.value.trim()||"",b=$("#qr");if(!b)return;b.innerHTML="";const o={f:"seminar",n:g("q1"),m:g("q2"),ref:g("q3"),st:g("q4")};if(!(o.n||o.m||o.ref||o.st)||!window.QRCode)return;new QRCode(b,{text:JSON.stringify(o),width:220,height:220})}
-function save(b,n){const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
-const qimg=()=>$("#qr img")?.src;
+function save(b,n){const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),8000)}
+const qimg=()=>$("#qr img")?.src||$("#qr canvas")?.toDataURL();
 async function qsave(){const s=qimg();if(s)save(await(await fetch(s)).blob(),"qr.png")}
 async function qshare(){const s=qimg();if(!s)return;const b=await(await fetch(s)).blob(),f=new File([b],"qr.png",{type:"image/png"});if(navigator.canShare?.({files:[f]}))navigator.share({files:[f]}).catch(()=>{});else save(b,"qr.png")}
-function scan(){return `<div class="hd"><h2>Scan QR</h2></div><div class="card"><video id="vd" playsinline muted></video><p class="mu" id="sm">Opening camera…</p><div class="f"><span class="lb">Or paste the QR text</span><input id="pt"></div><button class="btn" onclick="ap($('#pt').value)">Use</button><button class="btn o" onclick="go('qrc')">Create QR</button></div>`}
-function ap(t){try{const o=JSON.parse(t),F=CF.seminar.fields,Q={},set=(i,v)=>{if(F[i])Q[F[i].k]=v};if(o.f!=="seminar")throw 0;
-set(0,o.n||"");set(2,o.ref||"");set(3,F[3]?.o?.includes(o.st)?o.st:"");set(4,o.m||"");go("form",{f:"seminar",pre:Q})}catch(e){const m=$("#sm");if(m)m.textContent="Invalid QR"}}
-async function cam(){const m=$("#sm"),v=$("#vd");try{if(!("BarcodeDetector"in window))throw 0;const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}}),bd=new BarcodeDetector({formats:["qr_code"]});v.srcObject=s;await v.play();m.textContent="Point the camera at the QR code";
-const t=setInterval(async()=>{if(S.v!=="scan"){clearInterval(t);s.getTracks().forEach(x=>x.stop());return}const r=await bd.detect(v).catch(()=>[]);if(r[0]){clearInterval(t);s.getTracks().forEach(x=>x.stop());ap(r[0].rawValue)}},400)}catch(e){v.remove();m.textContent="Camera not available. Paste the QR text below."}}
-/* ===== export (Google Sheet se) ===== */
-function exp(){const ks=Object.keys(CF||{}),ef=S.ef||ks[0];if(!CF)return `<div class="hd"><h2>Export</h2></div><div class="card"><p class="mu">Connect to the internet once to load the forms.</p></div>`;
-return `<div class="hd"><h2>Export data</h2></div><div class="card"><p class="mu">Download entries from the Google Sheet for a date range.</p><div class="chips">${ks.map(k=>`<button class="chb ${k===ef?"on":""}" onclick="S.ef='${k}';draw()" dir="auto">${esc(CF[k].title)}</button>`).join("")}</div>
-<div class="f"><span class="lb">Start date</span><input type="date" value="${S.from||""}" onchange="S.from=this.value"></div><div class="f"><span class="lb">End date</span><input type="date" value="${S.to||""}" onchange="S.to=this.value"></div>
-<div class="row"><button class="btn" onclick="dl('csv')">Download CSV</button><button class="btn" onclick="dl('xlsx')">Download Excel</button></div><p class="mu" id="em" style="margin-top:10px"></p></div>`}
+function scan(){return `<div class="card"><video id="vd" playsinline muted></video><p class="mu" id="sm" style="margin-top:8px">Opening camera…</p><button class="btn" id="rs" hidden onclick="bad='';cam()">${I.sync} Rescan</button>
+<div class="f"><span class="lb">Or paste the QR text</span><input id="pt"></div><button class="btn o" onclick="ap($('#pt').value)">Use</button><button class="btn o" onclick="go('qrc')">${I.qr} Create QR</button></div>`}
+function parseQR(t){try{const o=JSON.parse(t),G=semF(),Q={},set=(f,v)=>{if(f&&v)Q[f.k]=v};if(!o||o.f!=="seminar")return null;
+set(G.n,o.n);set(G.ref,o.ref);set(G.st,G.st?.o?.includes(o.st)?o.st:"");set(G.m,String(o.m||"").replace(/\D/g,""));return Q}catch(e){return null}}
+function ap(t){const Q=parseQR(t);if(Q){stopCam();go("form",{f:"seminar",pre:Q})}else{const m=$("#sm");if(m){m.textContent="Invalid QR text";m.className="er"}}}
+let camS=null,camT=0,camB=0,bad="",badT=0;
+function stopCam(){clearInterval(camT);camT=0;camB=0;if(camS){camS.getTracks().forEach(x=>x.stop());camS=null}}
+async function cam(){stopCam();const m=$("#sm"),v=$("#vd"),rb=$("#rs");if(!v)return;rb.hidden=true;v.hidden=false;m.className="mu";m.textContent="Opening camera…";
+try{if(!("BarcodeDetector"in window))throw 0;const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
+if(S.v!=="scan"||!document.body.contains(v)){s.getTracks().forEach(x=>x.stop());return}camS=s;
+const bd=new BarcodeDetector({formats:["qr_code"]});v.srcObject=s;await v.play();m.textContent="Point the camera at the QR code";
+camT=setInterval(async()=>{if(S.v!=="scan"||!camS){stopCam();return}if(camB)return;camB=1;const r=await bd.detect(v).catch(()=>[]);camB=0;const t=r[0]?.rawValue;if(!t||(t===bad&&Date.now()-badT<3000))return;
+const Q=parseQR(t);if(Q){stopCam();go("form",{f:"seminar",pre:Q});return}
+bad=t;badT=Date.now();m.textContent="Invalid QR — this is not a seminar registration code. Point at another code or tap Rescan.";m.className="er";rb.hidden=false;try{navigator.vibrate?.(80)}catch(e){}},350)}
+catch(e){stopCam();v.hidden=true;m.textContent="Camera not available. Tap Retry, or paste the QR text below.";m.className="er";rb.hidden=false;rb.innerHTML=I.sync+" Retry camera"}}
+
+/* ===== reports ===== */
+const nm=s=>String(s??"").replace(/\s+/g," ").trim(),GU=/مہمان|guest/i;
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const leaderF=()=>{const F=CF?.cluster?.fields||[];return F.find(x=>x.br&&x.o)||F.find(x=>x.o&&/لیڈر|leader/i.test(x.l))||F.find(x=>x.o)};
+const halqaF=()=>(CF?.seminar?.fields||[]).find(x=>x.o&&/حلقہ|halqa|halq/i.test(x.l));
+const leaders=()=>leaderF()?.o||[],halqas=()=>halqaF()?.o||[];
 const em=m=>{const e=$("#em");if(e)e.textContent=m};
-async function dl(fmt){const f=S.ef||Object.keys(CF)[0];if(!S.from||!S.to)return em("Please select the start and end date");if(S.from>S.to)return em("Start date must be before the end date");if(!navigator.onLine)return em("Internet is required to download data");
-em("Preparing…");const r=await api("export",{f,from:S.from,to:S.to}).catch(()=>null);if(!r||!r.ok)return em(r?.err||"Could not load data");if(!r.rows.length)return em("No entries in this date range");
-const all=[r.head,...r.rows],n=`${f}_${S.from}_to_${S.to}`;
-if(fmt==="csv")save(new Blob(["\ufeff"+all.map(a=>a.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(",")).join("\r\n")],{type:"text/csv;charset=utf-8"}),n+".csv");
-else if(window.XLSX){const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(all),"Data");XLSX.writeFile(wb,n+".xlsx")}else return em("Excel library not loaded. Use CSV or try again.");
-em(r.rows.length+" rows downloaded")}
+const rsv=()=>W("rep",S.r),rset=o=>{Object.assign(S.r,o);rsv();draw()};
+function tsel(i,on){const o=(S.r.f==="cluster"?leaders():halqas())[i],s=new Set(S.r.sel);on?s.add(o):s.delete(o);S.r.sel=[...s];rsv();const c=$("#scnt");if(c)c.textContent=S.r.sel.length+" selected"}
+function selAll(on){S.r.sel=on?[...(S.r.f==="cluster"?leaders():halqas())]:[];rsv();draw()}
+function qd(k){const n=new Date();let a="",b="";if(k==="m"){a=ymd(new Date(n.getFullYear(),n.getMonth(),1));b=ymd(n)}else if(k==="pm"){a=ymd(new Date(n.getFullYear(),n.getMonth()-1,1));b=ymd(new Date(n.getFullYear(),n.getMonth(),0))}else if(k==="3m"){a=ymd(new Date(n.getFullYear(),n.getMonth()-2,1));b=ymd(n)}
+Object.assign(S.r,{from:a,to:b,qk:k});rsv();draw()}
+function rep(){if(!CF)return `<div class="card"><p class="mu">Connect to the internet once to load the forms.</p></div>`;
+const R=S.r;if(!CF[R.f])R.f=Object.keys(CF)[0];const C=R.f==="cluster",opts=C?leaders():halqas(),c=L("dat_"+R.f,null);if(!C)R.fmt="xlsx";
+return `<div class="card"><h3 class="ct">1. Select form</h3><div class="chips">${Object.keys(CF).map(k=>`<button class="chb ${k===R.f?"on":""}" onclick="rset({f:'${k}',sel:[],all:1,fmt:'${k==="cluster"?"tpl":"xlsx"}'})" dir="auto">${esc(CF[k].title)}</button>`).join("")}</div></div>
+<div class="card"><h3 class="ct">2. Date range</h3><div class="chips">${[["m","This month"],["pm","Last month"],["3m","Last 3 months"],["all","All time"]].map(([k,t])=>`<button class="chb ${R.qk===k?"on":""}" onclick="qd('${k}')">${t}</button>`).join("")}</div>
+<div class="row2"><div class="f"><span class="lb">From</span><input type="date" value="${R.from||""}" onchange="S.r.from=this.value;S.r.qk='';rsv()"></div><div class="f"><span class="lb">To</span><input type="date" value="${R.to||""}" onchange="S.r.to=this.value;S.r.qk='';rsv()"></div></div><p class="mu" style="margin-top:6px">Leave both empty for all dates.</p></div>
+<div class="card"><h3 class="ct">3. ${C?"Leaders":"Halqa"}</h3><div class="chips"><button class="chb ${R.all?"on":""}" onclick="rset({all:1})">All ${C?"leaders":"halqas"}</button><button class="chb ${R.all?"":"on"}" onclick="rset({all:0})">Choose specific</button></div>
+${R.all?`<p class="mu" style="margin-top:8px">${C?"Every leader gets a separate sheet in one file.":"Every halqa gets a separate sheet in one file."}</p>`:`<div class="row" style="justify-content:space-between;margin:10px 0 6px"><span class="mu" id="scnt">${R.sel.length} selected</span><span><button class="sm" onclick="selAll(1)">All</button> <button class="sm" style="background:var(--mu)" onclick="selAll(0)">None</button></span></div><div class="ckg">${opts.map((o,i)=>`<label class="ck"><input type="checkbox" ${R.sel.includes(o)?"checked":""} onchange="tsel(${i},this.checked)"><span dir="auto">${esc(o)}</span></label>`).join("")||'<p class="mu">No options found in the form</p>'}</div>`}</div>
+${C?`<div class="card"><h3 class="ct">4. Report type</h3><div class="chips"><button class="chb ${R.fmt==="tpl"?"on":""}" onclick="rset({fmt:'tpl'})">Full dashboard</button><button class="chb ${R.fmt==="dash"?"on":""}" onclick="rset({fmt:'dash'})">Quick dashboard</button><button class="chb ${R.fmt==="xlsx"?"on":""}" onclick="rset({fmt:'xlsx'})">Excel file</button></div></div>`:""}
+<button class="btn g" id="gb" onclick="gen()">${I.chart} Generate report</button><p class="mu" id="em" style="margin-top:10px">${c?"Data last loaded: "+esc(new Date(c.at).toLocaleString("en-GB")):""}</p><div id="res"></div>`}
+async function getData(f){let c=L("dat_"+f,null);
+if(navigator.onLine){try{const r=await api("data",{f});if(r.ok){c={head:r.head,rows:r.rows,t0:r.t0,t1:r.t1,at:Date.now()};W("dat_"+f,c);return c}
+if(r.err==="auth"){out();return null}if(!c){em(r.err==="unknown"?"Backend is old — please deploy the new Code.gs":r.err||"Could not load data");return null}}
+catch(e){if(!c){em("Could not connect. Please check your internet.");return null}}}
+else if(!c){em("Internet is needed the first time to load report data.");return null}
+toast("Offline — using data saved on "+new Date(c.at).toLocaleString("en-GB"),3500);return c}
+const pct=(a,b)=>b?Math.round(a/b*1000)/10:0,spl=v=>String(v??"").split(/\s*,\s*/).map(nm).filter(Boolean);
+function fmtD(s){if(!s)return"";const[d]=s.split("T"),[y,m,dd]=d.split("-");return dd+"-"+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1]+"-"+y}
+function fmtT(s){const t=(s||"").split("T")[1];if(!t)return"";let[h,mi]=t.split(":").map(Number);const a=h>=12?"PM":"AM";h=h%12||12;return h+":"+String(mi).padStart(2,"0")+" "+a}
+/* cluster sheet -> same data as the EXE dashboard (html_app.py build_data) */
+const LEN0={"فیصل جلیل":"Faisal Jalil","اکرم جاوید":"Akram Javed","شاداب احمد":"Shadab Ahmed","مطاہر عرفان":"Mutahir Irfan","آفتاب احمد":"Aftab Ahmed"},FIX={rahan:"Rehan"};
+let LEN=L("len",null)||LEN0;
+const lenMiss=()=>leaders().map(nm).filter(n=>n&&!LEN[n]);
+const spN=s=>String(s??"").split(/[,&،]/).map(nm).filter(Boolean);
+function buildD(r,from,to,sel){const H=r.head.map(nm),lf=leaderF(),c0=lf?H.indexOf(nm(lf.l)):-1,LC=c0>=0?c0:2,pairs=[];for(let i=LC+1;i<H.length-1;i+=2)pairs.push([i,i+1]);
+const std=n=>FIX[n.toLowerCase()]||n;let ms=[];
+r.rows.forEach((v,i)=>{const ts=r.t0[i]||"",md=r.t1[i]||"",d=md||ts,ld=nm(v[LC]);if(!d||!ld)return;let P=[],A=[];pairs.forEach(([p,a])=>{P=P.concat(spN(v[p]));A=A.concat(spN(v[a]))});ms.push({ts,d,ld,P,A,src:md?"Form date":"Timestamp"})});
+ms.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:a.ts<b.ts?-1:a.ts>b.ts?1:0);const rows=[];
+ms.forEach((m,k)=>{m.id=k+1;const done=new Set();m.P.map(std).forEach(n=>{if(!done.has(n.toLowerCase())){done.add(n.toLowerCase());rows.push([m.id,n,"P"])}});m.A.map(std).forEach(n=>{if(!done.has(n.toLowerCase())){done.add(n.toLowerCase());rows.push([m.id,n,"A"])}})});
+const lead={},cnt={},ppl=new Map();ms.forEach(m=>lead[m.id]=m.ld);rows.forEach(([i,n,s])=>{const k=lead[i]+"\u0001"+n;cnt[k+s]=(cnt[k+s]||0)+1;ppl.set(k,1)});
+const role={},roster=[];for(const k of ppl.keys()){const[ld,n]=k.split("\u0001"),p=cnt[k+"P"]||0,a=cnt[k+"A"]||0,en=LEN[ld];const ro=en&&n.toLowerCase()===en.toLowerCase()?"Leader":(a>=1||p>=2)?"Member":"New Friend";role[k]=ro;roster.push({leader:ld,person:n,role:ro})}
+const inc=ms.filter(m=>{const d=m.d.slice(0,10);return(!from||d>=from)&&(!to||d<=to)&&sel.includes(m.ld)}),ids=new Set(inc.map(m=>m.id)),months=[],weeks=[];
+const p2=x=>String(x).padStart(2,"0"),mt=inc.map(m=>{const[dd,tt="00:00"]=m.d.split("T"),dt=pd(dd),[h,mi]=tt.split(":").map(Number),mo=MO[dt.getMonth()]+" "+dt.getFullYear(),mn=pd(mon(dd)),wk="Wk "+p2(mn.getDate())+" "+MO[mn.getMonth()]+" "+String(mn.getFullYear()).slice(2);
+if(!months.includes(mo))months.push(mo);if(!weeks.includes(wk))weeks.push(wk);return{id:m.id,leader:m.ld,leaderEn:LEN[m.ld]||"",date:dd,time:p2(h%12||12)+":"+p2(mi)+" "+(h>=12?"PM":"AM"),day:DY[dt.getDay()],month:mo,week:wk,src:m.src,iso:m.d}});
+const R=rows.filter(x=>ids.has(x[0])),seen=new Set(R.map(x=>lead[x[0]]+"\u0001"+x[1]));
+return{meetings:mt,rows:R.map(([i,n,s])=>({m:i,p:n,s,role:role[lead[i]+"\u0001"+n]})),roster:roster.filter(e=>seen.has(e.leader+"\u0001"+e.person)),months,weeks,
+leaders:[...new Set(mt.map(m=>m.leader))].sort((a,b)=>(LEN[a]||a).localeCompare(LEN[b]||b)),leadersEn:LEN,minMeet:2,source:"Google Sheet (Attendance Hub)",generated:new Date().toLocaleString("en-GB")}}
+/* quick dashboard + Excel use the same rules: % = members present / (members present + absent), New Friends separate */
+function clusterModel(D,sel){const by={};D.rows.forEach(x=>(by[x.m]=by[x.m]||[]).push(x));
+const ms=D.meetings.map(m=>{const r=by[m.id]||[],NF="New Friend",x=r.filter(z=>z.role===NF&&z.s==="P").map(z=>z.p);return{d:m.iso,L:m.leader,p:r.filter(z=>z.role!==NF&&z.s==="P").map(z=>z.p),a:r.filter(z=>z.role!==NF&&z.s==="A").map(z=>z.p),x:[],g:x.length,gn:x,o:[]}});
+return{leaders:sel.map(n=>({n,r:D.roster.filter(e=>e.leader===n&&e.role!=="New Friend").map(e=>e.person)})),meetings:ms}}
+function cStats(M){return M.leaders.map(l=>{const lm=M.meetings.filter(m=>m.L===l.n),R=l.r.length;return{n:l.n,m:lm.length,r:R,ap:lm.length?Math.round(lm.reduce((s,m)=>s+m.p.length,0)/lm.length*10)/10:0,pc:pct(lm.reduce((s,m)=>s+m.p.length,0),lm.reduce((s,m)=>s+m.p.length+m.a.length,0)),g:lm.reduce((s,m)=>s+m.g,0),last:lm.length?lm[lm.length-1].d:"",lm,mem:l.r.map(n=>{const c=lm.filter(m=>m.p.includes(n)).length,t=lm.filter(m=>m.p.includes(n)||m.a.includes(n)).length;return{n,c,t,pc:pct(c,t)}})}})}
+/* excel helpers */
+function addSh(wb,aoa,name,used){const ws=XLSX.utils.aoa_to_sheet(aoa),w=[];aoa.forEach(r=>r.forEach((c,j)=>{w[j]=Math.min(60,Math.max(w[j]||8,String(c??"").length+2))}));ws["!cols"]=w.map(x=>({wch:x}));
+let n=String(name||"Sheet").replace(/[\[\]:*?\/\\]/g," ").trim().slice(0,31)||"Sheet",b=n,k=2;while(used.has(n.toLowerCase())){const s=" ("+k++ +")";n=b.slice(0,31-s.length)+s}used.add(n.toLowerCase());XLSX.utils.book_append_sheet(wb,ws,n)}
+function clusterWb(M,meta){const wb=XLSX.utils.book_new(),U=new Set(),st=cStats(M);
+addSh(wb,[[meta.title],["Period",meta.range],["Generated",meta.gen],[],["Leader","Meetings","Group size","Avg present","Avg attendance %","New Friends","Last meeting"],...st.map(l=>[l.n,l.m,l.r,l.ap,l.pc,l.g,fmtD(l.last)])],"Summary",U);
+const mm=[["Leader","Member","Present","Listed in meetings","Attendance %"]];st.forEach(l=>l.mem.forEach(m=>mm.push([l.n,m.n,m.c,m.t,m.pc])));addSh(wb,mm,"Members",U);
+st.forEach(l=>{const ol=[...new Set(l.lm.flatMap(x=>x.o.map(z=>z[0])))],a=[["Date","Time","Members present","Members absent","Attendance %","New Friends","Present members","Absent members","Others present",...ol,"New Friend names"]];
+l.lm.forEach(x=>a.push([fmtD(x.d),fmtT(x.d),x.p.length,x.a.length,pct(x.p.length,x.p.length+x.a.length),x.g,x.p.join(", "),x.a.join(", "),x.x.join(", "),...ol.map(k=>(x.o.find(z=>z[0]===k)||["",""])[1]),x.gn.join(", ")]));
+if(!l.lm.length)a.push(["No meetings in this period"]);addSh(wb,a,l.n,U)});return wb}
+function seminarWb(r,idx,sel,meta){const F=CF.seminar,H=r.head,Hn=H.map(nm),hf=halqaF(),hc=hf?Hn.indexOf(nm(hf.l)):-1;if(hc<0)return null;
+const sf=F.fields.find(x=>x.o&&/تربیتی|حیثیت|status/i.test(x.l)),sc=sf?Hn.indexOf(nm(sf.l)):-1,so=sc>=0?sf.o:[];
+const rows=idx.map(i=>r.rows[i]).filter(x=>sel.includes(nm(x[hc]))),by=h=>rows.filter(x=>nm(x[hc])===h),cnt=(rs,o)=>rs.filter(x=>nm(x[sc])===nm(o)).length;
+const wb=XLSX.utils.book_new(),U=new Set();
+addSh(wb,[[meta.title],["Period",meta.range],["Generated",meta.gen],[],["Halqa","Registrations",...so],...sel.map(h=>{const rs=by(h);return[h,rs.length,...so.map(o=>cnt(rs,o))]}),["Total",rows.length,...so.map(o=>cnt(rows,o))]],"Summary",U);
+if(sel.length>1)addSh(wb,[H,...rows],"All",U);sel.forEach(h=>{const rs=by(h);addSh(wb,rs.length?[H,...rs]:[H,["No registrations in this period"]],h,U)});return{wb,n:rows.length}}
+async function gen(){const R=S.r,C=R.f==="cluster",b=$("#gb"),res=$("#res");
+if(R.from&&R.to&&R.from>R.to)return em("Start date must be before the end date");
+if(!R.all&&!R.sel.length)return em("Select at least one "+(C?"leader":"halqa"));
+if((!C||R.fmt==="xlsx")&&!window.XLSX)return em("Excel library not loaded. Open the app once with internet and try again.");
+b.disabled=true;b.innerHTML='<span class="spin"></span> Preparing…';em("Loading data…");res.innerHTML="";
+try{const r=await getData(R.f);if(!r)return;
+const idx=r.rows.map((_,i)=>i).filter(i=>{const d=String((C?(r.t1[i]||r.t0[i]):r.t0[i])||"").slice(0,10);if(!d)return!R.from&&!R.to;return(!R.from||d>=R.from)&&(!R.to||d<=R.to)});
+const range=R.from||R.to?`${R.from?fmtD(R.from):"Start"} to ${R.to?fmtD(R.to):"Today"}`:"All dates",gen=new Date().toLocaleString("en-GB"),tag=(R.from||"start")+"_to_"+(R.to||"today");
+if(C){const col=r.head.map(nm).indexOf(nm(leaderF()?.l)),found=[...new Set(r.rows.map(x=>nm(x[col>=0?col:2])).filter(Boolean))],all=[...new Set([...leaders().map(nm),...found])],sel=R.all?all:R.sel.map(nm);
+const D=buildD(r,R.from,R.to,sel),M=clusterModel(D,sel),meta={title:CF.cluster.title,range,gen,from:R.from,to:R.to};
+if(!D.meetings.length){em("No meetings found for this selection and date range.");return}
+if(R.fmt==="tpl"){let tp=null;try{const x=await fetch("dash-template.html");if(x.ok)tp=await x.text()}catch(e){}if(!tp||!tp.includes("/*__DATA__*/null")){em("Dashboard template not found. Upload dash-template.html next to index.html.");return}
+const h=tp.replace("/*__DATA__*/null",()=>JSON.stringify(D).replace(/</g,"\\u003c"));S.last={b:new Blob([h],{type:"text/html"}),n:`Cluster_Dashboard_${tag}.html`,h};md({t:"view"});
+res.innerHTML=`<div class="res"><b>Dashboard ready</b><span class="mu">${D.meetings.length} meetings · ${D.leaders.length} leader${D.leaders.length>1?"s":""} · ${esc(range)}</span><div class="row"><button class="btn" onclick="md({t:'view'})">${I.chart} Open</button><button class="btn o" onclick="dlLast()">${I.dl} Download</button><button class="btn o" onclick="shLast()">${I.share}</button></div></div>`}
+else if(R.fmt==="dash"){const h=dashHTML(M,meta);S.last={b:new Blob([h],{type:"text/html"}),n:`cluster_dashboard_${tag}.html`,h};md({t:"view"});
+res.innerHTML=`<div class="res"><b>Dashboard ready</b><span class="mu">${M.meetings.length} meetings · ${sel.length} leader${sel.length>1?"s":""} · ${esc(range)}</span><div class="row"><button class="btn" onclick="md({t:'view'})">${I.chart} Open</button><button class="btn o" onclick="dlLast()">${I.dl} Download</button><button class="btn o" onclick="shLast()">${I.share}</button></div></div>`}
+else{const wb=clusterWb(M,meta);finish(wb,`cluster_report_${tag}.xlsx`,`${M.meetings.length} meetings · ${sel.length} leader sheets`)}}
+else{const col=r.head.map(nm).indexOf(nm(halqaF()?.l)),found=col>=0?[...new Set(r.rows.map(x=>nm(x[col])).filter(Boolean))]:[],all=[...new Set([...halqas().map(nm),...found])],sel=R.all?all:R.sel.map(nm);
+const o=seminarWb(r,idx,sel,{title:CF.seminar.title,range,gen});if(!o)return em("Halqa column was not found in the sheet.");if(!o.n){em("No registrations found for this selection and date range.");return}
+finish(o.wb,`seminar_report_${tag}.xlsx`,`${o.n} registrations · ${sel.length} halqa sheets`)}
+em("")}catch(e){em("Could not build the report: "+e.message)}finally{b.disabled=false;b.innerHTML=I.chart+" Generate report"}}
+function finish(wb,n,info){const a=XLSX.write(wb,{bookType:"xlsx",type:"array"});S.last={b:new Blob([a],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),n};save(S.last.b,n);
+$("#res").innerHTML=`<div class="res"><b>Excel file downloaded</b><span class="mu" dir="auto">${esc(n)} · ${esc(info)}</span><div class="row"><button class="btn o" onclick="dlLast()">${I.dl} Download again</button><button class="btn o" onclick="shLast()">${I.share} Share</button></div></div>`;toast("Report downloaded")}
+const dlLast=()=>{if(S.last){save(S.last.b,S.last.n);toast("Downloading "+S.last.n)}};
+function shLast(){if(!S.last)return;const f=new File([S.last.b],S.last.n,{type:S.last.b.type});if(navigator.canShare?.({files:[f]}))navigator.share({files:[f],title:S.last.n}).catch(()=>{});else{dlLast();toast("Sharing is not supported here — the file was downloaded")}}
+
+/* ===== dashboard (standalone HTML, offline) ===== */
+const DCSS=`:root{--b:#0a7cff;--tx:#1b2430;--mu:#6b7686;--bg:#f2f4f9;--ln:#e8ebf1;--ok:#18a058;--wa:#e8a317;--er:#e5484d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 system-ui,"Segoe UI",Roboto,"Noto Nastaliq Urdu",sans-serif}
+.top{background:linear-gradient(120deg,#0a7cff,#6f42e8 60%,#c2399b);color:#fff;padding:22px 18px 70px}.top h1{margin:0;font-size:22px}.top p{margin:4px 0 0;opacity:.9;font-size:13px}
+.wr{max-width:1100px;margin:-56px auto 0;padding:0 14px 40px}.flt{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:#fff;border-radius:16px;padding:12px;box-shadow:0 4px 18px #1b243014}
+.flt select,.flt input{font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--ln);background:#f7f8fb;min-width:0}.flt select{flex:1;min-width:160px}.flt button{font:inherit;border:0;background:var(--b);color:#fff;border-radius:10px;padding:9px 14px;cursor:pointer}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}.k{background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 1px 3px #1b24300d;border-top:4px solid var(--c,#0a7cff)}.k span{color:var(--mu);font-size:12px;display:block}.k b{font-size:26px;line-height:1.2}.k small{color:var(--mu);font-size:12px;display:block}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:800px){.gr{grid-template-columns:1fr}}
+.cd{background:#fff;border-radius:16px;padding:16px;box-shadow:0 1px 3px #1b24300d;margin-bottom:14px;overflow:hidden}.cd h2{margin:0 0 12px;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.hb{display:grid;grid-template-columns:minmax(90px,30%) 1fr 56px;gap:10px;align-items:center;margin:9px 0}.hb .n{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tr{background:#eef1f6;border-radius:99px;height:12px;overflow:hidden}.tr i{display:block;height:100%;border-radius:99px}.hb b{text-align:end;font-size:13px}
+svg{display:block;width:100%;height:auto}.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:9px 10px;border-bottom:1px solid var(--ln);text-align:start;white-space:nowrap}th{color:var(--mu);font-weight:600;font-size:12px;cursor:pointer;position:sticky;top:0;background:#fff}tr:hover td{background:#fafbfd}
+.pl{display:inline-block;border-radius:99px;padding:1px 9px;font-size:12px;font-weight:600;color:#fff}.mb{display:inline-block;width:70px;height:7px;border-radius:9px;background:#eef1f6;vertical-align:middle;margin-inline-end:6px;overflow:hidden}.mb i{display:block;height:100%}
+.mt{border:1px solid var(--ln);border-radius:12px;margin:8px 0;overflow:hidden}.mh{display:flex;gap:10px;align-items:center;padding:10px 12px;cursor:pointer;flex-wrap:wrap}.mh .d{font-weight:600;min-width:120px}.mh .s{color:var(--mu);font-size:12px;flex:1}.mx{padding:0 12px 12px;display:none}.mt.o .mx{display:block}
+.ch{display:inline-block;border-radius:99px;padding:2px 10px;margin:3px 3px 0 0;font-size:12px}.ch.p{background:#dff5e9;color:#0b5a32}.ch.a{background:#fde4e4;color:#8a1c12}.ch.g{background:#e7eefc;color:#1f4fb3}.ch.x{background:#f3eafe;color:#5a2ca0}.lab{font-size:12px;color:var(--mu);margin-top:8px}
+.em{color:var(--mu);text-align:center;padding:20px}.ft{color:var(--mu);font-size:12px;text-align:center;margin-top:20px}
+@media print{.flt button,.flt input{display:none}.top{padding-bottom:20px}.wr{margin-top:10px}.mx{display:block!important}.cd{break-inside:avoid}body{background:#fff}}`;
+function dashHTML(M,meta){const D={...meta,leaders:M.leaders,meetings:M.meetings};
+return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(meta.title)} — Dashboard</title><style>${DCSS}</style></head><body><div id="root"></div><script>const D=${JSON.stringify(D).replace(/</g,"\\u003c")};(${dashMain.toString()})(D);<\/script></body></html>`}
+function dashMain(D){
+const $=s=>document.querySelector(s),E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pc=(a,b)=>b?Math.round(a/b*1000)/10:0,C=p=>p>=75?"#18a058":p>=50?"#e8a317":"#e5484d",MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fd=s=>{if(!s)return"—";const[d]=s.split("T"),[y,m,dd]=d.split("-");return dd+" "+MO[+m-1]+" "+y},ft=s=>{const t=(s||"").split("T")[1];if(!t)return"";let[h,mi]=t.split(":").map(Number);const a=h>=12?"PM":"AM";h=h%12||12;return h+":"+String(mi).padStart(2,"0")+" "+a};
+let F="",Q="",SK="pc",SD=-1;
+function calc(){const ls=D.leaders.filter(l=>!F||l.n===F),ms=D.meetings.filter(m=>ls.some(l=>l.n===m.L)),st=ls.map(l=>{const lm=ms.filter(m=>m.L===l.n),R=l.r.length;
+return{n:l.n,m:lm.length,r:R,ap:lm.length?Math.round(lm.reduce((s,m)=>s+m.p.length,0)/lm.length*10)/10:0,pc:pc(lm.reduce((s,m)=>s+m.p.length,0),lm.reduce((s,m)=>s+m.p.length+m.a.length,0)),g:lm.reduce((s,m)=>s+m.g,0),last:lm.length?lm[lm.length-1].d:"",mem:l.r.map(n=>{const c=lm.filter(m=>m.p.includes(n)).length,t=lm.filter(m=>m.p.includes(n)||m.a.includes(n)).length;return{n,L:l.n,c,t,pc:pc(c,t)}})}});return{ms,st}}
+const R=m=>m.p.length+m.a.length;
+function kpis(ms,st){const mem=st.reduce((s,l)=>s+l.r,0),av=pc(ms.reduce((s,m)=>s+m.p.length,0),ms.reduce((s,m)=>s+R(m),0)),g=ms.reduce((s,m)=>s+m.g,0),best=st.filter(l=>l.m).sort((a,b)=>b.pc-a.pc)[0];
+return `<div class="kp"><div class="k"><span>Meetings</span><b>${ms.length}</b><small>${st.filter(l=>l.m).length} of ${st.length} leaders met</small></div><div class="k" style="--c:#6f42e8"><span>Members</span><b>${mem}</b><small>in ${st.length} cluster${st.length>1?"s":""}</small></div><div class="k" style="--c:${C(av)}"><span>Avg attendance</span><b>${av}%</b><small>members present ÷ (present + absent)</small></div><div class="k" style="--c:#0aa5a5"><span>New Friends</span><b>${g}</b><small>total in period</small></div><div class="k" style="--c:#c2399b"><span>Best attendance</span><b dir="auto" style="font-size:18px">${E(best?best.n:"—")}</b><small>${best?best.pc+"%":""}</small></div></div>`}
+function bars(st){return st.length?st.map(l=>`<div class="hb"><span class="n" dir="auto" title="${E(l.n)}">${E(l.n)}</span><span class="tr"><i style="width:${l.pc}%;background:${C(l.pc)}"></i></span><b>${l.m?l.pc+"%":"—"}</b></div>`).join(""):'<p class="em">No data</p>'}
+function trend(ms){const a=ms.slice(-30);if(!a.length)return'<p class="em">No meetings</p>';const W=Math.max(320,a.length*34),H=200,p=28,bw=(W-p*2)/a.length;
+let s=`<svg viewBox="0 0 ${W} ${H+40}" style="min-width:${Math.min(W,900)}px">`;[0,25,50,75,100].forEach(v=>{const y=p+(H-p*2)*(1-v/100)+10;s+=`<line x1="${p}" x2="${W-6}" y1="${y}" y2="${y}" stroke="#eef1f6"/><text x="${p-6}" y="${y+4}" font-size="10" text-anchor="end" fill="#8a94a3">${v}</text>`});
+a.forEach((m,i)=>{const v=pc(m.p.length,R(m)),h=(H-p*2)*v/100,x=p+i*bw+bw*.18,y=p+(H-p*2)-h+10;s+=`<rect x="${x}" y="${y}" width="${bw*.64}" height="${Math.max(h,1)}" rx="4" fill="${C(v)}"><title>${E(m.L)} · ${fd(m.d)} · ${m.p.length}/${R(m)} (${v}%)</title></rect><text x="${x+bw*.32}" y="${y-4}" font-size="9" text-anchor="middle" fill="#56606e">${Math.round(v)}</text><text x="${x+bw*.32}" y="${H+4}" font-size="9" text-anchor="end" fill="#8a94a3" transform="rotate(-45 ${x+bw*.32} ${H+4})">${fd(m.d).slice(0,6)}</text>`});
+return `<div class="tw">${s}</svg></div>`}
+function ltab(st){return `<div class="tw"><table><thead><tr><th>Leader</th><th>Meetings</th><th>Members</th><th>Avg present</th><th>Attendance</th><th>New Friends</th><th>Last meeting</th></tr></thead><tbody>${st.map(l=>`<tr><td dir="auto"><b>${E(l.n)}</b></td><td>${l.m}</td><td>${l.r}</td><td>${l.ap}</td><td>${l.m?`<span class="pl" style="background:${C(l.pc)}">${l.pc}%</span>`:"—"}</td><td>${l.g}</td><td>${fd(l.last)}</td></tr>`).join("")}</tbody></table></div>`}
+function mtab(st){let a=st.flatMap(l=>l.mem.filter(m=>m.t));if(Q)a=a.filter(m=>m.n.includes(Q)||m.L.includes(Q));a.sort((x,y)=>SK==="n"?SD*x.n.localeCompare(y.n):SD*(x[SK]-y[SK])||x.n.localeCompare(y.n));
+return a.length?`<div class="tw" style="max-height:460px"><table><thead><tr><th onclick="S_('n')">Member</th><th>Leader</th><th onclick="S_('c')">Attended</th><th onclick="S_('pc')">Attendance ${SK==="pc"?(SD<0?"▼":"▲"):""}</th></tr></thead><tbody>${a.map(m=>`<tr><td dir="auto">${E(m.n)}</td><td dir="auto">${E(m.L)}</td><td>${m.c} / ${m.t}</td><td><span class="mb"><i style="width:${m.pc}%;background:${C(m.pc)}"></i></span>${m.pc}%</td></tr>`).join("")}</tbody></table></div>`:'<p class="em">No members</p>'}
+function mlist(ms){return ms.length?ms.slice().reverse().map((m,i)=>{const r=R(m),v=pc(m.p.length,r);return `<div class="mt"><div class="mh" onclick="this.parentNode.classList.toggle('o')"><span class="d">${fd(m.d)} <small style="color:#8a94a3;font-weight:400">${ft(m.d)}</small></span><span class="s" dir="auto">${E(m.L)}</span><span>${m.p.length}/${r}</span><span class="pl" style="background:${C(v)}">${v}%</span>${m.g?`<span class="ch g">+${m.g} New Friends</span>`:""}</div>
+<div class="mx"><div class="lab">Present (${m.p.length})</div>${m.p.map(n=>`<span class="ch p" dir="auto">${E(n)}</span>`).join("")||"—"}<div class="lab">Absent (${m.a.length})</div>${m.a.map(n=>`<span class="ch a" dir="auto">${E(n)}</span>`).join("")||"—"}
+${m.x.length?`<div class="lab">Others present</div>${m.x.map(n=>`<span class="ch x" dir="auto">${E(n)}</span>`).join("")}`:""}${m.gn.length?`<div class="lab">New Friends</div>${m.gn.map(n=>`<span class="ch g" dir="auto">${E(n)}</span>`).join("")}`:""}${m.o.map(z=>`<div class="lab" dir="auto">${E(z[0])}</div><div dir="auto">${E(z[1])}</div>`).join("")}</div></div>`}).join(""):'<p class="em">No meetings</p>'}
+function draw(){const{ms,st}=calc();$("#body").innerHTML=kpis(ms,st)+`<div class="gr"><div class="cd"><h2>Attendance by leader</h2>${bars(st)}</div><div class="cd"><h2>Meeting trend <small style="color:#8a94a3;font-weight:400">${ms.length>30?"last 30 meetings":"attendance % per meeting"}</small></h2>${trend(ms)}</div></div>
+<div class="cd"><h2>Leader summary</h2>${ltab(st)}</div><div class="cd"><h2>Member attendance <input id="q" placeholder="Search member…" value="${E(Q)}" oninput="Q_(this.value)" style="font:inherit;padding:7px 10px;border-radius:9px;border:1px solid #e8ebf1;font-weight:400"></h2><div id="mt">${mtab(st)}</div></div><div class="cd"><h2>Meetings <small style="color:#8a94a3;font-weight:400">tap a meeting to see names</small></h2>${mlist(ms)}</div>`}
+window.F_=v=>{F=v;draw()};window.Q_=v=>{Q=v.trim();$("#mt").innerHTML=mtab(calc().st)};window.S_=k=>{SD=SK===k?-SD:(k==="n"?1:-1);SK=k;$("#mt").innerHTML=mtab(calc().st)};
+document.getElementById("root").innerHTML=`<div class="top"><h1 dir="auto">${E(D.title)}</h1><p>Attendance dashboard · ${E(D.range)}</p></div><div class="wr"><div class="flt"><select onchange="F_(this.value)"><option value="">All leaders (${D.leaders.length})</option>${D.leaders.map(l=>`<option value="${E(l.n)}">${E(l.n)}</option>`).join("")}</select><button onclick="print()">Print / PDF</button></div><div id="body"></div><p class="ft">Generated ${E(D.gen)} · Attendance Hub</p></div>`;draw()}
+
+/* ===== schedule (Tehsil Schedule) ===== */
+const canS=()=>!!S.u&&(S.u.role==="admin"||!!S.u.sched);
+let LS=L("schl",[]),SQ=L("sq",[]),ssy=0;
+const sId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const pd=s=>{const[y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d)},addD=(s,n)=>{const d=pd(s);d.setDate(d.getDate()+n);return ymd(d)};
+const mon=s=>{const d=pd(s),w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return ymd(d)};
+const MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],DY=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const dLab=s=>{const d=pd(s);return d.getDate()+" "+MO[d.getMonth()]},wLab=m=>dLab(m)+" – "+dLab(addD(m,6))+" "+pd(addD(m,6)).getFullYear();
+const t12=t=>{if(!t)return"";let[h,mi]=t.split(":").map(Number);const a=h>=12?"PM":"AM";h=h%12||12;return h+":"+String(mi).padStart(2,"0")+" "+a};
+function sApply(list,o){const x=o.it;if(o.op==="add"&&!list.some(e=>e.id===x.id))list.push({...x});else if(o.op==="edit")list=list.map(e=>e.id===x.id?{...e,...x}:e);else if(o.op==="del")list=list.filter(e=>e.id!==o.id);return list}
+function sOps(ops){ops.forEach(o=>{SQ.push(o);LS=sApply(LS,o)});W("sq",SQ);W("schl",LS);sRe();sSync()}
+function sRe(){upBell();if(S.v==="sch"&&!S.md)draw();if(S.md?.t==="notif")md({t:"notif"})}
+async function sSync(){if(!navigator.onLine||ssy||!canS())return;ssy=1;
+try{if(SQ.length){const n=SQ.length,r=await api("sSave",{ops:SQ.slice(0,n)});if(r.ok){SQ=SQ.slice(n);LS=r.list;SQ.forEach(o=>LS=sApply(LS,o))}else if(r.err==="auth")return out()}
+else{const r=await api("sList");if(r.ok)LS=r.list}W("sq",SQ);W("schl",LS)}catch(e){}ssy=0;sRe()}
+const sLeaders=()=>[...new Set([...leaders().map(nm),...LS.map(e=>nm(e.leader))].filter(Boolean))];
+function sStat(){const t=ymd(new Date()),w1=mon(t),w2=addD(w1,7),me=ymd(new Date(pd(t).getFullYear(),pd(t).getMonth()+1,0));
+const rows=sLeaders().map(n=>{const es=LS.filter(e=>nm(e.leader)===n&&e.date>=w1),has=w=>es.some(e=>e.date>=w&&e.date<=addD(w,6)),last=es.reduce((a,e)=>e.date>a?e.date:a,""),wk=new Set(es.map(e=>mon(e.date))).size;
+return{n,a:has(w1),b:has(w2),last,wk,full:!!last&&last>=me}});return{w1,w2,me,rows,pend:rows.filter(r=>!r.a||!r.b)}}
+function upBell(){const b=$("#bdg");if(!b)return;const n=canS()?sStat().pend.length:0;b.textContent=n;b.hidden=!n}
+function notifHtml(){const s=sStat(),cov=r=>!r.last?"Nothing scheduled yet":`Scheduled till ${dLab(r.last)} · ${r.full?"Full month ✓":r.wk+" week"+(r.wk>1?"s":"")}`;
+const row=r=>`<div class="li"><div style="min-width:0"><b dir="auto">${esc(r.n)}</b><br><span class="mu">${cov(r)}</span></div><div class="row" style="flex-wrap:nowrap"><span class="tg ${r.a?"y":"n"}">${r.a?"✓":"✗"} This wk</span><span class="tg ${r.b?"y":"n"}">${r.b?"✓":"✗"} Next wk</span></div></div>`;
+return `<h3>Schedule status</h3><p class="mu">This week ${wLab(s.w1)} · Next week ${wLab(s.w2)}</p>${SQ.length?`<div class="bn" style="margin-top:10px">${SQ.length} change${SQ.length>1?"s":""} waiting to sync</div>`:""}
+<div style="max-height:56vh;overflow:auto;margin-top:8px"><p class="ct" style="margin-top:8px;color:var(--er)">Pending (${s.pend.length})</p>${s.pend.map(row).join("")||'<p class="mu">Every leader has this week and next week scheduled.</p>'}
+<p class="ct" style="margin-top:14px;color:var(--ok)">Done (${s.rows.length-s.pend.length})</p>${s.rows.filter(r=>r.a&&r.b).map(row).join("")||'<p class="mu">None yet</p>'}</div>
+<div class="row"><button class="btn o" onclick="closeMd()">Close</button><button class="btn" onclick="closeMd();go('sch')">Open schedule</button></div>`}
+const SF=()=>S.sf||(S.sf={ld:"",v:"up"});
+function sch(){const f=SF(),t=ymd(new Date()),w1=mon(t);let a=LS.filter(e=>(!f.ld||nm(e.leader)===f.ld)&&(f.v==="all"||(f.v==="up"?e.date>=w1:e.date<w1)));
+a.sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));if(f.v==="past")a.reverse();const g={};a.forEach(e=>(g[mon(e.date)]=g[mon(e.date)]||[]).push(e));const st=sStat();
+return `<div class="row"><button class="btn g" onclick="md({t:'sform'})">${I.plus} New schedule</button><button class="btn o" onclick="sXlsx()">${I.dl} Excel</button></div>
+${st.pend.length?`<button class="card big" onclick="md({t:'notif'})" style="background:#fff5f4"><span class="ic g4">${I.bell}</span><span class="tx"><h3>${st.pend.length} leader${st.pend.length>1?"s":""} pending</h3><p>Tap to see who has not scheduled this or next week</p></span></button>`:""}
+${SQ.length?`<div class="bn" style="margin-top:12px"><span>${SQ.length} change${SQ.length>1?"s":""} waiting to sync</span>${navigator.onLine?`<button class="sm" onclick="sSync()">Sync now</button>`:""}</div>`:""}
+<div class="card" style="padding:12px 14px"><select onchange="SF().ld=this.value;draw()" dir="auto"><option value="">All leaders</option>${sLeaders().map(n=>`<option value="${esc(n)}" ${n===f.ld?"selected":""}>${esc(n)}</option>`).join("")}</select>
+<div class="chips">${[["up","Upcoming"],["past","Past"],["all","All"]].map(([k,l])=>`<button class="chb ${f.v===k?"on":""}" onclick="SF().v='${k}';draw()">${l}</button>`).join("")}</div></div>
+${Object.keys(g).map(w=>`<p class="wk">${w===w1?"This week · ":w===addD(w1,7)?"Next week · ":""}${wLab(w)}</p>${g[w].map(e=>`<div class="card se"><div class="sd"><small>${DY[pd(e.date).getDay()]}</small><b>${pd(e.date).getDate()}</b><small>${MO[pd(e.date).getMonth()]}</small></div>
+<div class="si"><b dir="auto">${esc(e.leader)}</b><p dir="auto">${esc(e.topic||"—")}</p><span class="mu" dir="auto">${t12(e.time)} · ${esc(e.loc||"—")}</span></div>
+<div class="sa"><button onclick="md({t:'sform',id:'${e.id}'})" aria-label="Edit">${I.edit}</button><button onclick="md({t:'scopy',id:'${e.id}'})" aria-label="Copy">${I.copy}</button><button class="r" onclick="md({t:'sdel',id:'${e.id}'})" aria-label="Delete">${I.trash}</button></div></div>`).join("")}`).join("")||`<div class="card"><p class="mu">${navigator.onLine||LS.length?"No schedule here yet. Tap New schedule.":"Connect to the internet once to load the schedule."}</p></div>`}`}
+/* modal parts */
+const dlist=()=>`<div class="chips" id="dl">${(S.md.ds||[]).map((d,i)=>`<span class="chb on" onclick="S.md.ds.splice(${i},1);$('#dlw').outerHTML=dWrap()">${DY[pd(d).getDay()]} ${dLab(d)} ✕</span>`).join("")}</div>`;
+const dWrap=()=>`<div id="dlw">${dlist()}</div>`;
+function rpt(){const m=S.md.rp||"one";return `<div class="f"><span class="lb">${S.md.t==="scopy"?"Copy to":"Repeat"}</span><div class="chips">${(S.md.t==="scopy"?[["wk","Every week until"],["pick","Pick dates"]]:[["one","Only this date"],["wk","Every week until"],["pick","Pick more dates"]]).map(([k,l])=>`<button type="button" class="chb ${m===k?"on":""}" onclick="sKeep();S.md.rp='${k}';md(S.md)">${l}</button>`).join("")}</div>
+${m==="wk"?`<div class="f"><input type="date" id="ru" value="${S.md.ru||""}" onchange="S.md.ru=this.value"></div>`:""}${m==="pick"?`<div class="row" style="margin-top:8px;flex-wrap:nowrap"><input type="date" id="pk"><button type="button" class="sm" style="padding:10px 14px" onclick="const v=$('#pk').value;if(v&&!S.md.ds.includes(v)){S.md.ds.push(v);S.md.ds.sort();$('#dlw').outerHTML=dWrap()}">Add</button></div>${dWrap()}`:""}</div>`}
+function sKeep(){const f=$("#sfm");if(!f)return;const d=new FormData(f);S.md.v={date:d.get("date"),time:d.get("time"),leader:d.get("leader"),topic:d.get("topic"),loc:d.get("loc")}}
+function sForm(){const o=S.md,e=o.id?LS.find(x=>x.id===o.id):null,v=o.v||e||{date:ymd(new Date()),time:"",leader:"",topic:"",loc:""};o.ds=o.ds||[];
+return `<h3>${e?"Edit schedule":"New schedule"}</h3><form id="sfm" onsubmit="return sSave(event)"><div class="row2"><div class="f"><span class="lb">Date *</span><input type="date" name="date" required value="${esc(v.date)}"></div><div class="f"><span class="lb">Time *</span><input type="time" name="time" required value="${esc(v.time)}"></div></div>
+<div class="f"><span class="lb">Leader name *</span><select name="leader" required dir="auto"><option value="">Select…</option>${sLeaders().map(n=>`<option ${n===nm(v.leader)?"selected":""}>${esc(n)}</option>`).join("")}</select></div>
+<div class="f"><span class="lb">Topic *</span><input name="topic" dir="auto" required value="${esc(v.topic)}"></div><div class="f"><span class="lb">Location *</span><input name="loc" dir="auto" required value="${esc(v.loc)}"></div>
+${e?"":rpt()}<p class="er" id="se"></p><div class="row"><button type="button" class="btn o" onclick="closeMd()">Cancel</button><button class="btn">Save</button></div></form>`}
+function dates(start){const o=S.md;if(o.rp==="wk"){if(!o.ru)return{err:"Choose the 'until' date"};if(o.ru<=start)return{err:"'Until' date must be after "+dLab(start)};const a=[];for(let d=addD(start,7);d<=o.ru&&a.length<60;d=addD(d,7))a.push(d);return{a}}
+if(o.rp==="pick"){if(!o.ds.length)return{err:"Add at least one date"};return{a:o.ds.filter(d=>d!==start)}}return{a:[]}}
+function sSave(ev){ev.preventDefault();sKeep();const o=S.md,v=o.v,er=$("#se");for(const k of["topic","loc"])v[k]=v[k].trim();
+if(o.id){sOps([{op:"edit",it:{id:o.id,...v}}]);closeMd();toast("Schedule updated");return false}
+const r=dates(v.date);if(r.err){er.textContent=r.err;return false}
+const all=[v.date,...r.a],dup=all.filter(d=>LS.some(e=>e.date===d&&nm(e.leader)===nm(v.leader)));
+sOps(all.map(d=>({op:"add",it:{id:sId(),...v,date:d}})));closeMd();toast(all.length>1?all.length+" meetings scheduled":"Schedule saved");if(dup.length)setTimeout(()=>toast("Note: this leader already had a meeting on "+dup.map(dLab).join(", "),4000),2700);return false}
+function sCopy(){const o=S.md,e=LS.find(x=>x.id===o.id);if(!e)return"";o.ds=o.ds||[];o.rp=o.rp||"wk";
+return `<h3>Copy schedule</h3><div class="res" style="margin-top:6px"><b dir="auto">${esc(e.leader)}</b><span class="mu" dir="auto">${DY[pd(e.date).getDay()]} ${dLab(e.date)} · ${t12(e.time)} · ${esc(e.topic)} · ${esc(e.loc)}</span></div>${rpt()}<p class="mu" style="margin-top:8px">Copies keep the same time, topic and location. You can edit each one after.</p><p class="er" id="se"></p>
+<div class="row"><button class="btn o" onclick="closeMd()">Cancel</button><button class="btn" onclick="sDoCopy()">${I.copy} Create copies</button></div>`}
+function sDoCopy(){const e=LS.find(x=>x.id===S.md.id),r=dates(e.date);if(r.err){$("#se").textContent=r.err;return}if(!r.a.length){$("#se").textContent="No new dates selected";return}
+sOps(r.a.map(d=>({op:"add",it:{id:sId(),date:d,time:e.time,leader:e.leader,topic:e.topic,loc:e.loc}})));closeMd();toast(r.a.length+" cop"+(r.a.length>1?"ies":"y")+" created — tap ✎ to change the topic")}
+function sXlsx(){if(!window.XLSX)return toast("Excel library not loaded. Open the app once with internet.");const f=SF(),t=ymd(new Date()),w1=mon(t);
+const a=LS.filter(e=>(!f.ld||nm(e.leader)===f.ld)&&(f.v==="all"||(f.v==="up"?e.date>=w1:e.date<w1))).sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));if(!a.length)return toast("Nothing to download for this filter");
+const H=["Date","Day","Time","Leader","Topic","Location"],rows=[["Tehsil Schedule"],["Leader",f.ld||"All leaders","","Printed",new Date().toLocaleString("en-GB")],[],H];let w="";
+a.forEach(e=>{const m=mon(e.date);if(m!==w){w=m;rows.push(["Week: "+wLab(m)])}rows.push([fmtD(e.date),DY[pd(e.date).getDay()],t12(e.time),e.leader,e.topic,e.loc])});
+const wb=XLSX.utils.book_new();addSh(wb,rows,"Schedule",new Set());const u=new Set(["schedule"]);if(!f.ld)sLeaders().forEach(n=>{const b=a.filter(e=>nm(e.leader)===n);if(b.length)addSh(wb,[[n],[],H,...b.map(e=>[fmtD(e.date),DY[pd(e.date).getDay()],t12(e.time),e.leader,e.topic,e.loc])],n,u)});
+const out=XLSX.write(wb,{bookType:"xlsx",type:"array"});S.last={b:new Blob([out],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),n:`Tehsil_Schedule_${t}.xlsx`};save(S.last.b,S.last.n);toast("Downloaded "+S.last.n)}
+
 /* ===== admin ===== */
-async function loadU(){S.lu=1;try{const r=await api("users");if(r.ok){S.list=r.users}}catch(e){}S.lu=0;if(S.list&&S.v==="admin")draw()}
+async function loadU(){S.lu=1;try{const r=await api("users");if(r.ok){S.list=r.users}}catch(e){}S.lu=0;if(S.list&&S.v==="admin"&&!S.md)draw()}
 function admin(){if(!S.list&&!S.lu)loadU();const l=S.list||[],pe=l.filter(x=>x.status==="pending"),ot=l.filter(x=>x.status!=="pending");
-const row=x=>`<div class="li"><div><b>${esc(x.name||"—")}</b><br><span class="mu">${esc(x.email)}</span></div><div class="row"><span class="st ${x.status}">${x.status}</span>${x.status!=="approved"?`<button class="sm" onclick="ch('${esc(x.email)}','approved')">Approve</button>`:""}${x.status!=="blocked"?`<button class="sm r" onclick="ch('${esc(x.email)}','blocked')">Block</button>`:""}</div></div>`;
-return `<div class="hd"><h2>Admin</h2><button class="ib" onclick="S.list=null;draw()">↻</button></div><div class="card"><h3 style="margin:0">Pending requests (${pe.length})</h3>${pe.map(row).join("")||`<p class="mu">${S.list?"No pending requests":"Loading…"}</p>`}</div><div class="card"><h3 style="margin:0">All users</h3>${ot.map(row).join("")||'<p class="mu">No users yet</p>'}</div>`}
+const row=x=>`<div class="li"><div><b dir="auto">${esc(x.name||"—")}</b><br><span class="mu">${esc(x.email)}</span></div><div class="row"><span class="st ${x.status}">${x.status}</span>${x.status!=="approved"?`<button class="sm" onclick="ch('${esc(x.email)}','approved')">Approve</button>`:""}${x.status!=="blocked"?`<button class="sm r" onclick="ch('${esc(x.email)}','blocked')">Block</button>`:""}${x.status==="approved"?`<button class="sm" style="background:${x.sched?'var(--ok)':'var(--mu)'}" onclick="chS('${esc(x.email)}',${!x.sched})">${x.sched?'Schedule ✓':'Allow schedule'}</button>`:""}</div></div>`;
+return `<div class="row" style="justify-content:flex-end"><button class="sm" onclick="S.list=null;draw()">${I.sync}</button></div>${lenCard()}<div class="card"><h3 class="ct">Pending requests (${pe.length})</h3>${pe.map(row).join("")||`<p class="mu">${S.list?"No pending requests":"Loading…"}</p>`}</div><div class="card"><h3 class="ct">All users</h3>${ot.map(row).join("")||'<p class="mu">No users yet</p>'}</div>`}
+function lenCard(){const ns=[...new Set([...leaders().map(nm),...Object.keys(LEN)].filter(Boolean))],ms=lenMiss();
+return `<div class="card"><h3 class="ct">Leader names (for reports)</h3><p class="mu">Write each leader's name exactly as it is typed in the حاضر / غیر حاضر lists, so his own name counts as "Leader". New leaders from the form appear here automatically.</p>${ms.length?`<div class="bn" style="margin-top:10px">${ms.length} new leader${ms.length>1?"s":""} need an English name</div>`:""}
+<form onsubmit="return saveLen(event)">${ns.map((n,i)=>`<div class="f"><span class="lb" dir="auto">${esc(n)}${LEN[n]?"":' <b style="color:var(--er)">· New</b>'}${leaders().map(nm).includes(n)?"":" · not in form now"}</span><input name="l${i}" data-u="${esc(n)}" value="${esc(LEN[n]||"")}" placeholder="English name, e.g. Shadab Ahmed" autocapitalize="words"></div>`).join("")||'<p class="mu">No leaders found in the form.</p>'}<button class="btn" id="lb">Save leader names</button></form></div>`}
+async function saveLen(ev){ev.preventDefault();if(!navigator.onLine){toast("Internet is required to save");return false}const m={};ev.target.querySelectorAll("input[data-u]").forEach(i=>{if(i.value.trim())m[i.dataset.u]=i.value.trim()});const b=$("#lb");b.disabled=true;b.innerHTML='<span class="spin"></span>';
+const r=await api("setLen",{len:m}).catch(()=>({}));b.disabled=false;b.textContent="Save leader names";if(r.ok){LEN=r.len;W("len",LEN);toast("Leader names saved");draw()}else toast(r.err==="unknown"?"Please deploy the new Code.gs first":"Could not save");return false}
 async function ch(e,s){await api("setStatus",{e,s}).catch(()=>{});S.list=null;draw()}
+async function chS(e,on){const r=await api("setSched",{e,on}).catch(()=>({}));if(!r.ok)toast(r.err==="unknown"?"Please deploy the new Code.gs first":"Could not update");else toast(on?"Schedule permission given":"Schedule permission removed");S.list=null;draw()}
+
 /* ===== session / config ===== */
-async function loadCfg(){if(!navigator.onLine||!S.u||S.u.status!=="approved")return;try{const r=await api("config");if(r.ok){CF=r.forms;W("cfg",CF);soft()}}catch(e){}}
-async function refresh(){if(!S.u||!navigator.onLine)return;try{const r=await api("me"),was=S.u.status;if(r.ok){S.u={...S.u,...r.u};W("me",S.u);was!==S.u.status?draw():soft();loadCfg()}else if(r.err==="auth")out()}catch(e){}}
-addEventListener("online",()=>{soft();sync();loadCfg()});addEventListener("offline",soft);
+async function loadCfg(){if(!navigator.onLine||!S.u||S.u.status!=="approved")return;try{const r=await api("config");if(r.ok){CF=r.forms;W("cfg",CF);if(r.len){LEN=r.len;W("len",LEN)}soft()}}catch(e){}}
+async function refresh(){if(!S.u||!navigator.onLine)return;try{const r=await api("me"),was=S.u.status;if(r.ok){S.u={...S.u,...r.u};W("me",S.u);was!==S.u.status?draw():soft();loadCfg();sSync()}else if(r.err==="auth")out()}catch(e){}}
+addEventListener("online",()=>{soft();sync();loadCfg();sSync()});addEventListener("offline",soft);
+try{history.replaceState({i:0},"")}catch(e){}
 try{if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js")}catch(e){}
 draw();setTimeout(()=>{S.splash=0;draw()},900);sync();loadCfg();refresh();
 </script></body></html>

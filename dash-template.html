@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cluster Attendance Dashboard</title>
+<style>
+:root{--teal:#0F4C5C;--teal2:#1C6A7D;--org:#E36414;--ink:#1B2B34;--grey:#6B7C85;--light:#EAF2F1;--bg:#F4F7F6;--red:#C0392B;--green:#1E8449;--amber:#F4B942;--mint:#2A9D8F}
+*{box-sizing:border-box}body{margin:0;font-family:'Segoe UI',Arial,'Noto Nastaliq Urdu',sans-serif;background:var(--bg);color:var(--ink);font-size:13px}
+header{background:var(--teal);color:#fff;padding:14px 22px}header h1{margin:0;font-size:22px;letter-spacing:.5px}header p{margin:3px 0 0;font-size:11px;color:#cfe3e0}
+.filters{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid var(--org);padding:10px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:0 2px 6px #0002}
+.filters label{display:block;font-size:10px;font-weight:700;color:var(--grey);margin-bottom:3px;letter-spacing:.5px}
+select,input[type=text]{padding:7px 9px;border:2px solid var(--org);border-radius:6px;background:#FFF4CC;font-size:13px;font-weight:600;min-width:140px}
+button{padding:8px 14px;border:0;border-radius:6px;background:var(--teal);color:#fff;font-weight:600;cursor:pointer;font-size:12px}button.o{background:var(--org)}button:hover{opacity:.88}
+main{padding:16px 22px;max-width:1280px;margin:auto}section{margin-bottom:18px}
+.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.kpi{background:var(--teal);color:#fff;border-radius:8px;padding:10px 8px;text-align:center}.kpi.o{background:var(--org)}
+.kpi b{display:block;font-size:26px;margin:4px 0}.kpi span{font-size:9px;letter-spacing:.6px;font-weight:700}.kpi i{font-size:9px;color:#d6e6e4}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;border-radius:8px;padding:12px;box-shadow:0 1px 4px #0001;overflow:auto}
+h2{font-size:12px;margin:0 0 8px;background:var(--ink);color:#fff;padding:7px 10px;border-radius:5px;letter-spacing:.5px}
+table{border-collapse:collapse;width:100%}th{background:var(--teal);color:#fff;font-size:11px;padding:6px 5px;text-align:center}td{border:1px solid #d6e0de;padding:5px;text-align:center;font-size:12px}
+tr:nth-child(even) td{background:#f6faf9}td.l{text-align:left}.ur{direction:rtl;font-family:'Noto Nastaliq Urdu','Segoe UI',Arial}
+a.p{color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline}
+.bar{position:relative;min-width:70px}.bar i{position:absolute;left:0;top:0;bottom:0;background:#2A9D8F55}.bar b{position:relative}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;color:#fff}
+.t-Regular,.t-Returned{background:var(--green)}.t-Consistent,.t-stopped{background:var(--red)}.t-onoff,.t-Missed{background:var(--amber);color:#1b2b34}.t-New{background:#5B8DEF}.t-gray{background:#9aa9ae}
+.P{color:var(--green);font-weight:700}.A{color:var(--red);font-weight:700}.empty{color:var(--grey);padding:14px;text-align:center}
+.watch{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.watch h3{font-size:12px;margin:0 0 6px}
+#report{background:#fff;border:2px solid var(--teal);border-radius:8px;padding:16px;display:none}#report h1{margin:0 0 4px;font-size:20px;color:var(--teal)}#report h2{margin-top:14px}
+.mini{display:flex;gap:10px;margin:10px 0}.mini div{flex:1;background:var(--light);border-radius:6px;padding:8px;text-align:center}.mini b{display:block;font-size:20px;color:var(--teal)}
+svg text{font-family:'Segoe UI',Arial}
+@media print{.filters,header p,.noprint{display:none!important}body{background:#fff}main{padding:0;max-width:none}.card{box-shadow:none}
+body.mode-report section:not(#report),body.mode-report header{display:none}body.mode-report #report{display:block!important;border:0;padding:0}body.mode-dash #report{display:none!important}
+@page{size:A4;margin:10mm}.grid2,.watch{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(7,1fr)}h2,th,.kpi,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body class="mode-dash">
+<header><h1>CLUSTER MEETINGS - ATTENDANCE DASHBOARD</h1><p id="sub"></p></header>
+<div class="filters noprint">
+ <div><label>CLUSTER LEADER</label><select id="fLeader"></select></div>
+ <div><label>MONTH</label><select id="fMonth"></select></div>
+ <div><label>WEEK</label><select id="fWeek"></select></div>
+ <div><label>ATTENDEE</label><select id="fPerson"></select></div>
+ <div><label>REPORT TYPE</label><select id="fRType"><option value="person">Person report</option><option value="leader">Leader (cluster) report</option><option value="period">Month / Week report</option></select></div>
+ <button class="o" onclick="showReport()">Show report</button><button class="o" onclick="printReport()">Print report</button><button onclick="printDash()">Print dashboard</button><button onclick="resetF()" style="background:#6B7C85">Reset</button>
+</div>
+<main>
+<section><div class="kpis" id="kpis"></div></section>
+<section class="grid2"><div class="card"><h2>MONTH COMPARISON (follows Leader filter)</h2><div id="tMonth"></div><div id="cMonth"></div><div id="cMonth2"></div></div>
+<div class="card"><h2>LEADER COMPARISON (follows Month &amp; Week filters)</h2><div id="tLeader"></div><div id="cLeader"></div><div id="cLeader2"></div></div></section>
+<section class="card"><h2>MEETING-WISE DETAILS (follows all filters)</h2><div id="cTrend"></div><div id="tMeet"></div></section>
+<section class="card"><h2>WATCH LIST (month / week / leader filters)</h2><div class="watch" id="watch"></div></section>
+<section class="card"><h2>ATTENDEES (click a name for his report)</h2><div class="noprint" style="margin-bottom:8px"><input type="text" id="q" placeholder="Search name..." style="min-width:220px"></div><div id="tPeople"></div></section>
+<section class="card"><h2>NEW FRIENDS (extra attendees - not counted in Attendance %)</h2><div id="tNF"></div></section>
+<section id="report"></section>
+</main>
+<script>
+const D=/*__DATA__*/null;
+const NF='New Friend', S={leader:'All',month:'All',week:'All',person:'',rtype:'person'};
+const MIN=D?D.minMeet:2, byM={};
+if(D) D.rows.forEach(r=>{(byM[r.m]=byM[r.m]||[]).push(r)});
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P0=x=>Math.round(x*100)+'%', P1=x=>(x*100).toFixed(1)+'%', N1=x=>(Math.round(x*10)/10).toString();
+const en=l=>(D.leadersEn&&D.leadersEn[l])||'';
+const ROLEORD={Leader:0,Member:1,'New Friend':2};
+function fmeet(o){o=Object.assign({},S,o||{});return D.meetings.filter(m=>(o.leader==='All'||m.leader===o.leader)&&(o.month==='All'||m.month===o.month)&&(o.week==='All'||m.week===o.week));}
+function mstat(m){let mp=0,ma=0,nf=0;(byM[m.id]||[]).forEach(r=>{if(r.role===NF){if(r.s==='P')nf++}else if(r.s==='P')mp++;else ma++});return{mp,ma,nf,exp:mp+ma,pct:(mp+ma)?mp/(mp+ma):0}}
+function sumStats(ms){let mp=0,ma=0,nf=0;ms.forEach(m=>{const s=mstat(m);mp+=s.mp;ma+=s.ma;nf+=s.nf});const n=ms.length;return{n,mp,ma,nf,avgP:n?mp/n:0,avgA:n?ma/n:0,pct:(mp+ma)?mp/(mp+ma):0}}
+function seqOf(leader,person,ms){return ms.filter(m=>m.leader===leader).map(m=>{const r=(byM[m.id]||[]).find(x=>x.p===person);return r?r.s:'-'})}
+function classify(seq,role){const c=seq.filter(x=>x!=='-').join(''),n=c.length,p=(c.match(/P/g)||[]).length,a=n-p;
+ if(role===NF)return'New Friend';if(n===0)return'Not listed';if(p===0)return n>=MIN?'Consistent absentee':'Absent (listed once)';if(a===0)return'Regular';
+ if(c.endsWith('AA'))return'Attended then stopped';const sw=(c.match(/PA/g)||[]).length+(c.match(/AP/g)||[]).length;if(sw>=2)return'On & off';if(c.endsWith('A'))return'Missed latest meeting';return'Returned / improving'}
+function peopleRows(ms){const leaders=new Set(ms.map(m=>m.leader));
+ return D.roster.filter(e=>leaders.has(e.leader)).map(e=>{const sq=seqOf(e.leader,e.person,ms),c=sq.filter(x=>x!=='-').join(''),p=(c.match(/P/g)||[]).length;
+  return Object.assign({},e,{seq:sq,listed:c.length,present:p,absent:c.length-p,pct:c.length?p/c.length:null,pattern:classify(sq,e.role)})})
+ .sort((a,b)=>(en(a.leader)||a.leader).localeCompare(en(b.leader)||b.leader)||ROLEORD[a.role]-ROLEORD[b.role]||a.person.localeCompare(b.person))}
+function tagCls(p){return p.startsWith('Consistent')?'t-Consistent':p.startsWith('Attended')?'t-stopped':p==='On & off'?'t-onoff':p.startsWith('Missed')?'t-Missed':p==='Regular'?'t-Regular':p.startsWith('Returned')?'t-Returned':p==='New Friend'?'t-New':'t-gray'}
+const tag=p=>`<span class="tag ${tagCls(p)}">${esc(p)}</span>`;
+const seqH=sq=>sq.map(x=>`<span class="${x}">${x}</span>`).join(' ');
+const barCell=v=>`<td class="bar"><i style="width:${Math.round(v*100)}%"></i><b>${P0(v)}</b></td>`;
+const ldrCell=l=>`<td class="ur">${esc(l)}</td>`;
+const tbl=(head,rows)=>rows.length?`<table><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr>${rows.join('')}</table>`:'<div class="empty">No data for this selection</div>';
+/* charts */
+function svgChart(kind,labels,series,o){o=o||{};const W=560,H=o.h||220,pl=40,pr=10,pt=28,pb=36,n=labels.length;if(!n)return'';
+ const max=o.max||Math.max(1,...series.flatMap(s=>s.vals))*1.18,iw=W-pl-pr,ih=H-pt-pb,gw=iw/n,fmt=o.fmt||N1,ax=o.axis||fmt;let g='';
+ for(let t=0;t<=4;t++){const y=pt+ih-ih*t/4;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#dfe8e6"/><text x="${pl-5}" y="${y+3}" text-anchor="end" font-size="9" fill="#6b7c85">${ax(max*t/4)}</text>`}
+ series.forEach((s,k)=>{s.name&&(g+=`<rect x="${pl+k*130}" y="6" width="10" height="10" fill="${s.color}"/><text x="${pl+k*130+14}" y="15" font-size="10" fill="#1b2b34">${esc(s.name)}</text>`)});
+ if(kind==='bar'){const bw=Math.min(44,gw*.75/series.length);labels.forEach((lb,i)=>{const cx=pl+gw*i+gw/2;series.forEach((s,k)=>{const v=s.vals[i],h=ih*v/max,x=cx-bw*series.length/2+bw*k;g+=`<rect x="${x}" y="${pt+ih-h}" width="${bw-2}" height="${h}" fill="${s.color}" rx="2"/><text x="${x+bw/2-1}" y="${pt+ih-h-4}" text-anchor="middle" font-size="9" fill="#1b2b34">${fmt(v)}</text>`});g+=`<text x="${cx}" y="${H-pb+14}" text-anchor="middle" font-size="10" fill="#1b2b34">${esc(lb)}</text>`})}
+ else{series.forEach(s=>{const pts=s.vals.map((v,i)=>[pl+gw*i+gw/2,pt+ih-ih*v/max,v]);g+=`<polyline fill="none" stroke="${s.color}" stroke-width="2.5" points="${pts.map(p=>p[0]+','+p[1]).join(' ')}"/>`+pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${s.color}"/><text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="9" fill="#1b2b34">${fmt(p[2])}</text>`).join('')});
+  labels.forEach((lb,i)=>{g+=`<text x="${pl+gw*i+gw/2}" y="${H-pb+14}" text-anchor="middle" font-size="9" fill="#1b2b34">${esc(lb)}</text>`})}
+ return`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:${H+40}px">${g}</svg>`}
+/* dashboard */
+function render(){
+ const ms=fmeet(),st=sumStats(ms),pr=peopleRows(ms),ca=pr.filter(e=>e.role!==NF&&e.pattern==='Consistent absentee');
+ const gs=D.roster.filter(e=>(S.leader==='All'||e.leader===S.leader)&&e.role!==NF).length;
+ const nfs=pr.filter(e=>e.role===NF&&e.present>0);
+ document.getElementById('sub').textContent=`Source: ${D.source}  |  ${D.meetings.length} meetings  |  Generated ${D.generated}  |  Attendance % = members present / (present + absent). New Friends are shown separately.`;
+ const k=[['MEETINGS',st.n,'in current filter'],['GROUP SIZE',gs,'roster members (no new friends)'],['AVG PRESENT / MEETING',N1(st.avgP),'members present'],['AVG ABSENT / MEETING',N1(st.avgA),'members absent'],['NEW FRIENDS',nfs.length,'different extra people'],['ATTENDANCE %',P0(st.pct),'present / (present+absent)',1],['CONSISTENT ABSENTEES',ca.length,'see watch list',1]];
+ document.getElementById('kpis').innerHTML=k.map(x=>`<div class="kpi ${x[3]?'o':''}"><span>${x[0]}</span><b>${x[1]}</b><i>${x[2]}</i></div>`).join('');
+ // month
+ const mrows=D.months.map(mo=>{const s=sumStats(fmeet({month:mo,week:'All'}));return{mo,s}});
+ document.getElementById('tMonth').innerHTML=tbl(['Month','Meetings','Avg Present','Avg Absent','New Friends','Attendance %','Change'],mrows.map((r,i)=>{const d=i&&mrows[i-1].s.n&&r.s.n?r.s.pct-mrows[i-1].s.pct:null;
+  return`<tr><td>${esc(r.mo)}</td><td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}<td class="${d>0?'P':d<0?'A':''}">${d==null?'-':(d>0?'▲ ':'▼ ')+P1(Math.abs(d))}</td></tr>`}));
+ document.getElementById('cMonth').innerHTML=svgChart('line',mrows.map(r=>r.mo),[{name:'Attendance %',color:'#E36414',vals:mrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
+ document.getElementById('cMonth2').innerHTML=svgChart('bar',mrows.map(r=>r.mo),[{name:'Avg present',color:'#2A9D8F',vals:mrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#C0392B',vals:mrows.map(r=>r.s.avgA)}]);
+ // leader
+ const lrows=D.leaders.map(l=>({l,s:sumStats(fmeet({leader:l}))}));
+ document.getElementById('tLeader').innerHTML=tbl(['Leader','Meetings','Avg Present','Avg Absent','New Friends','Attendance %'],lrows.map(r=>`<tr>${ldrCell(r.l)}<td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}</tr>`));
+ const lab=r=>en(r.l)||r.l;
+ document.getElementById('cLeader').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Attendance %',color:'#0F4C5C',vals:lrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
+ document.getElementById('cLeader2').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Avg present',color:'#2A9D8F',vals:lrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#C0392B',vals:lrows.map(r=>r.s.avgA)}]);
+ // meetings
+ const mm=ms.slice().sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);
+ document.getElementById('cTrend').innerHTML=mm.length>1?svgChart('line',mm.map(m=>m.date.slice(8)+' '+new Date(m.date).toLocaleString('en',{month:'short'})),[{name:'Attendance % per meeting',color:'#E36414',vals:mm.map(m=>mstat(m).pct)}],{max:1,fmt:P0,axis:P0}):'';
+ document.getElementById('tMeet').innerHTML=tbl(['#','Date','Day','Time','Leader','Month','Week','Members Present','Members Absent','Expected','New Friends','Total Present','Attendance %'],mm.map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td>${ldrCell(m.leader)}<td>${m.month}</td><td>${m.week}</td><td>${s.mp}</td><td>${s.ma}</td><td>${s.exp}</td><td>${s.nf}</td><td>${s.mp+s.nf}</td>${barCell(s.pct)}</tr>`}));
+ // watch
+ const wl=(title,pat)=>{const L=pr.filter(e=>e.role!==NF&&e.pattern===pat);return`<div><h3>${title} (${L.length})</h3>${L.length?`<table>${L.map(e=>`<tr><td class="l"><a class="p" onclick="openPerson('${esc(e.person).replace(/'/g,"\\'")}')">${esc(e.person)}</a></td><td class="ur">${esc(e.leader)}</td><td>${seqH(e.seq)}</td></tr>`).join('')}</table>`:'<div class="empty">None</div>'}</div>`};
+ document.getElementById('watch').innerHTML=wl('Consistent absentees','Consistent absentee')+wl('Attended then stopped','Attended then stopped')+wl('On &amp; off','On & off');
+ // people
+ const q=(document.getElementById('q').value||'').toLowerCase();
+ document.getElementById('tPeople').innerHTML=tbl(['Leader','Person','Role','Listed','Present','Absent','Att %','Sequence','Pattern'],pr.filter(e=>e.listed>0&&(!q||e.person.toLowerCase().includes(q))).map(e=>`<tr>${ldrCell(e.leader)}<td class="l"><a class="p" onclick="openPerson('${esc(e.person).replace(/'/g,"\\'")}')">${esc(e.person)}</a></td><td>${e.role}</td><td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td>${e.role===NF||e.pct==null?'<td>-</td>':barCell(e.pct)}<td>${seqH(e.seq)}</td><td>${tag(e.pattern)}</td></tr>`));
+ document.getElementById('tNF').innerHTML=tbl(['New Friend','Cluster Leader','Times attended'],nfs.map(e=>`<tr><td class="l">${esc(e.person)}</td>${ldrCell(e.leader)}<td>${e.present}</td></tr>`));
+}
+/* reports */
+function leaderSection(l){const ms=fmeet({leader:l}).sort((a,b)=>a.date.localeCompare(b.date)),pr=peopleRows(ms).filter(e=>e.leader===l),st=sumStats(ms);
+ const cnt=p=>pr.filter(e=>e.role!==NF&&e.pattern===p).length,nfs=pr.filter(e=>e.role===NF&&e.present>0);
+ return`<h2>LEADER VIEW - ${esc(l)} ${en(l)?'('+esc(en(l))+')':''}  |  ${esc(S.month)} ${S.week!=='All'?'| '+esc(S.week):''}</h2>
+ <div class="mini"><div><b>${st.n}</b>meetings held</div><div><b>${N1(st.avgP)}</b>avg present</div><div><b>${N1(st.avgA)}</b>avg absent</div><div><b>${P0(st.pct)}</b>attendance</div><div><b>${nfs.length}</b>new friends</div></div>
+ ${tbl(['#','Date','Day','Time','Members Present','Members Absent','New Friends','Attendance %'],ms.map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td><td>${s.mp}</td><td>${s.ma}</td><td>${s.nf}</td>${barCell(s.pct)}</tr>`}))}
+ <h2>GROUP MEMBERS - ATTENDANCE PATTERN</h2>${tbl(['Person','Role','Listed','Present','Absent','Att %','Sequence','Pattern'],pr.filter(e=>e.role!==NF&&e.listed>0).map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.role}</td><td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${e.pct==null?'-':P0(e.pct)}</td><td>${seqH(e.seq)}</td><td>${tag(e.pattern)}</td></tr>`))}
+ <p><b>Consistent absentees: ${cnt('Consistent absentee')} &nbsp;|&nbsp; Attended then stopped: ${cnt('Attended then stopped')} &nbsp;|&nbsp; On &amp; off: ${cnt('On & off')} &nbsp;|&nbsp; Missed latest meeting: ${cnt('Missed latest meeting')}</b></p>
+ <h2>NEW FRIENDS IN THIS CLUSTER (not counted in %)</h2>${tbl(['New Friend','Times attended'],nfs.map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.present}</td></tr>`))}`}
+function personReport(name){const es=D.roster.filter(e=>e.person===name).sort((a,b)=>ROLEORD[a.role]-ROLEORD[b.role]);if(!es.length)return'<div class="empty">Select an attendee</div>';
+ let h=`<h1>PERSON ATTENDANCE REPORT</h1><div><b style="font-size:18px">${esc(name)}</b> &nbsp; Month: <b>${esc(S.month)}</b> ${S.week!=='All'?'Week: <b>'+esc(S.week)+'</b>':''}</div>`;
+ es.forEach(e=>{const ms=fmeet({leader:e.leader}).sort((a,b)=>a.date.localeCompare(b.date)),sq=seqOf(e.leader,name,ms),c=sq.filter(x=>x!=='-').join(''),p=(c.match(/P/g)||[]).length,pat=classify(sq,e.role);
+  h+=`<h2>${esc(e.role.toUpperCase())} IN CLUSTER OF <span class="ur">${esc(e.leader)}</span> ${en(e.leader)?'('+esc(en(e.leader))+')':''}</h2>
+  <div class="mini"><div><b>${ms.length}</b>cluster meetings held</div><div><b>${c.length}</b>listed in</div><div><b>${p}</b>present</div><div><b>${c.length-p}</b>absent</div><div><b>${e.role===NF||!c.length?'n/a':P0(p/c.length)}</b>attendance</div></div>
+  <p>Pattern: ${tag(pat)} &nbsp; Sequence (oldest to newest): ${seqH(sq)}</p>
+  ${tbl(['#','Date','Day','Time','Status'],ms.map((m,i)=>{const s=sq[i];return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td><td class="${s}">${s==='P'?'Present':s==='A'?'Absent':'Not listed'}</td></tr>`}))}`;
+  if(e.role==='Leader')h+=leaderSection(e.leader)});
+ return h}
+function periodReport(){const ms=fmeet(),st=sumStats(ms),pr=peopleRows(ms);
+ const lr=D.leaders.map(l=>({l,s:sumStats(fmeet({leader:l}))})).filter(r=>r.s.n);
+ let h=`<h1>${S.week!=='All'?'WEEK':'MONTH'} REPORT</h1><div><b style="font-size:18px">${esc(S.month)} ${S.week!=='All'?' - '+esc(S.week):''}</b> ${S.leader!=='All'?' | Leader: <span class="ur">'+esc(S.leader)+'</span>':''}</div>
+ <div class="mini"><div><b>${st.n}</b>meetings</div><div><b>${N1(st.avgP)}</b>avg present</div><div><b>${N1(st.avgA)}</b>avg absent</div><div><b>${P0(st.pct)}</b>attendance</div><div><b>${st.nf}</b>new friend visits</div></div>
+ <h2>LEADER-WISE</h2>${tbl(['Leader','Meetings','Avg Present','Avg Absent','New Friends','Attendance %'],lr.map(r=>`<tr>${ldrCell(r.l)}<td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}</tr>`))}
+ <h2>MEETINGS</h2>${tbl(['#','Date','Day','Time','Leader','Members Present','Members Absent','New Friends','Attendance %'],ms.slice().sort((a,b)=>a.date.localeCompare(b.date)).map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td>${ldrCell(m.leader)}<td>${s.mp}</td><td>${s.ma}</td><td>${s.nf}</td>${barCell(s.pct)}</tr>`}))}`;
+ [['CONSISTENT ABSENTEES','Consistent absentee'],['ATTENDED THEN STOPPED','Attended then stopped'],['ON & OFF','On & off']].forEach(x=>{const L=pr.filter(e=>e.role!==NF&&e.pattern===x[1]);h+=`<h2>${x[0]} (${L.length})</h2>${tbl(['Person','Leader','Listed','Present','Absent','Sequence'],L.map(e=>`<tr><td class="l">${esc(e.person)}</td>${ldrCell(e.leader)}<td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${seqH(e.seq)}</td></tr>`))}`});
+ return h}
+function buildReport(){const t=S.rtype;return t==='person'?personReport(S.person):t==='leader'?(S.leader==='All'?'<div class="empty">Choose a Cluster Leader first</div>':`<h1>LEADER (CLUSTER) REPORT</h1>`+leaderSection(S.leader)):periodReport()}
+/* ui */
+function showReport(){const r=document.getElementById('report');r.innerHTML=buildReport();r.style.display='block';r.scrollIntoView({behavior:'smooth'})}
+function printReport(){const r=document.getElementById('report');r.innerHTML=buildReport();r.style.display='block';document.body.className='mode-report';window.print()}
+function printDash(){document.body.className='mode-dash';window.print()}
+function openPerson(n){S.person=n;S.rtype='person';document.getElementById('fPerson').value=n;document.getElementById('fRType').value='person';showReport()}
+function resetF(){S.leader=S.month=S.week='All';['fLeader','fMonth','fWeek'].forEach(i=>document.getElementById(i).value='All');fillWeeks();render()}
+function fillWeeks(){const ws=D.weeks.filter(w=>S.month==='All'||D.meetings.some(m=>m.week===w&&m.month===S.month));if(S.week!=='All'&&!ws.includes(S.week))S.week='All';
+ document.getElementById('fWeek').innerHTML=['All'].concat(ws).map(w=>`<option ${w===S.week?'selected':''}>${esc(w)}</option>`).join('')}
+function init(){const opt=(id,arr,lab)=>document.getElementById(id).innerHTML=arr.map(v=>`<option value="${esc(v)}">${esc(lab?lab(v):v)}</option>`).join('');
+ opt('fLeader',['All'].concat(D.leaders),v=>v==='All'?'All':v+(en(v)?'  ('+en(v)+')':''));opt('fMonth',['All'].concat(D.months));fillWeeks();
+ const people=[...new Set(D.roster.map(e=>e.person))].sort((a,b)=>a.localeCompare(b));S.person=people[0]||'';opt('fPerson',people);
+ document.getElementById('fLeader').onchange=e=>{S.leader=e.target.value;render()};
+ document.getElementById('fMonth').onchange=e=>{S.month=e.target.value;fillWeeks();render()};
+ document.getElementById('fWeek').onchange=e=>{S.week=e.target.value;render()};
+ document.getElementById('fPerson').onchange=e=>{S.person=e.target.value;S.rtype='person';document.getElementById('fRType').value='person'};
+ document.getElementById('fRType').onchange=e=>{S.rtype=e.target.value};
+ document.getElementById('q').oninput=render;window.onafterprint=()=>{document.body.className='mode-dash'};render()}
+if(typeof document!=='undefined')init();else if(typeof module!=='undefined')module.exports={S,fmeet,mstat,sumStats,peopleRows,classify,seqOf,D};
+</script></body></html>
