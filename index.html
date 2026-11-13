@@ -80,23 +80,23 @@ function toast(m,t=2600){const e=$("#toast");e.textContent=m;e.classList.add("on
 const out=()=>{S.u=null;W("me",null);S.v="home";S.list=null;closeMd();if(S.dw)closeDw();draw()};
 
 /* ===== screens ===== */
-const TT={home:"Attendance Hub",sch:"Schedule",scan:"Scan QR",hist:"History",exp:"Reports",admin:"Admin",qrc:"Create QR"};
+const TT={home:"Attendance Hub",sch:"Schedule",scan:"Scan QR",hist:"History",exp:"Reports",admin:"Admin",acc:"User access",qrc:"Create QR"};
 function draw(){const A=$("#app");if(S.v!=="scan")stopCam();
 if(S.splash){A.innerHTML=`<div class="sp"><img src="${LOGO}" width="96" height="96" class="lg" alt=""><h2>Attendance Hub</h2></div>`;return}
 if(!S.u){A.innerHTML=auth();return}
 if(S.u.status!=="approved"){A.innerHTML=`<div class="au"><img src="${LOGO}" width="64" height="64" class="lg" alt=""><h1>Waiting for <b>approval</b></h1><p class="bl">Your request has been sent to the admin. You can use the app once it is approved.</p><button class="btn" onclick="refresh()">Check again</button><button class="btn o" onclick="out()">Logout</button></div>`;return}
-if((S.v==="admin"&&S.u.role!=="admin")||(S.v==="sch"&&!canS()))S.v="home";
+if(((S.v==="admin"||S.v==="acc")&&S.u.role!=="admin")||(S.v==="sch"&&!canS())||(S.v==="exp"&&!canR()))S.v="home";
 if((S.v==="form"&&!CF?.[S.f])||(S.v==="qrc"&&!CF?.seminar))S.v="home";
-const V={home,form,done,hist,qrc,scan,exp:rep,admin,sch}[S.v]||home,t=TABS.filter(k=>(k!=="admin"||S.u.role==="admin")&&(k!=="sch"||canS()));
+const V={home,form,done,hist,qrc,scan,exp:rep,admin,acc,sch}[S.v]||home,t=TABS.filter(k=>(k!=="admin"||S.u.role==="admin")&&(k!=="sch"||canS())&&(k!=="exp"||canR()));
 A.innerHTML=S.v==="done"?V():bar()+`<div class="pg">${V()}</div>`+nav(t);
 if(S.v==="qrc")mk();if(S.v==="scan")cam();upBell()}
-function bar(){const sb=["form","qrc"].includes(S.v),t=S.v==="form"?CF[S.f].title:TT[S.v],s=S.v==="form"?CF[S.f].sub:"";
-return `<header class="bar"><button class="bi" onclick="${sb?"go('home')":"openDw()"}" aria-label="${sb?"Back":"Menu"}">${sb?I.back:I.menu}</button><div class="bt"><h1 dir="auto">${esc(t)}</h1>${s?`<small dir="auto">${esc(s)}</small>`:""}</div><span id="oc" class="oc${navigator.onLine?" on":""}">${navigator.onLine?"Online":"Offline"}</span>${canS()?`<button class="bi bl2" onclick="md({t:'notif'})" aria-label="Notifications">${I.bell}<b id="bdg" class="bdg" hidden>0</b></button>`:""}</header>`}
+function bar(){const sb=["form","qrc","acc"].includes(S.v),t=S.v==="form"?CF[S.f].title:TT[S.v],s=S.v==="form"?CF[S.f].sub:"";
+return `<header class="bar"><button class="bi" onclick="${sb?(S.v==="acc"?"go('admin')":"go('home')"):"openDw()"}" aria-label="${sb?"Back":"Menu"}">${sb?I.back:I.menu}</button><div class="bt"><h1 dir="auto">${esc(t)}</h1>${s?`<small dir="auto">${esc(s)}</small>`:""}</div><span id="oc" class="oc${navigator.onLine?" on":""}">${navigator.onLine?"Online":"Offline"}</span>${canS()?`<button class="bi bl2" onclick="md({t:'notif'})" aria-label="Notifications">${I.bell}<b id="bdg" class="bdg" hidden>0</b></button>`:""}</header>`}
 const NV={home:["Home",I.home],sch:["Schedule",I.cal],scan:["Scan",I.scan],hist:["History",I.clock],exp:["Reports",I.chart],admin:["Admin",I.sh]};
-const nav=t=>`<nav>${t.map(k=>`<button class="${S.v===k||(k==="home"&&["form","done","qrc"].includes(S.v))?"on":""}" onclick="go('${k}')">${NV[k][1]}<span>${NV[k][0]}</span></button>`).join("")}</nav>`;
+const nav=t=>`<nav>${t.map(k=>`<button class="${S.v===k||(k==="home"&&["form","done","qrc"].includes(S.v))||(k==="admin"&&S.v==="acc")?"on":""}" onclick="go('${k}')">${NV[k][1]}<span>${NV[k][0]}</span></button>`).join("")}</nav>`;
 
 /* ===== drawer (slide menu) ===== */
-function openDw(){const u=S.u,t=TABS.filter(k=>(k!=="admin"||u.role==="admin")&&(k!=="sch"||canS()));S.dw=1;
+function openDw(){const u=S.u,t=TABS.filter(k=>(k!=="admin"||u.role==="admin")&&(k!=="sch"||canS())&&(k!=="exp"||canR()));S.dw=1;
 $("#dw").innerHTML=`<div class="sh" onclick="closeDw()"></div><aside class="pn"><div class="dh"><img src="${LOGO}" width="56" height="56" alt=""><b dir="auto">${esc(u.name||"User")}</b><span>${esc(u.email)}</span><i>${u.role==="admin"?"Admin":"Member"}</i></div>
 <div class="dm">${t.map(k=>`<button class="${S.v===k?"on":""}" onclick="go('${k}')">${NV[k][1]}${NV[k][0]}</button>`).join("")}${canS()?`<button onclick="closeDw();md({t:'notif'})">${I.bell}Schedule status</button>`:""}<hr><button onclick="closeDw();md({t:'pw'})">${I.key}Change password</button><button class="r" onclick="closeDw();md({t:'logout'})">${I.out}Logout</button></div><div class="dv">Attendance Hub v${VER}</div></aside>`;
 requestAnimationFrame(()=>requestAnimationFrame(()=>$("#dw").classList.add("open")))}
@@ -126,11 +126,12 @@ function arm(){if(S.exit||S.hi>=5)return;try{for(let k=S.hi+1;k<=5;k++)history.p
 addEventListener("click",arm,true);addEventListener("keydown",arm,true);
 addEventListener("popstate",e=>{S.hi=e.state?.i??0;if(S.exit)return;
 if(S.md){closeMd();return}if(S.dw){closeDw();return}
+if(S.u&&S.u.status==="approved"&&!S.splash&&S.v==="acc"){go("admin");return}
 if(S.u&&S.u.status==="approved"&&!S.splash&&S.v!=="home"){go("home");return}
 if(!S.u&&S.mode==="reg"){S.mode="login";S.msg="";draw();return}
-md({t:"exit"})});
+doExit()});
 function doExit(){S.exit=1;closeMd();if(S.hi>0)history.go(-S.hi);
-setTimeout(()=>{try{window.close()}catch(e){}setTimeout(()=>{toast("Press back once more to close the app",3800);setTimeout(()=>{S.exit=0},4000)},300)},150)}
+setTimeout(()=>{try{history.back()}catch(e){}try{window.close()}catch(e){}setTimeout(()=>{toast("Press back once more to close the app",3800);setTimeout(()=>{S.exit=0},4000)},300)},350)}
 
 /* ===== auth ===== */
 function auth(){const r=S.mode==="reg";return `<div class="au"><img src="${LOGO}" width="64" height="64" class="lg" alt=""><h1>${r?"Create <b>your account</b>":"Welcome to <b>Attendance Hub</b>"}</h1><p class="bl">Please enter your details</p>
@@ -156,7 +157,7 @@ return `${n?`<div class="bn"><span>${n} ${n>1?"entries are":"entry is"} waiting 
 ${CF?Object.entries(CF).map(([k,f],i)=>`<button class="card big" onclick="openF('${k}')"><span class="ic ${G[i%3]}">${I.form}</span><span class="tx"><h3 dir="auto">${esc(f.title)}${hasDr(k)?'<span class="dr">Draft</span>':""}</h3><p dir="auto">${esc(f.sub||"Fill and submit")}</p></span></button>`).join(""):`<div class="card"><p class="mu">${navigator.onLine?"Loading forms…":"Connect to the internet once to load the forms."}</p></div>`}
 ${CF?.seminar?`<button class="card big" onclick="go('qrc')"><span class="ic g4">${I.qr}</span><span class="tx"><h3>Create QR</h3><p>Prefill the seminar registration</p></span></button>`:""}
 ${CF&&canS()?`<button class="card big" onclick="go('sch')"><span class="ic">${I.cal}</span><span class="tx"><h3>Weekly schedule</h3><p>${sStat().pend.length?sStat().pend.length+' leader(s) pending this / next week':'All leaders scheduled'}</p></span></button>`:""}
-${CF?`<button class="card big" onclick="go('exp')"><span class="ic g3">${I.chart}</span><span class="tx"><h3>Reports</h3><p>Dashboard and Excel reports</p></span></button>`:""}`}
+${CF&&canR()?`<button class="card big" onclick="go('exp')"><span class="ic g3">${I.chart}</span><span class="tx"><h3>Reports</h3><p>Dashboard and Excel reports</p></span></button>`:""}`}
 const openF=k=>go("form",{f:k,pre:L("dr_"+k,null)||{}});
 
 /* ===== form (data kabhi mit'ta nahi: draft auto-save) ===== */
@@ -361,7 +362,7 @@ window.F_=v=>{F=v;draw()};window.Q_=v=>{Q=v.trim();$("#mt").innerHTML=mtab(calc(
 document.getElementById("root").innerHTML=`<div class="top"><h1 dir="auto">${E(D.title)}</h1><p>Attendance dashboard · ${E(D.range)}</p></div><div class="wr"><div class="flt"><select onchange="F_(this.value)"><option value="">All leaders (${D.leaders.length})</option>${D.leaders.map(l=>`<option value="${E(l.n)}">${E(l.n)}</option>`).join("")}</select><button onclick="print()">Print / PDF</button></div><div id="body"></div><p class="ft">Generated ${E(D.gen)} · Attendance Hub</p></div>`;draw()}
 
 /* ===== schedule (Tehsil Schedule) ===== */
-const canS=()=>!!S.u&&(S.u.role==="admin"||!!S.u.sched);
+const canS=()=>!!S.u&&(S.u.role==="admin"||!!S.u.sched),canR=()=>!!S.u&&(S.u.role==="admin"||!!S.u.rep);
 let LS=L("schl",[]),SQ=L("sq",[]),ssy=0;
 const sId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const pd=s=>{const[y,m,d]=String(s).split("-").map(Number);return new Date(y,m-1,d)},addD=(s,n)=>{const d=pd(s);d.setDate(d.getDate()+n);return ymd(d)};
@@ -428,15 +429,19 @@ const wb=XLSX.utils.book_new();addSh(wb,rows,"Schedule",new Set());const u=new S
 const out=XLSX.write(wb,{bookType:"xlsx",type:"array"});S.last={b:new Blob([out],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),n:`Tehsil_Schedule_${t}.xlsx`};save(S.last.b,S.last.n);toast("Downloaded "+S.last.n)}
 
 /* ===== admin ===== */
-async function loadU(){S.lu=1;try{const r=await api("users");if(r.ok){S.list=r.users}}catch(e){}S.lu=0;if(S.list&&S.v==="admin"&&!S.md)draw()}
+async function loadU(){S.lu=1;try{const r=await api("users");if(r.ok){S.list=r.users}}catch(e){}S.lu=0;if(S.list&&(S.v==="admin"||S.v==="acc")&&!S.md)draw()}
 function admin(){if(!S.list&&!S.lu)loadU();const l=S.list||[],pe=l.filter(x=>x.status==="pending"),ot=l.filter(x=>x.status!=="pending");
-const row=x=>`<div class="li"><div><b dir="auto">${esc(x.name||"—")}</b><br><span class="mu">${esc(x.email)}</span></div><div class="row"><span class="st ${x.status}">${x.status}</span>${x.status!=="approved"?`<button class="sm" onclick="ch('${esc(x.email)}','approved')">Approve</button>`:""}${x.status!=="blocked"?`<button class="sm r" onclick="ch('${esc(x.email)}','blocked')">Block</button>`:""}${x.status==="approved"?`<button class="sm" style="background:${x.sched?'var(--ok)':'var(--mu)'}" onclick="chS('${esc(x.email)}',${!x.sched})">${x.sched?'Schedule ✓':'Allow schedule'}</button>`:""}</div></div>`;
-return `<div class="row" style="justify-content:flex-end"><button class="sm" onclick="S.list=null;draw()">${I.sync}</button></div>${lenCard()}<div class="card"><h3 class="ct">Pending requests (${pe.length})</h3>${pe.map(row).join("")||`<p class="mu">${S.list?"No pending requests":"Loading…"}</p>`}</div><div class="card"><h3 class="ct">All users</h3>${ot.map(row).join("")||'<p class="mu">No users yet</p>'}</div>`}
+const row=x=>`<div class="li"><div><b dir="auto">${esc(x.name||"—")}</b><br><span class="mu">${esc(x.email)}</span></div><div class="row"><span class="st ${x.status}">${x.status}</span>${x.status!=="approved"?`<button class="sm" onclick="ch('${esc(x.email)}','approved')">Approve</button>`:""}${x.status!=="blocked"?`<button class="sm r" onclick="ch('${esc(x.email)}','blocked')">Block</button>`:""}</div></div>`;
+return `<div class="row" style="justify-content:flex-end"><button class="sm" onclick="S.list=null;draw()">${I.sync}</button></div><button class="card big" onclick="go('acc')"><span class="ic g3">${I.sh}</span><span class="tx"><h3>User access</h3><p>Choose who can see Reports and Schedule</p></span></button>${lenCard()}<div class="card"><h3 class="ct">Pending requests (${pe.length})</h3>${pe.map(row).join("")||`<p class="mu">${S.list?"No pending requests":"Loading…"}</p>`}</div><div class="card"><h3 class="ct">All users</h3>${ot.map(row).join("")||'<p class="mu">No users yet</p>'}</div>`}
 function lenCard(){const ns=[...new Set([...leaders().map(nm),...Object.keys(LEN)].filter(Boolean))],ms=lenMiss();
 return `<div class="card"><h3 class="ct">Leader names (for reports)</h3><p class="mu">Write each leader's name exactly as it is typed in the حاضر / غیر حاضر lists, so his own name counts as "Leader". New leaders from the form appear here automatically.</p>${ms.length?`<div class="bn" style="margin-top:10px">${ms.length} new leader${ms.length>1?"s":""} need an English name</div>`:""}
 <form onsubmit="return saveLen(event)">${ns.map((n,i)=>`<div class="f"><span class="lb" dir="auto">${esc(n)}${LEN[n]?"":' <b style="color:var(--er)">· New</b>'}${leaders().map(nm).includes(n)?"":" · not in form now"}</span><input name="l${i}" data-u="${esc(n)}" value="${esc(LEN[n]||"")}" placeholder="English name, e.g. Shadab Ahmed" autocapitalize="words"></div>`).join("")||'<p class="mu">No leaders found in the form.</p>'}<button class="btn" id="lb">Save leader names</button></form></div>`}
 async function saveLen(ev){ev.preventDefault();if(!navigator.onLine){toast("Internet is required to save");return false}const m={};ev.target.querySelectorAll("input[data-u]").forEach(i=>{if(i.value.trim())m[i.dataset.u]=i.value.trim()});const b=$("#lb");b.disabled=true;b.innerHTML='<span class="spin"></span>';
 const r=await api("setLen",{len:m}).catch(()=>({}));b.disabled=false;b.textContent="Save leader names";if(r.ok){LEN=r.len;W("len",LEN);toast("Leader names saved");draw()}else toast(r.err==="unknown"?"Please deploy the new Code.gs first":"Could not save");return false}
+function acc(){if(!S.list&&!S.lu)loadU();const l=(S.list||[]).filter(x=>x.status==="approved"),nr=l.filter(x=>x.rep).length,ns=l.filter(x=>x.sched).length;
+return `<p class="mu" style="margin:4px 2px 0">Tap a button to allow or remove access. Reports are hidden from everyone who is not allowed.</p><div class="row" style="margin:8px 0"><span class="st approved">Reports: ${nr}</span><span class="st approved">Schedule: ${ns}</span><button class="sm" style="margin-left:auto" onclick="S.list=null;draw()">${I.sync}</button></div>
+${l.map(x=>`<div class="card"><b dir="auto" style="font-size:17px">${esc(x.name||"—")}</b><br><span class="mu">${esc(x.email)}</span><div class="row" style="margin-top:6px"><button class="btn ${x.rep?"g":"o"}" style="padding:16px 10px" onclick="chR('${esc(x.email)}',${!x.rep})">${I.chart} Reports ${x.rep?"✓ Allowed":"— Not allowed"}</button><button class="btn ${x.sched?"g":"o"}" style="padding:16px 10px" onclick="chS('${esc(x.email)}',${!x.sched})">${I.cal} Schedule ${x.sched?"✓ Allowed":"— Not allowed"}</button></div></div>`).join("")||`<div class="card"><p class="mu">${S.list?"No approved users yet":"Loading…"}</p></div>`}`}
+async function chR(e,on){const r=await api("setRep",{e,on}).catch(()=>({}));if(!r.ok)toast(r.err==="unknown"?"Please deploy the new Code.gs first":"Could not update");else toast(on?"Reports access given":"Reports access removed");S.list=null;draw()}
 async function ch(e,s){await api("setStatus",{e,s}).catch(()=>{});S.list=null;draw()}
 async function chS(e,on){const r=await api("setSched",{e,on}).catch(()=>({}));if(!r.ok)toast(r.err==="unknown"?"Please deploy the new Code.gs first":"Could not update");else toast(on?"Schedule permission given":"Schedule permission removed");S.list=null;draw()}
 
