@@ -28,6 +28,25 @@ svg text{font-family:'Segoe UI',Arial}
 @media print{.filters,header p,.noprint{display:none!important}body{background:#fff}main{padding:0;max-width:none}.card{box-shadow:none}
 body.mode-report section:not(#report),body.mode-report header{display:none}body.mode-report #report{display:block!important;border:0;padding:0}body.mode-dash #report{display:none!important}
 @page{size:A4;margin:10mm}.grid2,.watch{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(7,1fr)}h2,th,.kpi,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* ===== phone + tablet layout (desktop look unchanged) ===== */
+html{-webkit-text-size-adjust:100%}.ftop{display:none}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(4,1fr)}.grid2{grid-template-columns:1fr}.watch{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+body{font-size:14px}
+header{padding:12px 14px}header h1{font-size:17px;line-height:1.25}header p{font-size:11px;line-height:1.4}
+.filters{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.filters>div{min-width:0}.filters select{width:100%;min-width:0;font-size:16px;padding:9px 8px}
+.filters>div:nth-child(5){grid-column:1/-1}.filters button{width:100%;padding:12px 6px;font-size:13px}
+main{padding:10px}.kpis{grid-template-columns:repeat(2,1fr)}.kpi:last-child{grid-column:1/-1}
+.grid2,.watch{grid-template-columns:1fr}.card{padding:10px}
+table{font-size:12px}th,td{padding:6px 5px}
+.card svg{min-width:470px;max-height:none!important}
+#q{width:100%!important;min-width:0!important;font-size:16px}
+.mini{flex-wrap:wrap}.mini div{flex:1 1 44%}
+#report{padding:10px;overflow-x:auto}#report h1{font-size:17px}
+.ftop{display:block;position:fixed;right:12px;bottom:14px;z-index:9;border-radius:22px;padding:11px 16px;box-shadow:0 3px 10px #0004}}
+@media print{.ftop{display:none!important}}
 </style></head><body class="mode-dash">
 <header><h1>CLUSTER MEETINGS - ATTENDANCE DASHBOARD</h1><p id="sub"></p></header>
 <div class="filters noprint">
@@ -48,6 +67,7 @@ body.mode-report section:not(#report),body.mode-report header{display:none}body.
 <section class="card"><h2>NEW FRIENDS (extra attendees - not counted in Attendance %)</h2><div id="tNF"></div></section>
 <section id="report"></section>
 </main>
+<button class="o ftop noprint" onclick="scrollTo({top:0,behavior:'smooth'})">&#8593; Filters</button>
 <script>
 const D=/*__DATA__*/null;
 const NF='New Friend', S={leader:'All',month:'All',week:'All',person:'',rtype:'person'};
