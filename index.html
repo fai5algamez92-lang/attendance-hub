@@ -147,7 +147,7 @@ function auth(){const r=S.mode==="reg";return `<div class="au"><img src="${LOGO}
 <form onsubmit="return au(event)">${r?`<div class="f"><span class="lb">Full name</span><input name="n" required value="${esc(S.nm)}"></div>`:""}
 <div class="f"><span class="lb">Email</span><input name="e" type="email" autocapitalize="off" required placeholder="Your email" value="${esc(S.em)}"></div>
 <div class="f"><span class="lb">Password</span><div class="pw"><input name="p" id="pw" type="password" required placeholder="Your password"><button type="button" class="eye" onclick="eye()">${I.eye}</button></div></div>
-${r?"":`<p class="mu" style="margin:6px 2px">Session lasts 1 hour, then you are logged out.</p>`}
+${r?"":`<p class="mu" style="margin:6px 2px">Session lasts untill logged out.</p>`}
 <button class="btn">${r?"Create account":"Login"}</button><p class="er">${esc(S.msg)}</p></form>
 ${r?"":`<p class="c"><a onclick="toast('Please contact the admin to reset your password.')">Forgot your password?</a></p>`}
 <p class="c btm">${r?"Already have an account?":"Don't have an account yet?"} <a onclick="S.mode='${r?"login":"reg"}';S.msg='';draw()">${r?"Login":"Create one"}</a></p></div>`}
