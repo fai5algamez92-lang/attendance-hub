@@ -57,7 +57,7 @@ const nav=t=>{const p=NP.filter(k=>t.includes(k)).slice(0,4),any=p.some(inP);ret
 /* ===== drawer (slide menu) ===== */
 function openDw(){const u=S.u,t=TABS.filter(k=>(k!=="admin"||u.role==="admin")&&(k!=="sch"||canS())&&(k!=="exp"||canR()));S.dw=1;
 $("#dw").innerHTML=`<div class="sh" onclick="closeDw()"></div><aside class="pn"><div class="dh"><img src="${LOGO}" width="56" height="56" alt=""><b dir="auto">${esc(u.name||"User")}</b><span>${esc(u.email)}</span><i>${u.role==="admin"?"Admin":"Member"}</i></div>
-<div class="dm">${t.map(k=>`<button class="${S.v===k?"on":""}" onclick="go('${k}')">${NV[k][1]}${NV[k][0]}</button>`).join("")}<button class="${S.v==="grp"?"on":""}" onclick="go('grp')">${I.grp}Group members</button><button onclick="go('ai')">${I.ai}Assistant</button>${canS()?`<button onclick="closeDw();openN()">${I.bell}Notifications</button>`:""}<hr><button onclick="closeDw();md({t:'pw'})">${I.key}Change password</button><button class="r" onclick="closeDw();md({t:'logout'})">${I.out}Logout</button></div><div class="dv">Attendance Hub v${VER}</div></aside>`;
+<div class="dm">${t.map(k=>`<button class="${S.v===k?"on":""}" onclick="go('${k}')">${NV[k][1]}${NV[k][0]}</button>`).join("")}<button class="${S.v==="grp"?"on":""}" onclick="go('grp')">${I.grp}Group members</button><button onclick="go('ai')">${I.ai}Assistant</button>${canS()?`<button onclick="closeDw();openN()">${I.bell}Notifications</button>`:""}<hr><button onclick="closeDw();md({t:'pw'})">${I.key}Change password</button><button onclick="closeDw();md({t:'exit'})"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>Exit app</button><button class="r" onclick="closeDw();md({t:'logout'})">${I.out}Logout</button></div><div class="dv">Attendance Hub v${VER}</div></aside>`;
 requestAnimationFrame(()=>requestAnimationFrame(()=>{$("#dw").classList.add("open");if(!("ontouchstart" in window))$("#dw .dm button")?.focus({preventScroll:true})}))}
 function closeDw(){S.dw=0;$("#dw").classList.remove("open")}
 
@@ -97,8 +97,11 @@ if(S.u&&S.u.status==="approved"&&!S.splash&&BK[S.v]){go(BK[S.v]);return}
 if(S.u&&S.u.status==="approved"&&!S.splash&&S.v!=="home"){go("home");return}
 if(!S.u&&S.mode==="reg"){S.mode="login";S.msg="";draw();return}
 doExit()});
-function doExit(){try{const A=window.Capacitor?.Plugins?.App;if(A&&A.exitApp){A.exitApp();return}}catch(e){}S.exit=1;closeMd();if(S.hi>0)history.go(-S.hi);
-setTimeout(()=>{try{history.back()}catch(e){}try{window.close()}catch(e){}setTimeout(()=>{toast("Press back once more to close the app",3800);setTimeout(()=>{S.exit=0},4000)},300)},350)}
+function doExit(){try{const A=window.Capacitor?.Plugins?.App;if(A&&A.exitApp){A.exitApp();return}}catch(e){}S.exit=1;closeMd();closeDw&&S.dw&&closeDw();
+const and=/Android/i.test(navigator.userAgent);
+if(and){try{location.href="intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.HOME;launchFlags=0x10000000;end"}catch(e){}}
+setTimeout(()=>{if(document.hidden)return;try{if(S.hi>0)history.go(-S.hi)}catch(e){}try{window.close()}catch(e){}setTimeout(()=>{if(!document.hidden)toast("Press the phone's Back button once to close the app",4000);setTimeout(()=>{if(!document.hidden)S.exit=0},6000)},400)},500)}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&S.exit){S.exit=0;S.hi=history.state?.i??0}});
 
 /* ===== auth ===== */
 function auth(){const r=S.mode==="reg";return `<div class="au"><img src="${LOGO}" width="64" height="64" class="lg" alt=""><h1>${r?"Create <b>your account</b>":"Welcome to <b>Attendance Hub</b>"}</h1><p class="bl">Please enter your details</p>
@@ -612,7 +615,7 @@ AIH=[{k:/forgot|bhool|reset password|password yaad/,t:"Forgot password",s:["Pass
 {k:/offline|sync|internet|net/,t:"Offline and sync",s:["Forms can be filled offline. They stay in History as Pending","When internet is back they sync automatically (History, Sync now)","I (the assistant) work fully offline using the data last downloaded"]},
 {k:/approve|user|access|permission|allow/,t:"Users and access",s:["Admin, then Pending requests, then Approve","Admin, then User access: choose Reports or Schedule and pick All or specific leaders"]},
 {k:/leader name|english name/,t:"Leader names",s:["Admin, then Leader names, type the English name exactly as written in the attendance lists, then Save"]},
-{k:/exit|close|back/,t:"Exit the app",s:["Press Back until Home, press Back once more, then tap Exit"]},
+{k:/exit|close|back|band kar/,t:"Exit the app",s:["Tap the menu button (three lines) at the top","Tap Exit app, then Exit","Or press Back until Home, press Back once more, then tap Exit"]},
 {k:/fill|form|entry|submit|bhar|draft|attendance|hazri/,t:"Fill attendance",s:["Say: Aftab ki attendance fill karni hai, and I open the form with the leader selected","Tick the names, or use Others for a name that is not listed, then Submit"]}],
 WD=[["sun","itwar","ittwar","اتوار"],["mon","peer","pir","پیر"],["tue","mangal","منگل"],["wed","budh","بدھ"],["thu","jumerat","jumeraat","جمعرات"],["fri","juma","jumma","جمعہ"],["sat","hafta","sanichar","ہفتہ"]],
 AIV={grp:"Group members",home:"Home",hist:"History",scan:"Scan",exp:"Reports",sch:"Schedule",qrc:"Create QR",qbk:"QR Backup",admin:"Admin",acc:"User access",len:"Leader names"},RL={m:"this month",pm:"last month","3m":"last 3 months",all:"all time"};
