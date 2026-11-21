@@ -2,7 +2,7 @@
 
 Offline-first PWA for cluster meeting attendance, seminar registration, weekly scheduling and reporting. The frontend is a single static `index.html`; the backend is a Google Apps Script (`Code.gs`) that sits on top of Google Forms and Google Sheets.
 
-**Current version:** app `v3.4` · service-worker cache `fh19`
+**Current version:** app `v3.4` · service-worker cache `fh21`
 
 ---
 
@@ -13,10 +13,10 @@ Offline-first PWA for cluster meeting attendance, seminar registration, weekly s
 | **Auth** | Register → admin approves → login. Roles: `admin` and `user`. Max 2 devices per account. Login is rate-limited (5 failed tries, 15-minute lock). |
 | **Forms** | Cluster attendance form and Seminar registration form are read live from Google Forms (`config`). Answers auto-save as drafts, work offline, queue in History and sync to the Form's `formResponse` URL when online. |
 | **QR** | Create seminar-prefill QR codes (save PNG, share, QR Backup list). Scan tab uses `BarcodeDetector` and opens the prefilled form. |
-| **Reports** | Pick form, date range and leaders. Outputs: **Full dashboard** (`dash-template.html`), **Quick dashboard** (self-contained HTML), **Excel** (SheetJS). The **Quick dashboard** is view-only inside the app (no download or share). The **Full dashboard** has **Download**, which asks *Dashboard (HTML)* or *Excel file* (same data, `dlPick()` / `dlDo()`). Works offline from cached data. |
+| **Reports** | Pick form, date range and leaders. Outputs: **Full dashboard** (`dash-template.html`), **Quick dashboard** (self-contained HTML), **Excel** (SheetJS). The **Quick dashboard** is view-only inside the app (no download or share). The **Full dashboard** has **Download**, which asks *Dashboard (HTML)* or *Excel file*. The Excel file (and the *Excel file* report type) is the full dynamic dashboard workbook built by `xlDash()` from the same CSV layout as the form export, identical to the desktop EXE output. Works offline from cached data. |
 | **Schedule** | Weekly schedule (date, time, leader, topic, location), repeat weekly or pick dates, copy, edit, delete, Excel export, per-leader access, bell notifications, admin "pending leaders" view. |
 | **WhatsApp** | Builds the Urdu cluster invitation message and sends it per contact via WhatsApp or WhatsApp Business (Android intents). Per-user contact list (max 50), synced to the backend. |
-| **Assistant** | Offline rule-based assistant (English, Roman Urdu, Urdu script): attendance questions, last meeting per leader, best/lowest leader, members who stopped coming, perfect attendance, this week / today, leaders with no meeting, month-by-month trend, leader comparison, overall average, group member lists, term definitions and how-to help. Opens forms/screens, prepares reports and schedules. Urdu questions are matched through a keyword map (`UR`); data replies are in English. Unanswered questions are logged to the sheet. |
+| **Assistant** | Offline rule-based assistant (English, Roman Urdu, Urdu script): attendance questions, last meeting per leader, best/lowest leader, members who stopped coming, perfect attendance, this week / today, leaders with no meeting, month-by-month trend, leader comparison, overall average, group member lists, term definitions and how-to help. Opens forms/screens, prepares reports and schedules. Urdu questions are matched through a keyword map (`UR`); data replies are in English. Also reads the **seminar** data (users with all-reports access): who attended and on which dates, who came to every seminar date, counts per date and per halqa, one person's seminar dates; and **compares the two forms**: in cluster meetings but not at a seminar, at a seminar but not in cluster meetings, and in both (names matched by spelling). "Kon kon hai leader" lists every leader with members, meetings and last meeting. Unanswered questions are logged to the sheet. |
 | **Group members** | Menu → Group members. Every leader's member list, read live from the cluster form's name lists (`config`), with search and 3-month attendance % (users with Reports access). Re-checks the form on open, every 2 minutes while open, when back online and on Refresh. |
 | **Admin** | Approve/block users, Reports access (all or specific leaders), Schedule access (all or specific leaders), Leader names (Urdu → English), view all users' contacts. |
 
@@ -29,7 +29,8 @@ Offline-first PWA for cluster meeting attendance, seminar registration, weekly s
 | `index.html` | The whole app: UI, logic, embedded QR library and logo. Loads SheetJS from cdnjs **only when Reports / Excel is used** (`needX()`). |
 | `dash-template.html` | Full dashboard template. The app replaces `/*__DATA__*/null` with the report JSON and opens it in an iframe. |
 | `Code.gs` | Apps Script backend, deployed as a Web App. Single `doPost` router. |
-| `sw.js` | Service worker, cache-first with background refresh. Bump `C="fh19"` on every release. |
+| `sw.js` | Service worker, cache-first with background refresh. Bump `C="fh21"` on every release. |
+| `xl/excel_app.py`, `xl/openpyxl-3.1.5-py2.py3-none-any.whl`, `xl/et_xmlfile-2.0.0-py3-none-any.whl` | **Excel dashboard engine.** `excel_app.py` is the same builder the desktop EXE uses. The app runs it in the browser with Pyodide (Python in WebAssembly, loaded once from cdn.jsdelivr.net, ~12 MB, then cached in the `eng1` cache). Output is identical to the EXE: 11 sheets, dropdowns, 14 charts, Person_Report. |
 | `gulzar-urdu.woff2` | Gulzar Nastaliq font, subset to Urdu letters (182 KB, SIL Open Font License). Used only for Urdu text via `unicode-range`; cached by `sw.js`; embedded into dashboards when they are generated so downloaded files show Urdu correctly. |
 | `manifest.json`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | PWA manifest and Rahimia icons (referenced by `index.html` and `sw.js`, must sit next to them). |
 
@@ -121,7 +122,7 @@ Responses are `{ok:true,...}` or `{ok:false, err}`. `err:"auth"` makes the app l
 
 ### `dash-template.html`
 
-Filters (leader, month, week, attendee, report type), KPIs, month and leader comparison, meeting details, watch list (consistent absentees, attended then stopped, on and off), per-person report, leader report and month/week report. Print-optimised (A4) and phone-responsive: on screens under 640px every table turns into cards (`tbl()` adds `data-l` labels) and charts redraw at phone size. A **Leader trends** section shows a leader × month attendance table and one meeting-by-meeting line chart per leader (the HTML version of the Excel *Leader Trends* sheet). Attendance bars use green 75%+, amber 50–74%, red below 50%; month change is shown in percentage points; leaders are ranked by attendance. KPI cards show label + number only; tapping one shows its explanation in a temporary info bar (`tip()`). The Quick dashboard (`DCSS` / `dashMain` in `index.html`) follows the same rules.
+Filters (leader, month, week, attendee, report type), KPIs, month and leader comparison, meeting details, watch list (consistent absentees, attended then stopped, on and off), per-person report, leader report and month/week report. Print-optimised (A4) and phone-responsive: on screens under 640px every table turns into cards (`tbl()` adds `data-l` labels) and charts redraw at phone size. Section order (decision-first): KPIs → **Key insights** (auto-written: attendance level, highest/lowest leader and gap, month change, biggest drop, follow-up counts, New Friends) → Watch list → Leader comparison + Month comparison → Leader trends → Meeting details → Attendees → New Friends. Long tables show 12 rows with a *Show all* button (print shows everything). A **Leader trends** section shows a leader × month attendance table and one meeting-by-meeting line chart per leader (the HTML version of the Excel *Leader Trends* sheet). Attendance bars use green 75%+, amber 50–74%, red below 50%; month change is shown in percentage points; leaders are ranked by attendance. KPI cards show label + number only; tapping one shows its explanation in a temporary info bar (`tip()`). The Quick dashboard (`DCSS` / `dashMain` in `index.html`) follows the same rules.
 
 ---
 
@@ -130,7 +131,7 @@ Filters (leader, month, week, attendee, report type), KPIs, month and leader com
 Host `index.html`, `dash-template.html`, `sw.js`, `manifest.json` and both icons in one folder over HTTPS (GitHub Pages, Netlify, Firebase Hosting, etc.). Open once with internet so the service worker caches everything. For a release:
 
 1. Change `VER` in `index.html`.
-2. Bump the cache name in `sw.js` (`fh19` → `fh20`).
+2. Bump the cache name in `sw.js` (`fh21` → `fh22`).
 3. Re-deploy `Code.gs` if the backend changed.
 
 **APK (recommended): Trusted Web Activity** built with PWABuilder.com from the GitHub Pages URL. It runs in Chrome, so downloads, share, camera and the service worker work, and every GitHub push updates all phones without a new APK.
