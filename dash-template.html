@@ -2,99 +2,116 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cluster Attendance Dashboard</title>
 <style>
-:root{
-  --navy:#17324D;--navy2:#234866;--teal:#287C7C;--teal2:#3B9290;
-  --ink:#25313B;--grey:#687887;--light:#EAF1F5;--bg:#F3F7FA;
-  --red:#C0392B;--green:#1E8449;--amber:#F4B942;--mint:#287C7C;
-  --line:rgba(35,72,102,.13);--glass:rgba(255,255,255,.86);
-  --shadow:0 8px 24px rgba(23,50,77,.07);
-}
+:root{--b:#2457A6;--b2:#1B4688;--bt:#EAF1FC;--ink:#1D2B3F;--grey:#56667A;--bg:#F4F7FB;--line:#DCE4EE;
+--red:#B3261E;--green:#1E7A4C;--amber:#9A6700;--teal:#0E7490}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;font-family:'Segoe UI',Arial,'Noto Nastaliq Urdu',sans-serif;background:linear-gradient(135deg,#F3F7FA 0%,#EDF4F6 52%,#F7F9FB 100%);color:var(--ink);font-size:13px}
-header{background:linear-gradient(115deg,var(--navy),#21465D);color:#fff;padding:17px 24px;border-bottom:1px solid rgba(255,255,255,.18);box-shadow:0 5px 18px rgba(23,50,77,.12)}
-header h1{margin:0;font-size:22px;letter-spacing:.45px;font-weight:700}
-header p{margin:5px 0 0;font-size:11px;color:#D7E5EC;line-height:1.5}
-.filters{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 22px;display:flex;flex-wrap:wrap;gap:13px;align-items:flex-end;box-shadow:0 4px 16px rgba(23,50,77,.05)}
-.filters label{display:block;font-size:10px;font-weight:700;color:var(--grey);margin-bottom:5px;letter-spacing:.55px}
-select,input[type=text]{padding:8px 10px;border:1px solid rgba(40,124,124,.28);border-radius:9px;background:rgba(255,255,255,.92);color:var(--ink);font-size:13px;font-weight:600;min-width:140px;outline:none;transition:border-color .18s,box-shadow .18s}
-select:focus,input[type=text]:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(40,124,124,.12)}
-button{padding:9px 15px;border:1px solid transparent;border-radius:9px;background:var(--navy);color:#fff;font-weight:650;cursor:pointer;font-size:12px;box-shadow:0 3px 9px rgba(23,50,77,.12);transition:transform .15s,opacity .15s}
-button.o{background:var(--teal)}button:hover{opacity:.91;transform:translateY(-1px)}
+body{margin:0;font:15px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans','Noto Nastaliq Urdu',sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--b);color:#fff;padding:18px 24px}
+header h1{margin:0;font-size:22px;font-weight:700;line-height:1.3}
+header p{margin:6px 0 0;font-size:13px;color:#E3ECF9;line-height:1.5}
+.filters{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:12px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.filters label{display:block;font-size:13px;font-weight:600;color:var(--grey);margin-bottom:4px}
+select,input[type=text]{font:inherit;font-size:16px;min-height:46px;padding:9px 12px;border:1px solid #C9D5E3;border-radius:12px;background:#fff;color:var(--ink);min-width:150px}
+select:focus,input[type=text]:focus{outline:0;border-color:var(--b);box-shadow:0 0 0 3px rgba(36,87,166,.2)}
+button{font:inherit;font-size:15px;font-weight:600;min-height:46px;padding:10px 16px;border:1.5px solid var(--b);border-radius:12px;background:var(--b);color:#fff;cursor:pointer}
+button:hover{background:var(--b2)}button.o{background:#fff;color:var(--b);border-color:#B7CBE8}button.o:hover{background:var(--bt)}
+button.g{background:#fff;color:var(--grey);border-color:var(--line)}
+:focus-visible{outline:3px solid var(--b);outline-offset:2px}
 main{padding:18px 22px;max-width:1320px;margin:auto}
 section{margin-bottom:18px}
-.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:11px}
-.kpi{background:linear-gradient(145deg,#21445F,#17324D);color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:13px 9px;text-align:center;box-shadow:var(--shadow)}
-.kpi.o{background:linear-gradient(145deg,#358B89,#287C7C)}
-.kpi b{display:block;font-size:26px;margin:5px 0;font-weight:700}
-.kpi span{font-size:9px;letter-spacing:.6px;font-weight:700}
-.kpi i{font-size:9px;color:#D6E5EA;font-style:normal}
+.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-top:4px solid var(--b);border-radius:14px;padding:14px 12px}
+.kpi.o{border-top-color:var(--green)}.kpi.w{border-top-color:var(--red)}
+.kpi span{display:block;font-size:13px;font-weight:600;color:var(--grey)}
+.kpi b{display:block;font-size:30px;margin-top:2px;font-weight:700;color:var(--ink);line-height:1.2}
+.kpi{display:block;width:100%;text-align:start;font:inherit;color:var(--ink);cursor:pointer;min-height:0;position:relative}
+.kpi:hover{background:#F8FAFD}.kpi:active{background:var(--bt)}
+.kpi:after{content:"i";position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;border:1.5px solid #B7CBE8;color:var(--b);font:700 11px/15px Georgia,serif;text-align:center}
+#tip{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);max-width:min(92vw,520px);background:#1D2B3F;color:#fff;padding:12px 18px;border-radius:12px;font-size:15px;line-height:1.45;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:20}
+#tip.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+@media print{#tip{display:none}.kpi:after{display:none}}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:14px;box-shadow:var(--shadow);overflow:auto}
-h2{font-size:12px;margin:0 0 10px;background:rgba(23,50,77,.96);color:#fff;padding:9px 11px;border-radius:8px;letter-spacing:.45px}
-table{border-collapse:separate;border-spacing:0;width:100%;border:1px solid var(--line);border-radius:9px;overflow:hidden}
-th{background:var(--navy);color:#fff;font-size:11px;padding:8px 6px;text-align:center}
-td{border-bottom:1px solid #E3EAF0;border-right:1px solid #E8EEF2;padding:7px 6px;text-align:center;font-size:12px}
-tr:last-child td{border-bottom:0}td:last-child,th:last-child{border-right:0}
-tr:nth-child(even) td{background:rgba(239,245,248,.72)}
-td.l{text-align:left}.ur{direction:rtl;font-family:'Noto Nastaliq Urdu','Segoe UI',Arial}
-a.p{color:var(--teal);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
-.bar{position:relative;min-width:70px}.bar i{position:absolute;left:0;top:0;bottom:0;background:rgba(40,124,124,.18);border-radius:3px}.bar b{position:relative}
-.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;color:#fff}
-.t-Regular,.t-Returned{background:var(--green)}.t-Consistent,.t-stopped{background:var(--red)}.t-onoff,.t-Missed{background:var(--amber);color:#25313B}.t-New{background:#477FA6}.t-gray{background:#8796A2}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;overflow:auto}
+h2{font-size:17px;margin:0 0 12px;color:var(--ink);padding-inline-start:10px;border-inline-start:4px solid var(--b);line-height:1.35}
+h2 small{display:block;font-size:13px;font-weight:400;color:var(--grey)}
+table{border-collapse:separate;border-spacing:0;width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th{background:var(--bt);color:var(--b2);font-size:13px;font-weight:700;padding:10px 8px;text-align:center}
+td{border-bottom:1px solid #E8EEF5;padding:9px 8px;text-align:center;font-size:14px}
+tr:last-child td{border-bottom:0}
+tr:nth-child(even) td{background:#F8FAFD}
+td.l{text-align:start}.ur{direction:rtl;font-family:'Noto Nastaliq Urdu',system-ui,'Segoe UI',sans-serif}
+a.p{color:var(--b);font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.bv{position:relative;display:block;min-width:80px;border-radius:6px;overflow:hidden;background:#EEF2F7;padding:2px 6px}
+.bv i{position:absolute;inset:0 auto 0 0;background:rgba(36,87,166,.22)}.bv b{position:relative}
+.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:700;white-space:nowrap}
+.t-Regular,.t-Returned{background:#E3F4EA;color:#14532D}.t-Consistent,.t-stopped{background:#FBE9E7;color:#8A1C12}
+.t-onoff,.t-Missed{background:#FFF0CC;color:#6B4A00}.t-New{background:#EAF1FC;color:#1B4688}.t-gray{background:#EEF2F7;color:#3F4D5E}
 .P{color:var(--green);font-weight:700}.A{color:var(--red);font-weight:700}.empty{color:var(--grey);padding:16px;text-align:center}
-.watch{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.watch h3{font-size:12px;margin:0 0 7px;color:var(--navy)}
-#report{background:rgba(255,255,255,.94);border:1px solid rgba(40,124,124,.25);border-radius:14px;padding:17px;display:none;box-shadow:var(--shadow)}
-#report h1{margin:0 0 5px;font-size:20px;color:var(--navy)}#report h2{margin-top:14px}
-.mini{display:flex;gap:10px;margin:10px 0}.mini div{flex:1;background:rgba(234,241,245,.88);border:1px solid rgba(35,72,102,.07);border-radius:9px;padding:10px;text-align:center}.mini b{display:block;font-size:20px;color:var(--teal)}
-svg text{font-family:'Segoe UI',Arial}
+.sq{letter-spacing:1px;white-space:nowrap}
+.watch{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.watch h3{font-size:15px;margin:0 0 8px;color:var(--ink)}
+#report{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:none}
+#report h1{margin:0 0 6px;font-size:21px;color:var(--ink)}#report h2{margin-top:18px}
+.mini{display:flex;gap:10px;margin:12px 0}.mini div{flex:1;background:var(--bt);border-radius:12px;padding:10px;text-align:center;font-size:13px;color:var(--grey)}
+.mini b{display:block;font-size:22px;color:var(--b)}
+svg text{font-family:system-ui,'Segoe UI',sans-serif}
 .ftop{display:none}
 @media print{
  .filters,header p,.noprint{display:none!important}body{background:#fff}main{padding:0;max-width:none}
- .card{box-shadow:none;background:#fff;border:1px solid #ddd;backdrop-filter:none}
+ .card{border:1px solid #ddd}
  body.mode-report section:not(#report),body.mode-report header{display:none}
- body.mode-report #report{display:block!important;border:0;padding:0;box-shadow:none}
+ body.mode-report #report{display:block!important;border:0;padding:0}
  body.mode-dash #report{display:none!important}
  @page{size:A4;margin:10mm}
  .grid2,.watch{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(7,1fr)}
- h2,th,.kpi,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ th,.kpi,.tag,.bv{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media(max-width:1000px){.kpis{grid-template-columns:repeat(4,1fr)}.grid2{grid-template-columns:1fr}.watch{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){
- body{font-size:14px}
- header{padding:14px 15px}header h1{font-size:17px;line-height:1.3}header p{font-size:10px;line-height:1.45}
- .filters{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;background:rgba(255,255,255,.92)}
- .filters>div{min-width:0}.filters select{width:100%;min-width:0;font-size:16px;padding:10px 8px}
- .filters>div:nth-child(5){grid-column:1/-1}.filters button{width:100%;padding:12px 6px;font-size:13px}
- main{padding:11px}.kpis{grid-template-columns:repeat(2,1fr);gap:9px}.kpi:last-child{grid-column:1/-1}
- .kpi{padding:12px 7px}.kpi b{font-size:23px}
- .grid2,.watch{grid-template-columns:1fr}.card{padding:11px;border-radius:12px}
- table{font-size:12px;min-width:580px}th,td{padding:7px 5px}
- .card svg{min-width:470px;max-height:none!important}
- #q{width:100%!important;min-width:0!important;font-size:16px}
+ body{font-size:15px}
+ header{padding:16px 14px}header h1{font-size:19px}header p{font-size:13px}
+ .filters{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+ .filters>div{min-width:0}.filters select{width:100%;min-width:0}
+ .filters>div:nth-child(5){grid-column:1/-1}.filters button{width:100%;padding:10px 6px}
+ main{padding:12px 10px}.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi:last-child{grid-column:1/-1}.kpi b{font-size:24px}
+ .grid2,.watch{grid-template-columns:1fr}.card{padding:14px 12px;border-radius:14px;overflow:visible}
+ #q{width:100%!important;min-width:0!important}
  .mini{flex-wrap:wrap}.mini div{flex:1 1 44%}
- #report{padding:11px;overflow-x:auto}#report h1{font-size:17px}
- .ftop{display:block;position:fixed;right:12px;bottom:14px;z-index:9;border-radius:22px;padding:11px 16px;box-shadow:0 4px 14px rgba(23,50,77,.24)}
+ #report{padding:14px 12px}#report h1{font-size:19px}
+ /* tables turn into readable cards on phones */
+ table.rt,table.rt tbody,table.rt tr,table.rt td{display:block;width:100%}
+ table.rt{border:0;border-radius:0;overflow:visible}
+ table.rt tr.hd{display:none}
+ table.rt tr{background:#fff;border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:4px 12px}
+ table.rt tr:nth-child(even) td{background:none}
+ table.rt td{display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:end;border:0;border-bottom:1px solid #EEF2F7;padding:9px 0;font-size:15px}
+ table.rt td:last-child{border-bottom:0}
+ table.rt td:before{content:attr(data-l);color:var(--grey);font-size:13px;font-weight:600;text-align:start;flex:none;direction:ltr;font-family:system-ui,sans-serif}
+ table.rt td.ur{direction:ltr}
+ table.rt td.bar .bv{width:130px;flex:none}
+ .watch table td{font-size:14px}
+ #tip{bottom:76px}
+ .ftop{display:block;position:fixed;right:12px;bottom:14px;z-index:9;border-radius:24px;padding:11px 18px;box-shadow:0 4px 14px rgba(29,43,63,.25)}
 }
 @media print{.ftop{display:none!important}}
 </style></head><body class="mode-dash">
-<header><h1>CLUSTER MEETINGS - ATTENDANCE DASHBOARD</h1><p id="sub"></p></header>
+<header><h1>Cluster meetings · Attendance dashboard</h1><p id="sub"></p></header>
 <div class="filters noprint">
- <div><label>CLUSTER LEADER</label><select id="fLeader"></select></div>
- <div><label>MONTH</label><select id="fMonth"></select></div>
- <div><label>WEEK</label><select id="fWeek"></select></div>
- <div><label>ATTENDEE</label><select id="fPerson"></select></div>
- <div><label>REPORT TYPE</label><select id="fRType"><option value="person">Person report</option><option value="leader">Leader (cluster) report</option><option value="period">Month / Week report</option></select></div>
- <button class="o" onclick="showReport()">Show report</button><button class="o" onclick="printReport()">Print report</button><button onclick="printDash()">Print dashboard</button><button onclick="resetF()" style="background:#6B7C85">Reset</button>
+ <div><label>Cluster leader</label><select id="fLeader"></select></div>
+ <div><label>Month</label><select id="fMonth"></select></div>
+ <div><label>Week</label><select id="fWeek"></select></div>
+ <div><label>Attendee</label><select id="fPerson"></select></div>
+ <div><label>Report type</label><select id="fRType"><option value="person">Person report</option><option value="leader">Leader (cluster) report</option><option value="period">Month / Week report</option></select></div>
+ <button onclick="showReport()">Show report</button><button class="o" onclick="printReport()">Print report</button><button class="o" onclick="printDash()">Print dashboard</button><button class="g" onclick="resetF()">Reset</button>
 </div>
 <main>
 <section><div class="kpis" id="kpis"></div></section>
-<section class="grid2"><div class="card"><h2>MONTH COMPARISON (follows Leader filter)</h2><div id="tMonth"></div><div id="cMonth"></div><div id="cMonth2"></div></div>
-<div class="card"><h2>LEADER COMPARISON (follows Month &amp; Week filters)</h2><div id="tLeader"></div><div id="cLeader"></div><div id="cLeader2"></div></div></section>
-<section class="card"><h2>MEETING-WISE DETAILS (follows all filters)</h2><div id="cTrend"></div><div id="tMeet"></div></section>
-<section class="card"><h2>WATCH LIST (month / week / leader filters)</h2><div class="watch" id="watch"></div></section>
-<section class="card"><h2>ATTENDEES (click a name for his report)</h2><div class="noprint" style="margin-bottom:8px"><input type="text" id="q" placeholder="Search name..." style="min-width:220px"></div><div id="tPeople"></div></section>
-<section class="card"><h2>NEW FRIENDS (extra attendees - not counted in Attendance %)</h2><div id="tNF"></div></section>
+<section class="grid2"><div class="card"><h2>Month comparison<small>Follows the leader filter</small></h2><div id="tMonth"></div><div id="cMonth"></div><div id="cMonth2"></div></div>
+<div class="card"><h2>Leader comparison<small>Follows the month and week filters</small></h2><div id="tLeader"></div><div id="cLeader"></div><div id="cLeader2"></div></div></section>
+<section class="card"><h2>Meeting details<small>Follows all filters</small></h2><div id="cTrend"></div><div id="tMeet"></div></section>
+<section class="card"><h2>Watch list<small>People who need a follow-up</small></h2><div class="watch" id="watch"></div></section>
+<section class="card"><h2>Attendees<small>Tap a name to open the person report</small></h2><div class="noprint" style="margin-bottom:8px"><input type="text" id="q" placeholder="Search name…" aria-label="Search name" style="min-width:240px"></div><div id="tPeople"></div></section>
+<section class="card"><h2>New Friends<small>Extra attendees — not counted in Attendance %</small></h2><div id="tNF"></div></section>
 <section id="report"></section>
 </main>
 <button class="o ftop noprint" onclick="scrollTo({top:0,behavior:'smooth'})">&#8593; Filters</button>
@@ -120,42 +137,44 @@ function peopleRows(ms){const leaders=new Set(ms.map(m=>m.leader));
  .sort((a,b)=>(en(a.leader)||a.leader).localeCompare(en(b.leader)||b.leader)||ROLEORD[a.role]-ROLEORD[b.role]||a.person.localeCompare(b.person))}
 function tagCls(p){return p.startsWith('Consistent')?'t-Consistent':p.startsWith('Attended')?'t-stopped':p==='On & off'?'t-onoff':p.startsWith('Missed')?'t-Missed':p==='Regular'?'t-Regular':p.startsWith('Returned')?'t-Returned':p==='New Friend'?'t-New':'t-gray'}
 const tag=p=>`<span class="tag ${tagCls(p)}">${esc(p)}</span>`;
-const seqH=sq=>sq.map(x=>`<span class="${x}">${x}</span>`).join(' ');
-const barCell=v=>`<td class="bar"><i style="width:${Math.round(v*100)}%"></i><b>${P0(v)}</b></td>`;
+const seqH=sq=>`<span class="sq">${sq.map(x=>`<span class="${x}">${x}</span>`).join(' ')}</span>`;
+const barCell=v=>`<td class="bar"><span class="bv"><i style="width:${Math.round(v*100)}%"></i><b>${P0(v)}</b></span></td>`;
 const ldrCell=l=>`<td class="ur">${esc(l)}</td>`;
-const tbl=(head,rows)=>rows.length?`<table><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr>${rows.join('')}</table>`:'<div class="empty">No data for this selection</div>';
+const tbl=(head,rows)=>rows.length?`<table class="rt"><tr class="hd">${head.map(h=>`<th scope="col">${h}</th>`).join('')}</tr>${rows.map(r=>{let i=0;return r.replace(/<td(?=[\s>])/g,()=>`<td data-l="${head[i++]||''}"`)}).join('')}</table>`:'<div class="empty">No data for this selection</div>';
 /* charts */
-function svgChart(kind,labels,series,o){o=o||{};const W=560,H=o.h||220,pl=40,pr=10,pt=28,pb=36,n=labels.length;if(!n)return'';
+const MOB=typeof innerWidth!=='undefined'&&innerWidth<640,FS=MOB?12:10;
+function svgChart(kind,labels,series,o){o=o||{};const W=MOB?360:560,H=o.h||(MOB?240:220),pl=40,pr=10,pt=30,pb=40,n=labels.length;if(!n)return'';
+ const step=Math.max(1,Math.ceil(n/(MOB?6:12))),showV=n<=(MOB?8:16),cut=t=>{t=String(t);return MOB&&t.length>9?t.slice(0,8)+'…':t};
  const max=o.max||Math.max(1,...series.flatMap(s=>s.vals))*1.18,iw=W-pl-pr,ih=H-pt-pb,gw=iw/n,fmt=o.fmt||N1,ax=o.axis||fmt;let g='';
- for(let t=0;t<=4;t++){const y=pt+ih-ih*t/4;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#dfe8e6"/><text x="${pl-5}" y="${y+3}" text-anchor="end" font-size="9" fill="#6b7c85">${ax(max*t/4)}</text>`}
- series.forEach((s,k)=>{s.name&&(g+=`<rect x="${pl+k*130}" y="6" width="10" height="10" fill="${s.color}"/><text x="${pl+k*130+14}" y="15" font-size="10" fill="#1b2b34">${esc(s.name)}</text>`)});
- if(kind==='bar'){const bw=Math.min(44,gw*.75/series.length);labels.forEach((lb,i)=>{const cx=pl+gw*i+gw/2;series.forEach((s,k)=>{const v=s.vals[i],h=ih*v/max,x=cx-bw*series.length/2+bw*k;g+=`<rect x="${x}" y="${pt+ih-h}" width="${bw-2}" height="${h}" fill="${s.color}" rx="2"/><text x="${x+bw/2-1}" y="${pt+ih-h-4}" text-anchor="middle" font-size="9" fill="#1b2b34">${fmt(v)}</text>`});g+=`<text x="${cx}" y="${H-pb+14}" text-anchor="middle" font-size="10" fill="#1b2b34">${esc(lb)}</text>`})}
- else{series.forEach(s=>{const pts=s.vals.map((v,i)=>[pl+gw*i+gw/2,pt+ih-ih*v/max,v]);g+=`<polyline fill="none" stroke="${s.color}" stroke-width="2.5" points="${pts.map(p=>p[0]+','+p[1]).join(' ')}"/>`+pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${s.color}"/><text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="9" fill="#1b2b34">${fmt(p[2])}</text>`).join('')});
-  labels.forEach((lb,i)=>{g+=`<text x="${pl+gw*i+gw/2}" y="${H-pb+14}" text-anchor="middle" font-size="9" fill="#1b2b34">${esc(lb)}</text>`})}
- return`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:${H+40}px">${g}</svg>`}
+ for(let t=0;t<=4;t++){const y=pt+ih-ih*t/4;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="#E5EBF2"/><text x="${pl-5}" y="${y+4}" text-anchor="end" font-size="${FS}" fill="#56667A">${ax(max*t/4)}</text>`}
+ series.forEach((s,k)=>{s.name&&(g+=`<rect x="${pl+k*140}" y="6" width="12" height="12" rx="2" fill="${s.color}"/><text x="${pl+k*140+17}" y="16" font-size="${FS}" fill="#1D2B3F">${esc(s.name)}</text>`)});
+ if(kind==='bar'){const bw=Math.min(44,gw*.75/series.length);labels.forEach((lb,i)=>{const cx=pl+gw*i+gw/2;series.forEach((s,k)=>{const v=s.vals[i],h=ih*v/max,x=cx-bw*series.length/2+bw*k;g+=`<rect x="${x}" y="${pt+ih-h}" width="${bw-2}" height="${h}" fill="${s.color}" rx="3"/>`+(showV||series.length===1?`<text x="${x+bw/2-1}" y="${pt+ih-h-4}" text-anchor="middle" font-size="${FS-1}" fill="#1D2B3F">${fmt(v)}</text>`:'')});if(i%step===0)g+=`<text x="${cx}" y="${H-pb+16}" text-anchor="middle" font-size="${FS}" fill="#1D2B3F">${esc(cut(lb))}</text>`})}
+ else{series.forEach(s=>{const pts=s.vals.map((v,i)=>[pl+gw*i+gw/2,pt+ih-ih*v/max,v]);g+=`<polyline fill="none" stroke="${s.color}" stroke-width="2.5" points="${pts.map(p=>p[0]+','+p[1]).join(' ')}"/>`+pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="${showV?4.5:3}" fill="${s.color}"/>`+(showV?`<text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="${FS-1}" fill="#1D2B3F">${fmt(p[2])}</text>`:'')).join('')});
+  labels.forEach((lb,i)=>{if(i%step===0)g+=`<text x="${pl+gw*i+gw/2}" y="${H-pb+16}" text-anchor="middle" font-size="${FS}" fill="#1D2B3F">${esc(cut(lb))}</text>`})}
+ return`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" style="max-height:${MOB?H+80:H+40}px">${g}</svg>`}
 /* dashboard */
 function render(){
  const ms=fmeet(),st=sumStats(ms),pr=peopleRows(ms),ca=pr.filter(e=>e.role!==NF&&e.pattern==='Consistent absentee');
  const gs=D.roster.filter(e=>(S.leader==='All'||e.leader===S.leader)&&e.role!==NF).length;
  const nfs=pr.filter(e=>e.role===NF&&e.present>0);
  document.getElementById('sub').textContent=`Source: ${D.source}  |  ${D.meetings.length} meetings  |  Generated ${D.generated}  |  Attendance % = members present / (present + absent). New Friends are shown separately.`;
- const k=[['MEETINGS',st.n,'in current filter'],['GROUP SIZE',gs,'roster members (no new friends)'],['AVG PRESENT / MEETING',N1(st.avgP),'members present'],['AVG ABSENT / MEETING',N1(st.avgA),'members absent'],['NEW FRIENDS',nfs.length,'different extra people'],['ATTENDANCE %',P0(st.pct),'present / (present+absent)',1],['CONSISTENT ABSENTEES',ca.length,'see watch list',1]];
- document.getElementById('kpis').innerHTML=k.map(x=>`<div class="kpi ${x[3]?'o':''}"><span>${x[0]}</span><b>${x[1]}</b><i>${x[2]}</i></div>`).join('');
+ const k=[['Meetings',st.n,'in current filter'],['Group size',gs,'members (no new friends)'],['Avg present',N1(st.avgP),'members per meeting'],['Avg absent',N1(st.avgA),'members per meeting'],['New Friends',nfs.length,'different extra people'],['Attendance',P0(st.pct),'present ÷ (present + absent)','o'],['Consistent absentees',ca.length,'see watch list','w']];
+ document.getElementById('kpis').innerHTML=k.map(x=>`<button type="button" class="kpi ${x[3]||''}" data-i="${esc(x[0]+': '+x[1]+' — '+x[2])}" onclick="tip(this.dataset.i)" aria-label="${esc(x[0]+' '+x[1]+'. '+x[2])}"><span>${x[0]}</span><b>${x[1]}</b></button>`).join('');
  // month
  const mrows=D.months.map(mo=>{const s=sumStats(fmeet({month:mo,week:'All'}));return{mo,s}});
  document.getElementById('tMonth').innerHTML=tbl(['Month','Meetings','Avg Present','Avg Absent','New Friends','Attendance %','Change'],mrows.map((r,i)=>{const d=i&&mrows[i-1].s.n&&r.s.n?r.s.pct-mrows[i-1].s.pct:null;
   return`<tr><td>${esc(r.mo)}</td><td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}<td class="${d>0?'P':d<0?'A':''}">${d==null?'-':(d>0?'▲ ':'▼ ')+P1(Math.abs(d))}</td></tr>`}));
- document.getElementById('cMonth').innerHTML=svgChart('line',mrows.map(r=>r.mo),[{name:'Attendance %',color:'#287C7C',vals:mrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
- document.getElementById('cMonth2').innerHTML=svgChart('bar',mrows.map(r=>r.mo),[{name:'Avg present',color:'#3B9290',vals:mrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#C0392B',vals:mrows.map(r=>r.s.avgA)}]);
+ document.getElementById('cMonth').innerHTML=svgChart('line',mrows.map(r=>r.mo),[{name:'Attendance %',color:'#2457A6',vals:mrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
+ document.getElementById('cMonth2').innerHTML=svgChart('bar',mrows.map(r=>r.mo),[{name:'Avg present',color:'#1E7A4C',vals:mrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#B3261E',vals:mrows.map(r=>r.s.avgA)}]);
  // leader
  const lrows=D.leaders.map(l=>({l,s:sumStats(fmeet({leader:l}))}));
  document.getElementById('tLeader').innerHTML=tbl(['Leader','Meetings','Avg Present','Avg Absent','New Friends','Attendance %'],lrows.map(r=>`<tr>${ldrCell(r.l)}<td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}</tr>`));
  const lab=r=>en(r.l)||r.l;
- document.getElementById('cLeader').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Attendance %',color:'#17324D',vals:lrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
- document.getElementById('cLeader2').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Avg present',color:'#3B9290',vals:lrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#C0392B',vals:lrows.map(r=>r.s.avgA)}]);
+ document.getElementById('cLeader').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Attendance %',color:'#2457A6',vals:lrows.map(r=>r.s.pct)}],{max:1,fmt:P0,axis:P0});
+ document.getElementById('cLeader2').innerHTML=svgChart('bar',lrows.map(lab),[{name:'Avg present',color:'#1E7A4C',vals:lrows.map(r=>r.s.avgP)},{name:'Avg absent',color:'#B3261E',vals:lrows.map(r=>r.s.avgA)}]);
  // meetings
  const mm=ms.slice().sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);
- document.getElementById('cTrend').innerHTML=mm.length>1?svgChart('line',mm.map(m=>m.date.slice(8)+' '+new Date(m.date).toLocaleString('en',{month:'short'})),[{name:'Attendance % per meeting',color:'#287C7C',vals:mm.map(m=>mstat(m).pct)}],{max:1,fmt:P0,axis:P0}):'';
+ document.getElementById('cTrend').innerHTML=mm.length>1?svgChart('line',mm.map(m=>m.date.slice(8)+' '+new Date(m.date).toLocaleString('en',{month:'short'})),[{name:'Attendance % per meeting',color:'#2457A6',vals:mm.map(m=>mstat(m).pct)}],{max:1,fmt:P0,axis:P0}):'';
  document.getElementById('tMeet').innerHTML=tbl(['#','Date','Day','Time','Leader','Month','Week','Members Present','Members Absent','Expected','New Friends','Total Present','Attendance %'],mm.map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td>${ldrCell(m.leader)}<td>${m.month}</td><td>${m.week}</td><td>${s.mp}</td><td>${s.ma}</td><td>${s.exp}</td><td>${s.nf}</td><td>${s.mp+s.nf}</td>${barCell(s.pct)}</tr>`}));
  // watch
  const wl=(title,pat)=>{const L=pr.filter(e=>e.role!==NF&&e.pattern===pat);return`<div><h3>${title} (${L.length})</h3>${L.length?`<table>${L.map(e=>`<tr><td class="l"><a class="p" onclick="openPerson('${esc(e.person).replace(/'/g,"\\'")}')">${esc(e.person)}</a></td><td class="ur">${esc(e.leader)}</td><td>${seqH(e.seq)}</td></tr>`).join('')}</table>`:'<div class="empty">None</div>'}</div>`};
@@ -165,19 +184,21 @@ function render(){
  document.getElementById('tPeople').innerHTML=tbl(['Leader','Person','Role','Listed','Present','Absent','Att %','Sequence','Pattern'],pr.filter(e=>e.listed>0&&(!q||e.person.toLowerCase().includes(q))).map(e=>`<tr>${ldrCell(e.leader)}<td class="l"><a class="p" onclick="openPerson('${esc(e.person).replace(/'/g,"\\'")}')">${esc(e.person)}</a></td><td>${e.role}</td><td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td>${e.role===NF||e.pct==null?'<td>-</td>':barCell(e.pct)}<td>${seqH(e.seq)}</td><td>${tag(e.pattern)}</td></tr>`));
  document.getElementById('tNF').innerHTML=tbl(['New Friend','Cluster Leader','Times attended'],nfs.map(e=>`<tr><td class="l">${esc(e.person)}</td>${ldrCell(e.leader)}<td>${e.present}</td></tr>`));
 }
+/* temporary info bar */
+function tip(t){let e=document.getElementById('tip');if(!e){e=document.createElement('div');e.id='tip';e.setAttribute('role','status');e.setAttribute('aria-live','polite');e.onclick=()=>e.classList.remove('on');document.body.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(tip.t);tip.t=setTimeout(()=>e.classList.remove('on'),3500)}
 /* reports */
 function leaderSection(l){const ms=fmeet({leader:l}).sort((a,b)=>a.date.localeCompare(b.date)),pr=peopleRows(ms).filter(e=>e.leader===l),st=sumStats(ms);
  const cnt=p=>pr.filter(e=>e.role!==NF&&e.pattern===p).length,nfs=pr.filter(e=>e.role===NF&&e.present>0);
- return`<h2>LEADER VIEW - ${esc(l)} ${en(l)?'('+esc(en(l))+')':''}  |  ${esc(S.month)} ${S.week!=='All'?'| '+esc(S.week):''}</h2>
+ return`<h2>Leader view — ${esc(l)} ${en(l)?'('+esc(en(l))+')':''}  |  ${esc(S.month)} ${S.week!=='All'?'| '+esc(S.week):''}</h2>
  <div class="mini"><div><b>${st.n}</b>meetings held</div><div><b>${N1(st.avgP)}</b>avg present</div><div><b>${N1(st.avgA)}</b>avg absent</div><div><b>${P0(st.pct)}</b>attendance</div><div><b>${nfs.length}</b>new friends</div></div>
  ${tbl(['#','Date','Day','Time','Members Present','Members Absent','New Friends','Attendance %'],ms.map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td><td>${s.mp}</td><td>${s.ma}</td><td>${s.nf}</td>${barCell(s.pct)}</tr>`}))}
- <h2>GROUP MEMBERS - ATTENDANCE PATTERN</h2>${tbl(['Person','Role','Listed','Present','Absent','Att %','Sequence','Pattern'],pr.filter(e=>e.role!==NF&&e.listed>0).map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.role}</td><td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${e.pct==null?'-':P0(e.pct)}</td><td>${seqH(e.seq)}</td><td>${tag(e.pattern)}</td></tr>`))}
+ <h2>Group members · attendance pattern</h2>${tbl(['Person','Role','Listed','Present','Absent','Att %','Sequence','Pattern'],pr.filter(e=>e.role!==NF&&e.listed>0).map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.role}</td><td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${e.pct==null?'-':P0(e.pct)}</td><td>${seqH(e.seq)}</td><td>${tag(e.pattern)}</td></tr>`))}
  <p><b>Consistent absentees: ${cnt('Consistent absentee')} &nbsp;|&nbsp; Attended then stopped: ${cnt('Attended then stopped')} &nbsp;|&nbsp; On &amp; off: ${cnt('On & off')} &nbsp;|&nbsp; Missed latest meeting: ${cnt('Missed latest meeting')}</b></p>
- <h2>NEW FRIENDS IN THIS CLUSTER (not counted in %)</h2>${tbl(['New Friend','Times attended'],nfs.map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.present}</td></tr>`))}`}
+ <h2>New Friends in this cluster<small>Not counted in %</small></h2>${tbl(['New Friend','Times attended'],nfs.map(e=>`<tr><td class="l">${esc(e.person)}</td><td>${e.present}</td></tr>`))}`}
 function personReport(name){const es=D.roster.filter(e=>e.person===name).sort((a,b)=>ROLEORD[a.role]-ROLEORD[b.role]);if(!es.length)return'<div class="empty">Select an attendee</div>';
- let h=`<h1>PERSON ATTENDANCE REPORT</h1><div><b style="font-size:18px">${esc(name)}</b> &nbsp; Month: <b>${esc(S.month)}</b> ${S.week!=='All'?'Week: <b>'+esc(S.week)+'</b>':''}</div>`;
+ let h=`<h1>Person attendance report</h1><div><b style="font-size:18px">${esc(name)}</b> &nbsp; Month: <b>${esc(S.month)}</b> ${S.week!=='All'?'Week: <b>'+esc(S.week)+'</b>':''}</div>`;
  es.forEach(e=>{const ms=fmeet({leader:e.leader}).sort((a,b)=>a.date.localeCompare(b.date)),sq=seqOf(e.leader,name,ms),c=sq.filter(x=>x!=='-').join(''),p=(c.match(/P/g)||[]).length,pat=classify(sq,e.role);
-  h+=`<h2>${esc(e.role.toUpperCase())} IN CLUSTER OF <span class="ur">${esc(e.leader)}</span> ${en(e.leader)?'('+esc(en(e.leader))+')':''}</h2>
+  h+=`<h2>${esc(e.role)} in the cluster of <span class="ur">${esc(e.leader)}</span> ${en(e.leader)?'('+esc(en(e.leader))+')':''}</h2>
   <div class="mini"><div><b>${ms.length}</b>cluster meetings held</div><div><b>${c.length}</b>listed in</div><div><b>${p}</b>present</div><div><b>${c.length-p}</b>absent</div><div><b>${e.role===NF||!c.length?'n/a':P0(p/c.length)}</b>attendance</div></div>
   <p>Pattern: ${tag(pat)} &nbsp; Sequence (oldest to newest): ${seqH(sq)}</p>
   ${tbl(['#','Date','Day','Time','Status'],ms.map((m,i)=>{const s=sq[i];return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td><td class="${s}">${s==='P'?'Present':s==='A'?'Absent':'Not listed'}</td></tr>`}))}`;
@@ -185,13 +206,13 @@ function personReport(name){const es=D.roster.filter(e=>e.person===name).sort((a
  return h}
 function periodReport(){const ms=fmeet(),st=sumStats(ms),pr=peopleRows(ms);
  const lr=D.leaders.map(l=>({l,s:sumStats(fmeet({leader:l}))})).filter(r=>r.s.n);
- let h=`<h1>${S.week!=='All'?'WEEK':'MONTH'} REPORT</h1><div><b style="font-size:18px">${esc(S.month)} ${S.week!=='All'?' - '+esc(S.week):''}</b> ${S.leader!=='All'?' | Leader: <span class="ur">'+esc(S.leader)+'</span>':''}</div>
+ let h=`<h1>${S.week!=='All'?'Week':'Month'} report</h1><div><b style="font-size:18px">${esc(S.month)} ${S.week!=='All'?' - '+esc(S.week):''}</b> ${S.leader!=='All'?' | Leader: <span class="ur">'+esc(S.leader)+'</span>':''}</div>
  <div class="mini"><div><b>${st.n}</b>meetings</div><div><b>${N1(st.avgP)}</b>avg present</div><div><b>${N1(st.avgA)}</b>avg absent</div><div><b>${P0(st.pct)}</b>attendance</div><div><b>${st.nf}</b>new friend visits</div></div>
- <h2>LEADER-WISE</h2>${tbl(['Leader','Meetings','Avg Present','Avg Absent','New Friends','Attendance %'],lr.map(r=>`<tr>${ldrCell(r.l)}<td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}</tr>`))}
- <h2>MEETINGS</h2>${tbl(['#','Date','Day','Time','Leader','Members Present','Members Absent','New Friends','Attendance %'],ms.slice().sort((a,b)=>a.date.localeCompare(b.date)).map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td>${ldrCell(m.leader)}<td>${s.mp}</td><td>${s.ma}</td><td>${s.nf}</td>${barCell(s.pct)}</tr>`}))}`;
- [['CONSISTENT ABSENTEES','Consistent absentee'],['ATTENDED THEN STOPPED','Attended then stopped'],['ON & OFF','On & off']].forEach(x=>{const L=pr.filter(e=>e.role!==NF&&e.pattern===x[1]);h+=`<h2>${x[0]} (${L.length})</h2>${tbl(['Person','Leader','Listed','Present','Absent','Sequence'],L.map(e=>`<tr><td class="l">${esc(e.person)}</td>${ldrCell(e.leader)}<td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${seqH(e.seq)}</td></tr>`))}`});
+ <h2>Leader-wise</h2>${tbl(['Leader','Meetings','Avg Present','Avg Absent','New Friends','Attendance %'],lr.map(r=>`<tr>${ldrCell(r.l)}<td>${r.s.n}</td><td>${N1(r.s.avgP)}</td><td>${N1(r.s.avgA)}</td><td>${r.s.nf}</td>${barCell(r.s.pct)}</tr>`))}
+ <h2>Meetings</h2>${tbl(['#','Date','Day','Time','Leader','Members Present','Members Absent','New Friends','Attendance %'],ms.slice().sort((a,b)=>a.date.localeCompare(b.date)).map((m,i)=>{const s=mstat(m);return`<tr><td>${i+1}</td><td>${m.date}</td><td>${m.day}</td><td>${m.time}</td>${ldrCell(m.leader)}<td>${s.mp}</td><td>${s.ma}</td><td>${s.nf}</td>${barCell(s.pct)}</tr>`}))}`;
+ [['Consistent absentees','Consistent absentee'],['Attended then stopped','Attended then stopped'],['On & off','On & off']].forEach(x=>{const L=pr.filter(e=>e.role!==NF&&e.pattern===x[1]);h+=`<h2>${x[0]} (${L.length})</h2>${tbl(['Person','Leader','Listed','Present','Absent','Sequence'],L.map(e=>`<tr><td class="l">${esc(e.person)}</td>${ldrCell(e.leader)}<td>${e.listed}</td><td>${e.present}</td><td>${e.absent}</td><td>${seqH(e.seq)}</td></tr>`))}`});
  return h}
-function buildReport(){const t=S.rtype;return t==='person'?personReport(S.person):t==='leader'?(S.leader==='All'?'<div class="empty">Choose a Cluster Leader first</div>':`<h1>LEADER (CLUSTER) REPORT</h1>`+leaderSection(S.leader)):periodReport()}
+function buildReport(){const t=S.rtype;return t==='person'?personReport(S.person):t==='leader'?(S.leader==='All'?'<div class="empty">Choose a Cluster Leader first</div>':`<h1>Leader (cluster) report</h1>`+leaderSection(S.leader)):periodReport()}
 /* ui */
 function showReport(){const r=document.getElementById('report');r.innerHTML=buildReport();r.style.display='block';r.scrollIntoView({behavior:'smooth'})}
 function printReport(){const r=document.getElementById('report');r.innerHTML=buildReport();r.style.display='block';document.body.className='mode-report';window.print()}
